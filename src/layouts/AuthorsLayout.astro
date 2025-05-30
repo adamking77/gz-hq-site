@@ -1,0 +1,58 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-[#222222] dark:text-white font-medium"
+      >
+        The authors
+      </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <Text
+          tag="h1"
+          variant="textBase"
+          class="text-[#222222] dark:text-white font-medium 2xl:text-base"
+        >
+          {frontmatter.title}
+        </Text>
+        <Wrapper variant="prose" class="mt-8">
+          <slot />
+        </Wrapper>
+        <ul
+          role="list"
+          class="flex flex-col gap-4 mt-8 border-t dark:border-white/10 border-black/10 pt-2"
+        >
+          {
+            frontmatter.images.map((author, index) => (
+              <li class="flex items-center gap-x-3">
+                <img
+                  class="object-cover size-10 rounded-full"
+                  src={author.url}
+                  alt={author.alt}
+                />
+                <div class="flex flex-col text-zinc-500 dark:text-zinc-400">
+                  <Text tag="span" variant="textXS" class="font-medium">
+                    {author.name}
+                  </Text>
+                  <p class="text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+                    {author.description}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

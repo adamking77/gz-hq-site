@@ -1,0 +1,53 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ProjectsEntries from "@/components/projects/ProjectsEntries.astro";
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("projects");
+---
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-[#222222] dark:text-white font-medium"
+      >
+        Selected projects
+      </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="2xl:text-base dark:text-zinc-400 text-zinc-500"
+        >
+          Over the years, I have been involved in designing and creating various
+          products, ranging from single-page websites to developing the first
+          mobile site builder in the world. Below are some examples of my recent
+          projects and the experiences gained from them.
+        </Text>
+      </div>
+      <div
+        class="flex flex-col divide-black/10 dark:fivide-white/0 divide-y border-y mt-8 dark:border-white/10 border-black/10"
+      >
+        {
+          allPosts
+            .slice()
+            .map((post) => (
+              <ProjectsEntries
+                url={"/projects/" + post.slug}
+                subtitle={post.data.subtitle}
+                title={post.data.title}
+                alt={post.data.title}
+                image={post.data.image.url}
+              />
+            ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

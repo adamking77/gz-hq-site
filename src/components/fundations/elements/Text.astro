@@ -1,0 +1,72 @@
+
+---
+export interface Props {
+  tag?:
+    | "a"
+    | "p"
+    | "em"
+    | "span"
+    | "small"
+    | "strong"
+    | "blockquote"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"; // Defines allowed HTML tags
+  id?: string; // Optional 'id' attribute
+  href?: string; // Optional 'href' attribute for anchor tags
+  class?: string; // Optional prop for additional custom classes
+  variant?: string; // Specifies the style variant of the text
+  style?: string; // Specifies inline styles
+  title?: string; // Optional title attribute for anchor tags
+}
+
+// Define text styles for each variant
+const textStyles: Record<string, string> = {
+  display6XL:
+    "text-4xl leading-tight tracking-tight sm:text-7xl md:text-9xl lg:text-[12rem]",
+  display5XL:
+    "text-4xl leading-tight tracking-tight sm:text-7xl md:text-8xl lg:text-[10rem]",
+  display4XL:
+    "text-4xl leading-tight tracking-tight sm:text-7xl md:text-8xl lg:text-9xl",
+  display3XL:
+    "text-4xl leading-tight tracking-tight sm:text-6xl md:text-7xl lg:text-8xl",
+  display2XL:
+    "text-2xl font-bold leading-normal tracking-tight sm:text-3xl md:text-4xl lg:text-5xl",
+  displayXL:
+    "text-lg font-bold tracking-tight leading-normal sm:text-xl md:text-2xl lg:text-3xl",
+  displayLG:
+    "text-5xl leading-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl",
+  displayMD:
+    "text-4xl leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl",
+  displaySM: "text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl",
+  displayXS: "text-2xl leading-tight sm:text-3xl md:text-4xl lg:text-5xl",
+  textXL: "text-lg sm:text-xl md:text-2xl",
+  textLG: "text-base sm:text-lg md:text-xl ",
+  textBase: "text-base",
+  textSM: "text-sm ",
+  textXS: "text-xs ",
+};
+
+// Destructure props with default values
+const {
+  tag: Tag = "p", // Defaults to paragraph tag
+  variant = "textBase", // Defaults to textMD style variant
+  class: className = "", // No additional classes by default
+  ...rest // Collect remaining props
+} = Astro.props;
+
+// Get the base classes for the specified variant
+const baseClasses = textStyles[variant] || textStyles.textBase; // Fallback to textMD if variant not found
+
+// Combine base classes with any additional custom classes
+const combinedClasses = `${baseClasses} ${className}`.trim();
+---
+
+<Tag class={combinedClasses} {...rest}>
+  <slot name="left-icon" />
+  <slot />
+  <slot name="right-icon" />
+</Tag>

@@ -1,0 +1,93 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-[#222222] dark:text-white font-medium"
+      >
+        {frontmatter.title}
+      </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="2xl:text-base dark:text-zinc-400 text-zinc-500"
+        >
+          {frontmatter.description}
+        </Text>
+      </div>
+      <div class="mt-8">
+        <img
+          src={frontmatter.image.url}
+          alt={frontmatter.image.alt}
+          class="object-cover object-top"
+        />
+      </div>
+      <div class="mt-10 flex flex-col gap-3 md:flex-row">
+        <Text
+          tag="a"
+          variant="textSM"
+          href={frontmatter.checkout}
+          class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white font-medium"
+        >
+          &rarr; Buy for ${frontmatter.price}</Text
+        >
+        <div class="hidden lg:block h-6 w-px bg-zinc-200"></div>
+        <Text
+        tag="a"
+        variant="textSM"
+        class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white font-medium"
+          href={frontmatter.preview}>&#x2197 Preview</Text
+        >
+      </div>
+      <div class="mt-10 border-t dark:border-white/20 border-black/10 pt-10">
+        <Text
+          tag="h3"
+          variant="textBase"
+          class="font-medium text-[#222222] dark:text-white">Highlights</Text
+        >
+
+        <ul role="list" class="list-disc list-inside mt-4">
+          <!-- Dynamically render highlights -->
+          {
+            frontmatter.highlights.map((highlight) => (
+              <li>
+                <Text
+                  variant="textSM"
+                  tag="span"
+                  class="text-zinc-500 dark:text-zinc-400 2xl:text-base"
+                >
+                  {highlight}
+                </Text>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="mt-10 border-t dark:border-white/20 border-black/10 pt-10">
+        <Text
+          tag="h3"
+          variant="textBase"
+          class="font-medium text-[#222222] dark:text-white">License</Text
+        >
+        <Text
+          variant="textSM"
+          tag="p"
+          class="text-zinc-500 mt-4 dark:text-zinc-400 2xl:text-base"
+        >
+          {frontmatter.license}
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

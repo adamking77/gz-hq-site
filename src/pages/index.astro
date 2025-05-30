@@ -1,11 +1,118 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Sections
+import Hero from "@/components/landing/Hero.astro";
+import InfoSection from "@/components/landing/InfoSection.astro";
+// Components
+import LatestPosts from "@/components/blog/LatestPosts.astro";
+import EntriesOne from "@/components/blog/EntriesOne.astro"; // Added import
+import ProcessStepItem from "@/components/landing/ProcessStepItem.astro";
+// Blog contet
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const introContent = `I’m a developer, hiker, and coffee enthusiast based in Boulder, CO. I'm
+currently crafting web experiences at Oxbow UI as a frontend engineer.
+Previously, I honed my skills at Airbnb, and beyond my 9-to-5, I've been
+collaborating with indie makers, close friends, and tinkering on side
+projects. This little corner of the web is my personal hub, a mix of 80%
+experiments and 20% musings about life and work. If you're curious about
+what I've been up to, the links below should guide you through the chaos
+and creativity of my journey.`;
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+  <Hero />
+  <Wrapper variant="standard" class="py-12 mb-12">
+    <InfoSection sectionTitle="The Core (Intro)" sectionContent={introContent} />
+  </Wrapper>
+  <Wrapper variant="standard" class="py-12 mb-12">
+    <InfoSection sectionTitle="The Process">
+      <Fragment slot="card-content">
+        <div class="ps-2 mt-8"> <!-- This is the main timeline container from the example -->
+          <!-- Process Step 1 -->
+          <ProcessStepItem
+            title="Pattern Recognition"
+            description="Recognizing exploitation patterns before they manifest."
+          />
+          <!-- Process Step 2 -->
+          <ProcessStepItem
+            title="Protection Architecture"
+            description="Engineering frameworks that restore autonomy and resilience."
+          />
+          <!-- Process Step 3 -->
+          <ProcessStepItem
+            title="Transformation Design"
+            description="Converting your vulnerabilities into your strongest assets."
+            isLast={true}
+          />
+        </div>
+      </Fragment>
+    </InfoSection>
+  </Wrapper>
+  <Wrapper variant="standard" class="py-12 mb-12">
+    <InfoSection sectionTitle="Current Initiatives">
+      <Fragment slot="card-content">
+        <div class="grid md:grid-cols-2 gap-6 mt-8">
+          <EntriesOne
+            title="Exploring New Technologies"
+            description="Our team is actively researching emerging technologies to enhance our platform's capabilities and user experience."
+            url="#"
+          />
+          <EntriesOne
+            title="Community Growth Initiative"
+            description="Focused on expanding our community outreach and fostering a more engaging environment for all users."
+            url="#"
+          />
+        </div>
+      </Fragment>
+    </InfoSection>
+  </Wrapper>
+  <Wrapper variant="standard" class="py-12 mb-12">
+    <InfoSection sectionTitle="About" sectionContent={introContent} />
+  </Wrapper>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:pt-74 xl:pb-50">
+      <div
+        class="gap-2 sm:flex sm:items-center sm:justify-between border-t dark:border-white/10 border-black/10 pt-2"
+      >
+        <Text
+          tag="h3"
+          variant="textBase"
+          class="text-[#222222] dark:text-white font-medium"
+        >
+          Latest blog posts
+        </Text>
+        <div class="">
+          <Text
+            tag="a"
+            variant="textSM"
+            href="/blog/home"
+            aria-label="your label"
+            title="link to your page"
+            class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white font-medium"
+          >
+            &rarr; See all posts
+        </Text>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-col">
+        {
+          allPosts
+            .slice(0, 2)
+            .map((post) => (
+              <LatestPosts
+                url={"/blog/posts/" + post.slug}
+                title={post.data.title}
+                alt={post.data.title}
+                pubDate={post.data.pubDate.toString().slice(4, 10)}
+              />
+            ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

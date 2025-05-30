@@ -1,0 +1,40 @@
+---
+import Text from '@/components/fundations/elements/Text.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  iconSvg?: string;
+  isLast?: boolean;
+}
+
+const { title, description, iconSvg, isLast = false } = Astro.props;
+---
+
+<div class="flex gap-x-3 relative group rounded-lg transition-all duration-200 ease-in-out hover:bg-gray-100 dark:hover:bg-neutral-800 hover:-translate-y-1 mb-6">
+  <!-- Icon Column -->
+  <div class:list={[
+    "relative last:after:hidden after:absolute after:top-8 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] group-hover:after:bg-gray-400 dark:group-hover:after:bg-neutral-500",
+    isLast ? "last:after:hidden" : "after:bg-gray-300 dark:after:bg-neutral-600"
+  ]}>
+    <div class="relative z-10 size-7 flex justify-center items-center">
+      <div class="size-2 rounded-full bg-gray-300 border-2 border-gray-400 dark:bg-neutral-600 dark:border-neutral-500 transition-colors duration-200 ease-in-out group-hover:bg-gray-400 dark:group-hover:bg-neutral-500 group-hover:border-gray-500 dark:group-hover:border-neutral-400"></div>
+    </div>
+  </div>
+
+  <!-- Content Column -->
+  <div class="grow p-2 pb-8">
+    {iconSvg && (
+      <div class="mb-3 h-12 w-12 text-gray-700 dark:text-neutral-300" set:html={iconSvg} />
+    )}
+    {!iconSvg && (
+      <!-- Icon placeholder -->
+    )}
+    <Text tag="h3" variant="textBase" class="font-semibold text-gray-800 dark:text-white mb-1">
+      {title}
+    </Text>
+    <Text tag="p" variant="textBase" class="text-gray-600 dark:text-neutral-400">
+      {description}
+    </Text>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+
+interface Props {
+  sectionTitle: string;
+  sectionContent?: string; // Made optional
+}
+
+const { sectionTitle, sectionContent } = Astro.props;
+---
+
+<div>
+  <Text
+    tag="h2"
+    variant="textXL"
+    class="text-[#222222] dark:text-white font-medium border-b dark:border-white/10 border-black/10 pb-2"
+  >
+    {sectionTitle}
+  </Text>
+  <slot name="card-content">
+    {/* Fallback to sectionContent if no slot content is provided */}
+    {sectionContent && (
+      <Text
+        tag="p"
+        variant="textSM"
+        class="2xl:text-base mt-8 dark:text-zinc-400 text-zinc-500"
+      >
+        {sectionContent}
+      </Text>
+    )}
+  </slot>
+</div>

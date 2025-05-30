@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import StoreEntries from "@/components/store/StoreEntries.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Import the collection of all store entries
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("store");
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-[#222222] dark:text-white font-medium"
+      >
+        The store
+      </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="2xl:text-base dark:text-zinc-400 text-zinc-500"
+        >
+          Look around and find out
+        </Text>
+      </div>
+      <div class="mt-8 flex flex-col gap-y-24">
+        {
+          allPosts
+            .slice()
+            .map((post) => (
+              <StoreEntries
+                url={"/store/" + post.slug}
+                title={post.data.title}
+                description={post.data.description}
+                alt={post.data.title}
+                image={post.data.image.url}
+              />
+            ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>
