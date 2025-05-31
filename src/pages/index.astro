@@ -14,20 +14,25 @@ import ProcessStepItem from "@/components/landing/ProcessStepItem.astro";
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
 
-const introContent = `I’m a developer, hiker, and coffee enthusiast based in Boulder, CO. I'm
-currently crafting web experiences at Oxbow UI as a frontend engineer.
-Previously, I honed my skills at Airbnb, and beyond my 9-to-5, I've been
-collaborating with indie makers, close friends, and tinkering on side
-projects. This little corner of the web is my personal hub, a mix of 80%
-experiments and 20% musings about life and work. If you're curious about
-what I've been up to, the links below should guide you through the chaos
-and creativity of my journey.`;
+const introContent = `
+<p class="mb-4">GenZen transforms patterns of exploitation into systems that are predictable and transformable. Protecting hundreds of millions in assets and creating pathways out of “impossible” situations by seeing what others miss.</p>
+<h3 class="text-xl font-semibold mt-6 mb-4 text-[#222222] dark:text-white">Adam King, Founder</h3>
+<p class="mb-4">For fifteen years, I’ve focused on helping leaders maintain control when their power faces sophisticated attack. What began as my personal system for navigating complex power dynamics evolved into something larger when I saw these same patterns threatening others.</p>
+<p class="mb-4">I’ve guided clients through high-figure negotiations, protected against systemic manipulation, and transformed crisis into strategic advantage.</p>
+<p>GenZen exists because these patterns of exploitation aren’t random – they’re predictable, and therefore transformable by design.</p>
+`;
+
+const newCoreProblemContent = `
+<h3 class="text-xl font-semibold mb-4 text-[#222222] dark:text-white">What are you expected to do when every system that was supposed to support you, is actually being weaponized against you?</h3>
+<p class="mb-4">How do you regain actual autonomy?</p>
+<p>These are the fundamental questions that drive every initiative at GenZen HQ. Traditional solutions fail because they don’t recognize the true nature of these attacks. We do. GenZen uses a systematic approach to reclaiming autonomy when protection systems become weapons.</p>
+`;
 ---
 
 <BaseLayout>
   <Hero />
   <Wrapper variant="standard" class="py-12 mb-12">
-    <InfoSection sectionTitle="The Core (Intro)" sectionContent={introContent} />
+    <InfoSection sectionTitle="The Core Problem" sectionContent={newCoreProblemContent} />
   </Wrapper>
   <Wrapper variant="standard" class="py-12 mb-12">
     <InfoSection sectionTitle="The Process">
@@ -75,16 +80,16 @@ and creativity of my journey.`;
   <Wrapper variant="standard" class="py-12 mb-12">
     <InfoSection sectionTitle="Current Initiatives">
       <Fragment slot="card-content">
-        <div class="grid md:grid-cols-2 gap-6 mt-8">
+        <div class="flex flex-col gap-6 mt-8">
           <EntriesOne
-            title="Exploring New Technologies"
-            description="Our team is actively researching emerging technologies to enhance our platform's capabilities and user experience."
-            url="#"
+            title="Legacy Resilience"
+            description="When the systems you thought were supposed to preserve your legacy are systematically hijaking it instead."
+            url="https://genzen.solutions"
           />
           <EntriesOne
-            title="Community Growth Initiative"
-            description="Focused on expanding our community outreach and fostering a more engaging environment for all users."
-            url="#"
+            title="Leadership Resilience"
+            description="When the accomplishments you trusted to amplify your authority are weaponized to undermine it."
+            url="https://genzen.pro"
           />
         </div>
       </Fragment>

@@ -20,13 +20,7 @@ const { sectionTitle, sectionContent } = Astro.props;
   <slot name="card-content">
     {/* Fallback to sectionContent if no slot content is provided */}
     {sectionContent && (
-      <Text
-        tag="p"
-        variant="textBase"
-        class="2xl:text-base mt-8"
-      >
-        {sectionContent}
-      </Text>
+      <div class="prose dark:prose-invert max-w-none 2xl:text-base mt-8" set:html={sectionContent} />
     )}
   </slot>
 </div>
