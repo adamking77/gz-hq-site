@@ -1,0 +1,84 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import AudioPlayer from "@/components/courses/AudioPlayer.astro";
+import CourseNavigation from "@/components/courses/CourseNavigation.astro";
+import ModuleEntry from "@/components/courses/ModuleEntry.astro";
+
+export async function getStaticPaths() {
+  const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
+  return courses.map((course) => ({
+    params: { courseSlug: course.slug },
+    props: { course },
+  }));
+}
+
+const { course }: { course: CollectionEntry<'courses'> } = Astro.props;
+const { Content } = await course.render();
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="display2XL"
+        class="text-[#222222] dark:text-white font-medium"
+      >
+        {course.data.title}
+      </Text>
+      <Text
+        tag="p"
+        variant="textSM"
+        class="text-zinc-500 text-balance mt-4 dark:text-zinc-400 mb-8"
+      >
+        {course.data.description}
+      </Text>
+
+      {course.data.course_image && (
+        <img
+          class="object-cover aspect-[16/9] rounded-xl mt-2"
+          src={course.data.course_image.url}
+          alt={course.data.course_image.alt}
+        />
+      )}
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <div
+          class="flex gap-4 flex-col md:flex-row items-center justify-between mt-8 mb-8"
+        >
+          <div class="flex items-center gap-x-3">
+            {/* Author and Date */}
+            <Text tag="span" variant="textXS" class="font-medium text-zinc-500 dark:text-zinc-400">
+              By {course.data.author} on {course.data.pubDate.toString().slice(0, 10)}
+            </Text>
+          </div>
+        </div>
+      </div>
+      <Wrapper variant="prose">
+        <Content />
+      </Wrapper>
+
+      <h2 class="text-2xl font-bold mt-12 mb-4">Course Modules</h2>
+      <div class="grid grid-cols-1 gap-8">
+        {course.data.modules.map((module) => {
+          const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
+          return (
+            <ModuleEntry
+              url={`/courses/${course.slug}/${moduleSlug}`}
+              title={module.title}
+              description={module.description}
+              icon={module.icon}
+              lessonCount={module.lessons.length}
+            />
+          );
+        })}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

@@ -1,0 +1,41 @@
+---
+const { url, title, description, icon } = Astro.props;
+import Text from "@/components/fundations/elements/Text.astro";
+import { ICONS, type IconName } from "./icons";
+
+const iconSvg = icon && ICONS[icon as IconName];
+---
+<a href={url} title={title} class="group block border border-black/10 dark:border-white/10 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
+  <div class="p-6 bg-white dark:bg-black rounded-xl h-full flex flex-row items-start gap-4"> {/* Removed hover effects from inner div */}
+    {iconSvg && (
+      <div class="flex-shrink-0 h-12 w-12 text-zinc-500 dark:text-zinc-400 mt-1" set:html={iconSvg} />
+    )}
+    <div class="flex flex-col flex-grow justify-between h-full">
+      <div>
+        <Text
+          tag="h4"
+      variant="textLg"
+      class="text-[#222222] dark:text-white font-medium group-hover:text-black/70 dark:group-hover:text-white/70 leading-tight mb-1"
+    >
+      {title}
+    </Text>
+    {description && (
+      <Text
+        tag="p"
+        variant="textSM"
+        class="text-zinc-500 dark:text-zinc-400 line-clamp-2 mb-2"
+      >
+        {description}
+      </Text>
+    )}
+      </div> {/* Close the div that wraps title and description */}
+      <Text
+        tag="span"
+        variant="textXS"
+        class="mt-auto text-blue-600 dark:text-blue-400 group-hover:underline self-start"
+      >
+        View Lesson &rarr;
+      </Text>
+    </div>
+  </div>
+</a>

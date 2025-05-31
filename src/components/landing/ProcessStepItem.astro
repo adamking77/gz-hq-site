@@ -11,7 +11,7 @@ interface Props {
 const { title, description, iconSvg, isLast = false } = Astro.props;
 ---
 
-<div class="flex gap-x-3 relative group rounded-lg transition-all duration-200 ease-in-out hover:bg-gray-100 dark:hover:bg-neutral-800 hover:-translate-y-1 mb-6">
+<div class="flex gap-x-3 relative group rounded-lg transition-all duration-200 ease-in-out hover:-translate-y-1 mb-6">
   <!-- Icon Column -->
   <div class:list={[
     "relative last:after:hidden after:absolute after:top-8 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] group-hover:after:bg-gray-400 dark:group-hover:after:bg-neutral-500",

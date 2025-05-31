@@ -1,0 +1,75 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import LessonEntry from "@/components/courses/LessonEntry.astro";
+
+export async function getStaticPaths() {
+  const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
+  const paths = [];
+
+  for (const course of courses) {
+    for (const module of course.data.modules) {
+      // Create a slug for the module (e.g., from its title)
+      // For simplicity, let's assume module titles are URL-friendly or we have a slug property
+      const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
+      paths.push({
+        params: {
+          courseSlug: course.slug,
+          moduleSlug: moduleSlug,
+        },
+        props: {
+          course,
+          module,
+          moduleSlug, // Pass moduleSlug for potential use in breadcrumbs or titles
+        },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  course: CollectionEntry<'courses'>;
+  module: CollectionEntry<'courses'>['data']['modules'][number];
+  moduleSlug: string;
+}
+
+const { course, module, moduleSlug } = Astro.props as Props;
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="displayXL"
+        class="text-[#222222] dark:text-white font-medium"
+      >
+        {module.title}
+      </Text>
+      <Text
+        tag="p"
+        variant="textSM"
+        class="text-zinc-500 text-balance mt-4 dark:text-zinc-400 mb-8"
+      >
+        Lessons in this module (Course: {course.data.title})
+      </Text>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-12">
+      <div class="grid grid-cols-1 gap-6">
+        {module.lessons.map((lesson) => (
+          <LessonEntry
+            url={`/courses/${course.slug}/${moduleSlug}/${lesson.slug}`}
+            title={lesson.title}
+            description={lesson.description}
+            icon={lesson.icon}
+          />
+        ))}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

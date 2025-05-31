@@ -1,0 +1,77 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import AudioPlayer from "@/components/courses/AudioPlayer.astro"; // Will create this
+import CourseNavigation from "@/components/courses/CourseNavigation.astro"; // Will create this
+
+export async function getStaticPaths() {
+  const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
+
+  const paths = [];
+  for (const course of courses) {
+    for (const module of course.data.modules) {
+      for (const lesson of module.lessons) {
+        paths.push({
+          params: {
+            courseSlug: course.slug,
+            lessonSlug: lesson.slug,
+          },
+          props: {
+            course,
+            lesson,
+          },
+        });
+      }
+    }
+  }
+  return paths;
+}
+
+const { course, lesson } = Astro.props;
+const { Content } = await course.render();
+
+// Find the specific lesson's content within the rendered course content
+// This is a simplified approach; a more robust solution might involve
+// parsing the Markdown content to extract specific lesson sections.
+// For now, we'll assume the lesson content is part of the main course markdown.
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="display2XL"
+        class="text-[#222222] dark:text-white font-medium"
+      >
+        {lesson.title}
+      </Text>
+      <Text
+        tag="p"
+        variant="textSM"
+        class="text-zinc-500 text-balance mt-4 dark:text-zinc-400"
+      >
+        Part of: {course.data.title}
+      </Text>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <div class="flex items-center gap-x-3 mt-8 mb-8">
+          <Text tag="span" variant="textXS" class="font-medium text-zinc-500 dark:text-zinc-400">
+            Course by {course.data.author}
+          </Text>
+        </div>
+      </div>
+      {lesson.audio && <AudioPlayer src={lesson.audio} />}
+      <Wrapper variant="prose" class="mt-12">
+        <Content /> {/* This will render the entire course markdown */}
+        {/* In a real scenario, you'd extract specific lesson content from here */}
+      </Wrapper>
+      <CourseNavigation course={course} currentLessonSlug={lesson.slug} />
+    </Wrapper>
+  </section>
+</BaseLayout>

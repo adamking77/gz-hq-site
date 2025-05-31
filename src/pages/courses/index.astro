@@ -1,0 +1,49 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import CourseEntry from "@/components/courses/CourseEntry.astro";
+
+const allCourses: CollectionEntry<'courses'>[] = await getCollection("courses");
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="display2XL"
+        class="text-[#222222] dark:text-white font-medium"
+      >
+        Our Courses
+      </Text>
+      <Text
+        tag="p"
+        variant="textSM"
+        class="text-zinc-500 text-balance mt-4 dark:text-zinc-400 mb-8"
+      >
+        Explore our collection of free and open courses.
+      </Text>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="py-12">
+      <div class:list={[
+        "gap-8",
+        allCourses.length > 1 ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2" : "grid grid-cols-1"
+      ]}>
+        {allCourses.map((course) => (
+          <CourseEntry
+            url={"/courses/" + course.slug}
+            title={course.data.title}
+            description={course.data.description}
+            pubDate={course.data.pubDate.toString().slice(0, 10)}
+            image={course.data.image.url}
+            alt={course.data.image.alt}
+          />
+        ))}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>
