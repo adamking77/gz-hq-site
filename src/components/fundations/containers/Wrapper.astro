@@ -9,12 +9,46 @@ const variantClasses = {
   // All purpose wrapper
   standard: "max-w-3xl 2xl:max-w-4xl mx-auto px-8 w-full",
   // Wrapper for prose blocks
-  prose: "dark:text-zinc-400 prose-ul:text-zinc-500 prose max-w-4xl pt-0 mx-auto prose-a:text-black dark:prose-a:text-white prose-p:text-zinc-500 dark:prose-p:text-zinc-400 prose-code:text-black dark:prose-code:text-white prose-strong:text-black dark:prose-strong:text-white prose-ol:text-zinc-500 dark:prose-ol:text-zinc-400 prose-headings:text-black dark:prose-headings:text-white prose-headings:text-base text-sm"
+  prose: "dark:text-zinc-400 prose-ul:text-zinc-500 prose max-w-4xl pt-0 mx-auto prose-a:text-black dark:prose-a:text-white prose-p:text-zinc-500 dark:prose-p:text-zinc-400 prose-code:text-black dark:prose-code:text-white prose-strong:text-black dark:prose-strong:text-white prose-ol:text-zinc-500 dark:prose-ol:text-zinc-400 prose-headings:text-black dark:prose-headings:text-white text-sm"
 ,
 };
 // Combine the classes for the specified variant with any extra classes
 const classes = `${variantClasses[variant]} ${extraClass}`.trim();
 ---
+
+<style>
+  /* Assuming the main div in Wrapper.astro gets the 'prose' class when variant is 'prose' */
+  /* Or, if variantClasses.prose is applied to a child, adjust selector accordingly */
+  :global(.dark) .prose :where(h3):not(:where([class~="not-prose"] *)) {
+    /* Retain dark mode color from prose-headings:text-white if possible, or set explicitly */
+    /* For now, let's focus on size and let prose-headings:text-white handle color */
+  }
+  .prose :where(h3):not(:where([class~="not-prose"] *)) {
+    font-size: theme('fontSize.base') !important; /* 16px */
+    line-height: theme('lineHeight.snug'); /* Or an appropriate line height */
+  }
+  :global(.dark) .prose :where(h4):not(:where([class~="not-prose"] *)) {
+    /* Retain dark mode color */
+  }
+  .prose :where(h4):not(:where([class~="not-prose"] *)) {
+    font-size: theme('fontSize.sm') !important; /* 14px */
+    line-height: theme('lineHeight.snug');
+  }
+  :global(.dark) .prose :where(h5):not(:where([class~="not-prose"] *)) {
+    /* Retain dark mode color */
+  }
+  .prose :where(h5):not(:where([class~="not-prose"] *)) {
+    font-size: theme('fontSize.xs') !important; /* 12px */
+    line-height: theme('lineHeight.tight');
+  }
+  :global(.dark) .prose :where(h6):not(:where([class~="not-prose"] *)) {
+    /* Retain dark mode color */
+  }
+  .prose :where(h6):not(:where([class~="not-prose"] *)) {
+    font-size: theme('fontSize.xs') !important; /* 12px */
+    line-height: theme('lineHeight.tight');
+  }
+</style>
 
 <div class={classes}>
   <slot />

@@ -10,7 +10,7 @@ import LatestPosts from "@/components/blog/LatestPosts.astro";
 const allPostsUnsorted = await getCollection("posts");
 // Sort the posts in descending order by publication date (newest to oldest)
 const allPosts = allPostsUnsorted.sort(
-  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
 ---
 
@@ -19,7 +19,7 @@ const allPosts = allPostsUnsorted.sort(
     <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
       <Text
         tag="h1"
-        variant="textBase"
+        variant="display2XL"
         class="text-[#222222] dark:text-white font-medium"
       >
         {frontmatter.title}
@@ -27,7 +27,7 @@ const allPosts = allPostsUnsorted.sort(
       <Text
         tag="p"
         variant="textSM"
-        class="text-zinc-500 text-balance mt-4 dark:text-zinc-400"
+        class="text-zinc-500 text-balance mt-4 dark:text-zinc-400 mb-8"
       >
         {frontmatter.description}
       </Text>
@@ -43,7 +43,7 @@ const allPosts = allPostsUnsorted.sort(
     <Wrapper variant="standard" class="py-12">
       <div class="border-t dark:border-white/10 border-black/10 pt-2">
         <div
-          class="flex gap-4 flex-col md:flex-row items-center justify-between"
+          class="flex gap-4 flex-col md:flex-row items-center justify-between mt-8 mb-8"
         >
           <div class="flex items-center gap-x-3">
             <img
@@ -64,7 +64,7 @@ const allPosts = allPostsUnsorted.sort(
           </div>
           <div class="flex flex-wrap items-center gap-1">
             {
-              frontmatter.tags.map((tag) => (
+              frontmatter.tags.map((tag: string) => (
                 <>
                   <Text
                     tag="a"
