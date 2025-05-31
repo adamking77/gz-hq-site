@@ -31,17 +31,18 @@ const newCoreProblemContent = `
 
 <BaseLayout>
   <Hero />
-  <Wrapper variant="standard" class="py-12 mb-12">
-    <InfoSection sectionTitle="The Core Problem" sectionContent={newCoreProblemContent} />
+  <Wrapper variant="standard" class="py-24 mb-24">
+    <InfoSection sectionTitle="The Core Problem" sectionContent={newCoreProblemContent} data-aos="fade-up" data-aos-offset="200" />
   </Wrapper>
-  <Wrapper variant="standard" class="py-12 mb-12">
-    <InfoSection sectionTitle="The Process">
+  <Wrapper variant="standard" class="py-24 mb-24">
+    <InfoSection sectionTitle="The Process" data-aos="fade-up" data-aos-offset="200">
       <Fragment slot="card-content">
         <div class="ps-2 mt-8"> <!-- This is the main timeline container from the example -->
           <!-- Process Step 1 -->
           <ProcessStepItem
             title="Pattern Recognition"
             description="Recognizing exploitation patterns before they manifest."
+            data-aos="fade-up" data-aos-delay="100"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
         <path id="Circle-copy-4" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 145 70.5 C 145 68.014725 142.985275 66 140.5 66 C 138.014725 66 136 68.014725 136 70.5 C 136 72.985275 138.014725 75 140.5 75 C 142.985275 75 145 72.985275 145 70.5 Z"/>
         <path id="Circle-copy-7" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 145 211.5 C 145 209.014709 142.985275 207 140.5 207 C 138.014725 207 136 209.014709 136 211.5 C 136 213.985291 138.014725 216 140.5 216 C 142.985275 216 145 213.985291 145 211.5 Z"/>
@@ -54,6 +55,7 @@ const newCoreProblemContent = `
           <ProcessStepItem
             title="Protection Architecture"
             description="Engineering frameworks that restore autonomy and resilience."
+            data-aos="fade-up" data-aos-delay="200"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
         <path id="Circle" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 145 234 C 145 231.790863 143.209137 230 141 230 C 138.790863 230 137 231.790863 137 234 C 137 236.209137 138.790863 238 141 238 C 143.209137 238 145 236.209137 145 234 Z"/>
         <path id="Circle-copy-5" fill="currentColor" fill-rule="evenodd" stroke="none" d="M 147 48 C 147 44.686295 144.313705 42 141 42 C 137.686295 42 135 44.686295 135 48 C 135 51.313705 137.686295 54 141 54 C 144.313705 54 147 51.313705 147 48 Z"/>
@@ -65,6 +67,7 @@ const newCoreProblemContent = `
             title="Transformation Design"
             description="Converting your vulnerabilities into your strongest assets."
             isLast={true}
+            data-aos="fade-up" data-aos-delay="300"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
         <path id="Circle-copy-4" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 143 121.5 C 143 119.014725 140.985275 117 138.5 117 C 136.014725 117 134 119.014725 134 121.5 C 134 123.985275 136.014725 126 138.5 126 C 140.985275 126 143 123.985275 143 121.5 Z"/>
         <path id="Circle-copy-7" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 144 250.5 C 144 248.014725 141.985275 246 139.5 246 C 137.014725 246 135 248.014725 135 250.5 C 135 252.985275 137.014725 255 139.5 255 C 141.985275 255 144 252.985275 144 250.5 Z"/>
@@ -77,66 +80,29 @@ const newCoreProblemContent = `
       </Fragment>
     </InfoSection>
   </Wrapper>
-  <Wrapper variant="standard" class="py-12 mb-12">
+  <Wrapper variant="standard" class="py-24 mb-24" data-aos="fade-up">
     <InfoSection sectionTitle="Current Initiatives">
       <Fragment slot="card-content">
         <div class="flex flex-col gap-6 mt-8">
-          <EntriesOne
-            title="Legacy Resilience"
-            description="When the systems you thought were supposed to preserve your legacy are systematically hijaking it instead."
-            url="https://genzen.solutions"
-          />
-          <EntriesOne
-            title="Leadership Resilience"
-            description="When the accomplishments you trusted to amplify your authority are weaponized to undermine it."
-            url="https://genzen.pro"
-          />
+          <div data-aos="fade-up" data-aos-delay="100">
+            <EntriesOne
+              title="Legacy Resilience"
+              description="When the systems you thought were supposed to preserve your legacy are systematically hijaking it instead."
+              url="https://genzen.solutions"
+            />
+          </div>
+          <div data-aos="fade-up" data-aos-delay="200">
+            <EntriesOne
+              title="Leadership Resilience"
+              description="When the accomplishments you trusted to amplify your authority are weaponized to undermine it."
+              url="https://genzen.pro"
+            />
+          </div>
         </div>
       </Fragment>
     </InfoSection>
   </Wrapper>
-  <Wrapper variant="standard" class="py-12 mb-12">
-    <InfoSection sectionTitle="About" sectionContent={introContent} />
+  <Wrapper variant="standard" class="py-24 mb-24">
+    <InfoSection sectionTitle="About" sectionContent={introContent} data-aos="fade-up" data-aos-offset="200" />
   </Wrapper>
-  <section>
-    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:pt-74 xl:pb-50">
-      <div
-        class="gap-2 sm:flex sm:items-center sm:justify-between border-t dark:border-white/10 border-black/10 pt-2"
-      >
-        <Text
-          tag="h3"
-          variant="textBase"
-          class="text-[#222222] dark:text-white font-medium"
-        >
-          Latest blog posts
-        </Text>
-        <div class="">
-          <Text
-            tag="a"
-            variant="textSM"
-            href="/blog/home"
-            aria-label="your label"
-            title="link to your page"
-            class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white font-medium"
-          >
-            &rarr; See all posts
-        </Text>
-        </div>
-      </div>
-      <div class="mt-8 flex flex-col">
-        {
-          allPosts
-            .slice(0, 2)
-            .map((post) => (
-              <LatestPosts
-                url={"/blog/posts/" + post.slug}
-                title={post.data.title}
-                alt={post.data.title}
-                pubDate={post.data.pubDate.toString().slice(4, 10)}
-              />
-            ))
-        }
-      </div>
-    </Wrapper>
-  </section>
 </BaseLayout>

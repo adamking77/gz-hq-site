@@ -4,12 +4,13 @@ import Text from "@/components/fundations/elements/Text.astro";
 interface Props {
   sectionTitle: string;
   sectionContent?: string; // Made optional
+  [key: string]: any; // Allow any other props
 }
 
-const { sectionTitle, sectionContent } = Astro.props;
+const { sectionTitle, sectionContent, class: extraClass, ...rest } = Astro.props;
 ---
 
-<div>
+<div class:list={[extraClass]} {...rest}>
   <Text
     tag="h2"
     variant="textXL"

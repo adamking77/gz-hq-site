@@ -10,6 +10,7 @@ import Navigation from "@/components/global/Navigation.astro";
 <html lang="en" class="scroll-smooth">
   <head>
     <BaseHead />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style is:global>
       body {
         font-family: 'Inter', sans-serif; /* New body font */
@@ -29,5 +30,13 @@ import Navigation from "@/components/global/Navigation.astro";
     <Navigation />
     <main class="grow"><slot /></main>
     <Footer />
+    <script>
+      import AOS from 'aos';
+      AOS.init({
+        duration: 500, // values from 0 to 3000, with step 50ms
+        easing: 'ease-in-out', // default easing for AOS animations
+        once: false, // whether animation should happen only once - while scrolling down
+      });
+    </script>
   </body>
 </html>
