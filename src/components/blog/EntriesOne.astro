@@ -12,24 +12,25 @@ import Text from "@/components/fundations/elements/Text.astro";
     <Text
       tag="span"
       variant="textXS"
-      class="font-medium text-zinc-500 dark:text-zinc-400 uppercase"
+      class="font-medium text-[#222222] dark:text-white uppercase"
     >
       {author} -
       <time datetime={pubDate}>{pubDate}</time>
     </Text>
     <Text
       tag="h4"
-      variant="textBase"
-      class="text-[#222222] dark:text-white mt-1 font-medium group-hover:text-black/70 dark:group-hover:text-white/70"
+      variant="textLg"
+      class="text-[#222222] dark:text-white mt-1 font-medium group-hover:text-[#222222]/70 dark:group-hover:text-white/70 text-lg"
     >
       {title}
     </Text>
     <Text
       tag="p"
       variant="textSM"
-      class="text-zinc-500 dark:text-zinc-400 mt-4"
+      class="text-[#222222] dark:text-white mt-4"
     >
       {description}
     </Text>
+    <slot name="additional-content" />
   </div>
 </a>

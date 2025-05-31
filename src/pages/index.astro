@@ -44,11 +44,14 @@ const newCoreProblemContent = `
             description="Recognizing exploitation patterns before they manifest."
             data-aos="fade-up" data-aos-delay="100"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-        <path id="Circle-copy-4" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 145 70.5 C 145 68.014725 142.985275 66 140.5 66 C 138.014725 66 136 68.014725 136 70.5 C 136 72.985275 138.014725 75 140.5 75 C 142.985275 75 145 72.985275 145 70.5 Z"/>
-        <path id="Circle-copy-7" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 145 211.5 C 145 209.014709 142.985275 207 140.5 207 C 138.014725 207 136 209.014709 136 211.5 C 136 213.985291 138.014725 216 140.5 216 C 142.985275 216 145 213.985291 145 211.5 Z"/>
-        <path id="Circle-copy" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M 210 140.5 C 210 101.563934 178.436066 70 139.5 70 C 100.563927 70 69 101.563934 69 140.5 C 69 179.436066 100.563927 211 139.5 211 C 178.436066 211 210 179.436066 210 140.5 Z"/>
-        <path id="Line" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 139.999329 180 L 139.999481 250.000305"/>
-        <path id="Line-copy-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 139.999329 31 L 139.999481 101.000305"/>
+        <g id="rotatingPatternRecognitionIcon">
+            <path id="Circle-copy" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 233 140.5 C 233 88.861374 191.138626 47 139.5 47 C 87.861374 47 46 88.861374 46 140.5 C 46 192.138626 87.861374 234 139.5 234 C 191.138626 234 233 192.138626 233 140.5 Z"/>
+            <path id="Line" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 139.5 203 L 139.5 273"/> {/* Adjusted x for consistency and simplified end points */}
+            <path id="Line-copy-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 139.5 8 L 139.5 78"/> {/* Adjusted x for consistency and simplified end points */}
+            <circle cx="139.5" cy="47" r="4.5" fill="currentColor"/> {/* Top dot */}
+            <circle cx="139.5" cy="234" r="4.5" fill="currentColor"/> {/* Bottom dot */}
+            <animateTransform attributeName="transform" type="rotate" from="0 139.5 140.5" to="360 139.5 140.5" dur="10s" repeatCount="indefinite"/>
+        </g>
     </svg>`}
           />
           <!-- Process Step 2 -->
@@ -57,10 +60,14 @@ const newCoreProblemContent = `
             description="Engineering frameworks that restore autonomy and resilience."
             data-aos="fade-up" data-aos-delay="200"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-        <path id="Circle" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 145 234 C 145 231.790863 143.209137 230 141 230 C 138.790863 230 137 231.790863 137 234 C 137 236.209137 138.790863 238 141 238 C 143.209137 238 145 236.209137 145 234 Z"/>
-        <path id="Circle-copy-5" fill="currentColor" fill-rule="evenodd" stroke="none" d="M 147 48 C 147 44.686295 144.313705 42 141 42 C 137.686295 42 135 44.686295 135 48 C 135 51.313705 137.686295 54 141 54 C 144.313705 54 147 51.313705 147 48 Z"/>
-        <path id="path1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 234 140.5 C 234 88.861374 192.138626 47 140.5 47 C 88.861374 47 47 88.861374 47 140.5 C 47 192.138626 88.861374 234 140.5 234 C 192.138626 234 234 192.138626 234 140.5 Z"/>
-    </svg>`}
+            <path id="path1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 234 140.5 C 234 88.861374 192.138626 47 140.5 47 C 88.861374 47 47 88.861374 47 140.5 C 47 192.138626 88.861374 234 140.5 234 C 192.138626 234 234 192.138626 234 140.5 Z"/>
+            <circle r="4.5" fill="currentColor">
+              <animateMotion dur="12s" repeatCount="indefinite" path="M 234 140.5 C 234 88.861374 192.138626 47 140.5 47 C 88.861374 47 47 88.861374 47 140.5 C 47 192.138626 88.861374 234 140.5 234 C 192.138626 234 234 192.138626 234 140.5 Z" />
+            </circle>
+            <circle r="6" fill="currentColor">
+              <animateMotion dur="12s" begin="6s" repeatCount="indefinite" path="M 234 140.5 C 234 88.861374 192.138626 47 140.5 47 C 88.861374 47 47 88.861374 47 140.5 C 47 192.138626 88.861374 234 140.5 234 C 192.138626 234 234 192.138626 234 140.5 Z" />
+            </circle>
+        </svg>`}
           />
           <!-- Process Step 3 -->
           <ProcessStepItem
@@ -69,11 +76,14 @@ const newCoreProblemContent = `
             isLast={true}
             data-aos="fade-up" data-aos-delay="300"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-        <path id="Circle-copy-4" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 143 121.5 C 143 119.014725 140.985275 117 138.5 117 C 136.014725 117 134 119.014725 134 121.5 C 134 123.985275 136.014725 126 138.5 126 C 140.985275 126 143 123.985275 143 121.5 Z"/>
-        <path id="Circle-copy-7" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 144 250.5 C 144 248.014725 141.985275 246 139.5 246 C 137.014725 246 135 248.014725 135 250.5 C 135 252.985275 137.014725 255 139.5 255 C 141.985275 255 144 252.985275 144 250.5 Z"/>
-        <path id="Circle-copy-5" fill="currentColor" fill-rule="evenodd" stroke="none" d="M 143 184.5 C 143 182.014709 140.985275 180 138.5 180 C 136.014725 180 134 182.014709 134 184.5 C 134 186.985291 136.014725 189 138.5 189 C 140.985275 189 143 186.985291 143 184.5 Z"/>
-        <path id="Circle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 232 121.5 C 232 69.861374 190.138626 28 138.5 28 C 86.861374 28 45 69.861374 45 121.5 C 45 173.138626 86.861374 215 138.5 215 C 190.138626 215 232 173.138626 232 121.5 Z"/>
-        <path id="Line" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 137.999802 121 L 138.999481 250.000305"/>
+        <path id="mainCircle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 232 121.5 C 232 69.861374 190.138626 28 138.5 28 C 86.861374 28 45 69.861374 45 121.5 C 45 173.138626 86.861374 215 138.5 215 C 190.138626 215 232 173.138626 232 121.5 Z"/>
+        <g id="rotatingGroup">
+            <path id="dot1_transformed" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 143 121.5 C 143 119.014725 140.985275 117 138.5 117 C 136.014725 117 134 119.014725 134 121.5 C 134 123.985275 136.014725 126 138.5 126 C 140.985275 126 143 123.985275 143 121.5 Z"/>
+            <path id="dot2_transformed" fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M 144 250.5 C 144 248.014725 141.985275 246 139.5 246 C 137.014725 246 135 248.014725 135 250.5 C 135 252.985275 137.014725 255 139.5 255 C 141.985275 255 144 252.985275 144 250.5 Z"/>
+            <path id="dot3_transformed" fill="currentColor" fill-rule="evenodd" stroke="none" d="M 143 184.5 C 143 182.014709 140.985275 180 138.5 180 C 136.014725 180 134 182.014709 134 184.5 C 134 186.985291 136.014725 189 138.5 189 C 140.985275 189 143 186.985291 143 184.5 Z"/>
+            <path id="connectingLine" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 137.999802 121 L 138.999481 250.000305"/>
+            <animateTransform attributeName="transform" type="rotate" from="0 138.5 121.5" to="360 138.5 121.5" dur="10s" repeatCount="indefinite"/>
+        </g>
     </svg>`}
           />
         </div>
@@ -89,14 +99,18 @@ const newCoreProblemContent = `
               title="Legacy Resilience"
               description="When the systems you thought were supposed to preserve your legacy are systematically hijaking it instead."
               url="https://genzen.solutions"
-            />
+            >
+              <p slot="additional-content" class="mt-4 text-[#222222] dark:text-white">Visit GenZen Solutions</p>
+            </EntriesOne>
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <EntriesOne
               title="Leadership Resilience"
               description="When the accomplishments you trusted to amplify your authority are weaponized to undermine it."
               url="https://genzen.pro"
-            />
+            >
+              <p slot="additional-content" class="mt-4 text-[#222222] dark:text-white">Visit GenZen Pro</p>
+            </EntriesOne>
           </div>
         </div>
       </Fragment>
