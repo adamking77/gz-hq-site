@@ -1,6 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/elements/Link.astro";
 
 interface Props {
   course: CollectionEntry<'courses'>;
@@ -9,62 +9,121 @@ interface Props {
 
 const { course, currentLessonSlug } = Astro.props;
 
-let prevLesson: { title: string; slug: string; url: string } | null = null;
-let nextLesson: { title: string; slug: string; url: string } | null = null;
+// Helper function to slugify module titles
+function slugify(text: string): string {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w-]+/g, '')       // Remove all non-word chars
+    .replace(/--+/g, '-');          // Replace multiple - with single -
+}
 
-let foundCurrent = false;
+interface LessonInfo {
+  title: string;
+  slug: string;
+  url: string;
+  courseSlug: string;
+  type: 'standalone' | 'module';
+  moduleSlug?: string; // Added to store module slug if applicable
+}
 
-for (const module of course.data.modules) {
-  for (const lesson of module.lessons) {
-    if (foundCurrent) {
-      nextLesson = {
+const allLessons: LessonInfo[] = [];
+const courseSlug = course.slug;
+
+// 1. Add standalone lessons
+if (course.data.standaloneLessons && Array.isArray(course.data.standaloneLessons)) {
+  for (const lesson of course.data.standaloneLessons) {
+    if (lesson.slug && typeof lesson.title === 'string') {
+      allLessons.push({
         title: lesson.title,
         slug: lesson.slug,
-        url: `/courses/${course.slug}/${lesson.slug}`,
-      };
-      break; // Found the next lesson, exit inner loop
+        url: `/courses/${courseSlug}/${lesson.slug}`,
+        courseSlug: courseSlug,
+        type: 'standalone'
+      });
     }
-
-    if (lesson.slug === currentLessonSlug) {
-      foundCurrent = true;
-    } else if (!foundCurrent) {
-      prevLesson = {
-        title: lesson.title,
-        slug: lesson.slug,
-        url: `/courses/${course.slug}/${lesson.slug}`,
-      };
-    }
-  }
-  if (foundCurrent && nextLesson) {
-    break; // Found current and next lesson, exit outer loop
   }
 }
+
+// 2. Add lessons from modules
+if (course.data.modules && Array.isArray(course.data.modules)) {
+  for (const module of course.data.modules) {
+    if (module.lessons && Array.isArray(module.lessons)) {
+      const derivedModuleSlug = slugify(module.title); // Generate module slug
+      for (const lesson of module.lessons) {
+        if (lesson.slug && typeof lesson.title === 'string') {
+          allLessons.push({
+            title: lesson.title,
+            slug: lesson.slug,
+            url: `/courses/${courseSlug}/${derivedModuleSlug}/${lesson.slug}`, // Use derived slug
+            courseSlug: courseSlug,
+            type: 'module',
+            moduleSlug: derivedModuleSlug // Store derived slug
+          });
+        }
+      }
+    }
+  }
+}
+
+let prevLesson: LessonInfo | null = null;
+let nextLesson: LessonInfo | null = null;
+
+const currentIndex = allLessons.findIndex(lesson => lesson.slug === currentLessonSlug);
+
+if (currentIndex > 0) {
+  prevLesson = allLessons[currentIndex - 1];
+}
+
+if (currentIndex !== -1 && currentIndex < allLessons.length - 1) {
+  nextLesson = allLessons[currentIndex + 1];
+}
+
+const courseHomeUrl = `/courses/${courseSlug}`;
 ---
 
-<nav class="flex justify-between items-center mt-12 pt-4 border-t dark:border-white/10 border-black/10">
+<nav class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800">
   {prevLesson ? (
-    <a href={prevLesson.url} class="flex items-center gap-2 text-blue-600 hover:underline">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    <Link
+      href={prevLesson.url}
+      variant="secondary"
+      size="medium"
+      gapSize="small"
+      class="md:justify-self-start w-full md:w-auto"
+    >
+      <svg slot="left-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
       </svg>
-      <Text tag="span" variant="textSM" class="font-medium">
-        {prevLesson.title}
-      </Text>
-    </a>
+      Previous Lesson
+    </Link>
   ) : (
-    <span></span>
+    <div class="hidden md:block"></div>
   )}
 
+  <Link
+    href={courseHomeUrl}
+    size="medium"
+    class="order-first md:order-none md:text-center text-zinc-700 dark:text-zinc-300 hover:underline !bg-transparent focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 dark:focus:ring-offset-zinc-900 rounded-md w-full md:w-auto"
+  >
+    Back to Course Home
+  </Link>
+
   {nextLesson ? (
-    <a href={nextLesson.url} class="flex items-center gap-2 text-blue-600 hover:underline ml-auto">
-      <Text tag="span" variant="textSM" class="font-medium">
-        {nextLesson.title}
-      </Text>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    <Link
+      href={nextLesson.url}
+      variant="secondary"
+      size="medium"
+      gapSize="small"
+      class="md:justify-self-end w-full md:w-auto"
+    >
+      Next Lesson
+      <svg slot="right-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
       </svg>
-    </a>
+    </Link>
   ) : (
-    <span></span>
+    <div class="hidden md:block md:col-start-3"></div>
   )}
 </nav>
