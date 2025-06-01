@@ -6,6 +6,7 @@ import Text from "@/components/fundations/elements/Text.astro";
 import AudioPlayer from "@/components/courses/AudioPlayer.astro";
 import CourseNavigation from "@/components/courses/CourseNavigation.astro";
 import ModuleEntry from "@/components/courses/ModuleEntry.astro";
+import LessonEntry from "@/components/courses/LessonEntry.astro";
 
 export async function getStaticPaths() {
   const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
@@ -64,21 +65,43 @@ const { Content } = await course.render();
         <Content />
       </Wrapper>
 
-      <h2 class="text-2xl font-bold mt-12 mb-4">Course Modules</h2>
-      <div class="grid grid-cols-1 gap-8">
-        {course.data.modules.map((module) => {
-          const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
-          return (
-            <ModuleEntry
-              url={`/courses/${course.slug}/${moduleSlug}`}
-              title={module.title}
-              description={module.description}
-              icon={module.icon}
-              lessonCount={module.lessons.length}
-            />
-          );
-        })}
-      </div>
+      {course.data.modules && course.data.modules.length > 0 ? (
+        <>
+          <h2 class="text-2xl font-bold mt-12 mb-4">Course Modules</h2>
+          <div class="grid grid-cols-1 gap-8">
+            {course.data.modules.map((module) => {
+              const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <ModuleEntry
+                  url={`/courses/${course.slug}/${moduleSlug}`}
+                  title={module.title}
+                  description={module.description}
+                  icon={module.icon}
+                  lessonCount={module.lessons.length}
+                />
+              );
+            })}
+          </div>
+        </>
+      ) : course.data.standaloneLessons && course.data.standaloneLessons.length > 0 ? (
+        <>
+          <h2 class="text-2xl font-bold mt-12 mb-4">Lessons</h2>
+          <div class="grid grid-cols-1 gap-6">
+            {course.data.standaloneLessons.map((lesson) => (
+              <LessonEntry
+                url={`/courses/${course.slug}/${lesson.slug}`}
+                title={lesson.title}
+                description={lesson.description}
+                icon={lesson.icon}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <Text variant="textLG" class="mt-4">
+          No content (modules or lessons) is currently available for this course. Please check back later as content is being updated.
+        </Text>
+      )}
     </Wrapper>
   </section>
 </BaseLayout>

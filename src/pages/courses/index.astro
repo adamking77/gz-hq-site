@@ -31,7 +31,7 @@ const allCourses: CollectionEntry<'courses'>[] = await getCollection("courses");
     <Wrapper variant="standard" class="py-12">
       <div class:list={[
         "gap-8",
-        allCourses.length > 1 ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2" : "grid grid-cols-1"
+        "grid grid-cols-1"
       ]}>
         {allCourses.map((course) => (
           <CourseEntry

@@ -87,8 +87,18 @@ const courses = defineCollection({
         description: z.string().optional(),
         icon: z.string().optional(), // Will correspond to keys in ICONS
         audio: z.string().optional(),
+        body: z.string().optional(), // Added body for regular lessons
       })),
     })),
+    // Add the new field here:
+    standaloneLessons: z.array(z.object({
+      title: z.string(),
+      slug: z.string(),
+      description: z.string().optional(),
+      icon: z.string().optional(),
+      audio: z.string().optional(),
+      body: z.string().optional(), // Added body for standalone lessons
+    })).optional(), // Make it optional
     progress_indicator: z.boolean().optional(),
   }),
 });

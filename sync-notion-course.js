@@ -79,11 +79,11 @@ function parseDbDescription(dbDescriptionRichText) {
     }
 
     // Ensure optional image objects are structured correctly or removed if empty
-    if (metadata.image) {
-        if (!metadata.image.url && !metadata.image.alt) delete metadata.image;
-        else if (!metadata.image.url) metadata.image.url = ""; // Zod might need url to be present if image obj exists
-        else if (!metadata.image.alt) metadata.image.alt = ""; // Zod might need alt to be present
-    }
+    // if (metadata.image) {
+    //     if (!metadata.image.url && !metadata.image.alt) delete metadata.image;
+    //     else if (!metadata.image.url) metadata.image.url = ""; // Zod might need url to be present if image obj exists
+    //     else if (!metadata.image.alt) metadata.image.alt = ""; // Zod might need alt to be present
+    // }
     if (metadata.course_image) {
         if (!metadata.course_image.url && !metadata.course_image.alt) delete metadata.course_image;
         else if (!metadata.course_image.url) metadata.course_image.url = "";
@@ -161,8 +161,8 @@ async function main() {
             // Fetch Markdown content for each lesson page (as per requirement)
             // Note: This content is not directly used in the output COURSE_SLUG.md file's body or frontmatter
             // based on the current task scope, but it's fetched as requested.
-            // const mdBlocks = await n2m.pageToMarkdown(page.id);
-            // const lessonMarkdownContent = n2m.toMarkdownString(mdBlocks);
+            const mdBlocks = await n2m.pageToMarkdown(page.id);
+            const lessonMarkdownContent = n2m.toMarkdownString(mdBlocks);
 
             allLessonData.push({
                 id: page.id,
@@ -174,15 +174,43 @@ async function main() {
                 audio: page.properties['Audio']?.url || (page.properties['Audio']?.rich_text?.length > 0 ? page.properties['Audio']?.rich_text[0]?.plain_text : undefined),
                 // Ensure 'Icon' property (Text or Select type) exists
                 icon: (page.properties['Icon']?.rich_text?.length > 0 ? page.properties['Icon']?.rich_text[0]?.plain_text : undefined) || page.properties['Icon']?.select?.name,
+                description: page.properties['Description']?.rich_text[0]?.plain_text || undefined, // Added for standalone lessons
                 order: page.properties['Order']?.number || 0,
-                // lessonMarkdown: lessonMarkdownContent.parent // Store if needed for other purposes
+                body: lessonMarkdownContent.parent // Store the actual markdown content
             });
         }
         console.log(`Successfully processed ${allLessonData.length} lessons with titles.`);
 
         // Structure data for YAML frontmatter
         const frontmatter = { ...courseMetadata }; // Start with course-level metadata
+
+        // Ensure 'image' field is present in frontmatter
+        const courseTitleForImageAlt = frontmatter.title; // Already guaranteed to exist by lines 123-127
+        const placeholderImageUrl = "/images/placeholder-course.jpg";
+        // Use course title for alt, or a generic fallback if title is somehow empty or just whitespace
+        const placeholderImageAlt = (typeof courseTitleForImageAlt === 'string' && courseTitleForImageAlt.trim() !== "")
+                                    ? courseTitleForImageAlt.trim()
+                                    : "Course image";
+
+        const notionImageUrl = frontmatter.image?.url;
+        const notionImageAlt = frontmatter.image?.alt;
+
+        // Determine final URL: use Notion's if it's a non-empty string, otherwise placeholder
+        const finalImageUrl = (typeof notionImageUrl === 'string' && notionImageUrl.trim() !== "")
+                              ? notionImageUrl.trim()
+                              : placeholderImageUrl;
+
+        // Determine final Alt: use Notion's if it's a non-empty string, otherwise constructed placeholder
+        const finalImageAlt = (typeof notionImageAlt === 'string' && notionImageAlt.trim() !== "")
+                              ? notionImageAlt.trim()
+                              : placeholderImageAlt;
+        
+        frontmatter.image = {
+            url: finalImageUrl,
+            alt: finalImageAlt
+        };
         const modulesMap = new Map();
+        const standaloneLessonsArray = []; // Initialize array for standalone lessons
 
         for (const lesson of allLessonData) {
             if (lesson.moduleName && lesson.moduleName.trim() !== "") {
@@ -198,10 +226,20 @@ async function main() {
                     order: lesson.order,
                 });
             } else {
-                console.log(`Lesson "${lesson.title}" (ID: ${lesson.id}) has no 'Module' name or it's empty. It will not be included in any module group in the frontmatter.`);
+                // This lesson has no module, so it's a standalone lesson
+                console.log(`Lesson "${lesson.title}" (ID: ${lesson.id}) is a standalone lesson.`);
+                standaloneLessonsArray.push({
+                    title: lesson.title,
+                    slug: lesson.slug,
+                    description: lesson.description, // Will be undefined if not present
+                    icon: lesson.icon,           // Will be undefined if not present
+                    audio: lesson.audio,          // Will be undefined if not present
+                    body: lesson.body            // Add the fetched markdown body
+                });
             }
         }
         
+        frontmatter.standaloneLessons = standaloneLessonsArray; // Add to frontmatter
         frontmatter.modules = [];
         // Sort module names alphabetically for consistent output
         const sortedModuleNames = Array.from(modulesMap.keys()).sort();

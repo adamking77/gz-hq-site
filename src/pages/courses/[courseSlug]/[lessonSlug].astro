@@ -5,24 +5,58 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import AudioPlayer from "@/components/courses/AudioPlayer.astro"; // Will create this
 import CourseNavigation from "@/components/courses/CourseNavigation.astro"; // Will create this
+import { marked } from 'marked';
 
 export async function getStaticPaths() {
   const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
 
   const paths = [];
   for (const course of courses) {
-    for (const module of course.data.modules) {
-      for (const lesson of module.lessons) {
-        paths.push({
-          params: {
-            courseSlug: course.slug,
-            lessonSlug: lesson.slug,
-          },
-          props: {
-            course,
-            lesson,
-          },
-        });
+    // Lessons within modules
+    if (course.data.modules && Array.isArray(course.data.modules)) {
+      for (const module of course.data.modules) {
+        if (module.lessons && Array.isArray(module.lessons)) {
+          for (const lesson of module.lessons) {
+            if (lesson.slug && typeof lesson.title === 'string') {
+              paths.push({
+                params: {
+                  courseSlug: course.slug,
+                  lessonSlug: lesson.slug,
+                },
+                props: {
+                  course,
+                  lesson,
+                },
+              });
+            }
+          }
+        }
+      }
+    }
+
+    // Standalone lessons
+    if (course.data.standaloneLessons && Array.isArray(course.data.standaloneLessons)) {
+      for (const lessonFrontmatter of course.data.standaloneLessons) {
+        if (lessonFrontmatter.slug && typeof lessonFrontmatter.title === 'string') {
+          const lessonProps = { ...lessonFrontmatter };
+
+          // If the standalone lesson from frontmatter doesn't have its own body,
+          // assume it should use the main course body.
+          if (lessonProps.body === undefined) {
+            lessonProps.body = course.body;
+          }
+
+          paths.push({
+            params: {
+              courseSlug: course.slug,
+              lessonSlug: lessonProps.slug,
+            },
+            props: {
+              course,
+              lesson: lessonProps,
+            },
+          });
+        }
       }
     }
   }
@@ -30,7 +64,7 @@ export async function getStaticPaths() {
 }
 
 const { course, lesson } = Astro.props;
-const { Content } = await course.render();
+// const { Content } = await course.render(); // We will use lesson.body for specific lesson content
 
 // Find the specific lesson's content within the rendered course content
 // This is a simplified approach; a more robust solution might involve
@@ -68,7 +102,11 @@ const { Content } = await course.render();
       </div>
       {lesson.audio && <AudioPlayer src={lesson.audio} />}
       <Wrapper variant="prose" class="mt-12">
-        <Content /> {/* This will render the entire course markdown */}
+        {lesson.body ? (
+          <div set:html={marked(lesson.body)} />
+        ) : (
+          <Text>Specific lesson content is not available for this lesson. Please check the course material.</Text>
+        )}
         {/* In a real scenario, you'd extract specific lesson content from here */}
       </Wrapper>
       <CourseNavigation course={course} currentLessonSlug={lesson.slug} />
