@@ -4,8 +4,8 @@ description: Strategic Wisdom from Miyamoto Musashi's Book of Five Rings for Mod
 pubDate: 2023-11-15T00:00:00.000Z
 author: GenZen HQ Resource
 image:
-  url: /images/placeholder-course.jpg
-  alt: Foundations of Architecting Your Autonomy
+  url: https://by1l2nap8birh2cf.public.blob.vercel-storage.com/Musashi_ts_pic-YzZ4uS22agCAiZtkaX3JuU3EjnOdxk.webp
+  alt: Book Of Five Rings
 standaloneLessons:
   - title: Introduction
     slug: intro
@@ -364,4 +364,6 @@ standaloneLessons:
 modules: []
 ---
 
-Image URL:
+# Course Introduction
+
+Placeholder for course introduction. Edit this with content from your Notion database description if it's not automatically parsed.

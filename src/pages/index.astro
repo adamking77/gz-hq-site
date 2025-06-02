@@ -10,6 +10,7 @@ import InfoSection from "@/components/landing/InfoSection.astro";
 import LatestPosts from "@/components/blog/LatestPosts.astro";
 import EntriesOne from "@/components/blog/EntriesOne.astro"; // Added import
 import ProcessStepItem from "@/components/landing/ProcessStepItem.astro";
+import HomepageResources from "@/components/landing/HomepageResources.astro";
 // Blog contet
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
@@ -119,4 +120,5 @@ const newCoreProblemContent = `
   <Wrapper variant="standard" class="py-24 mb-24">
     <InfoSection sectionTitle="About" sectionContent={introContent} data-aos="fade-up" data-aos-offset="200" />
   </Wrapper>
+  <HomepageResources />
 </BaseLayout>

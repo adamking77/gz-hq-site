@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+import Text from "@/components/fundations/elements/Text.astro";
+import CourseEntry from "@/components/courses/CourseEntry.astro";
+import Link from "@/components/fundations/elements/Link.astro"; // Assuming a generic Link component for "View All"
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const courses = await getCollection("courses");
+---
+
+<section class="py-16 sm:py-24" data-aos="fade-up" data-aos-offset="200">
+  <Wrapper variant="standard">
+    <Text
+      tag="h2"
+      variant="textXL"
+      class="text-[#222222] dark:text-white font-medium border-b dark:border-white/10 border-black/10 pb-2"
+    >
+      Resources
+    </Text>
+    <div class="grid grid-cols-1 gap-8 mt-12">
+      {courses.map((course, index) => (
+        <CourseEntry
+          url={`/resources/${course.slug}`}
+          title={course.data.title}
+          description={course.data.description}
+          image={course.data.image?.url}
+          alt={course.data.image?.alt || course.data.title}
+          data-aos="fade-up"
+          data-aos-delay={(index + 1) * 100}
+        />
+      ))}
+    </div>
+  </Wrapper>
+</section>
