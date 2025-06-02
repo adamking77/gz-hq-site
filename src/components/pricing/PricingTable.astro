@@ -2,7 +2,25 @@
 import Button from "@/components/fundations/elements/Button.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-export const pricingPlans = [
+
+interface PricePlanButton {
+  text: string;
+  href: string;
+  variant: 'primary' | 'secondary';
+}
+
+interface PricePlan {
+  duration: string;
+  price: {
+    monthly: string;
+    annual: string;
+  };
+  description: string;
+  features: string[];
+  button: PricePlanButton;
+}
+
+export const pricingPlans: PricePlan[] = [
   {
     duration: "12 Months",
     price: {
@@ -63,7 +81,7 @@ export const pricingPlans = [
     </Text>
     <div
       x-data="{ duration: 'monthly' }"
-      class="pt-2 border-t mt-24 dark:border-white/10 border-black/10 w-full"
+      class="pt-2 border-t mt-24 dark:border-white/10 border-borderAlt w-full"
     >
       <!-- Toggle Buttons -->
       <div
@@ -71,14 +89,14 @@ export const pricingPlans = [
         class="w-full relative overflow-hidden justify-center gap-4 mx-auto lg:mx-0 inline-flex z-0"
       >
         <div
-          class="absolute inset-0 bg-zinc-100 dark:bg-white/10 rounded-md transition-transform duration-200 ease-in-out h-full"
+          class="absolute inset-0 bg-borderAlt dark:bg-white/10 rounded-md transition-transform duration-200 ease-in-out h-full"
           x-bind:class="duration === 'monthly' ? 'w-1/2 translate-x-0' : 'w-1/2 translate-x-full'"
         >
         </div>
         <button
           id="monthly-pricing-button"
           class="relative flex items-center cursor-pointer justify-center w-full px-2 py-2 text-sm font-medium focus:outline-none transition-colors duration-300 z-10"
-          :class="duration === 'monthly' ? 'text-zinc-600 dark:text-white' : 'text-zinc-500 hover:text-zinc-500'"
+          :class="duration === 'monthly' ? 'text-accent dark:text-white' : 'text-borderAlt hover:text-borderAlt'"
           @click="duration = 'monthly'"
           type="button"
           :aria-pressed="duration === 'monthly'"
@@ -88,7 +106,7 @@ export const pricingPlans = [
         <button
           id="annual-pricing-button"
           class="relative flex items-center cursor-pointer justify-center w-full px-2 py-2 text-sm font-medium focus:outline-none transition-colors duration-300 z-10"
-          :class="duration === 'annual' ? 'text-zinc-600 dark:text-white' : 'text-zinc-500 hover:text-zinc-500'"
+          :class="duration === 'annual' ? 'text-accent dark:text-white' : 'text-borderAlt hover:text-borderAlt'"
           @click="duration = 'annual'"
           type="button"
           :aria-pressed="duration === 'annual'"
@@ -115,7 +133,7 @@ export const pricingPlans = [
                   class="font-semibold flex   items-baseline   text-[#222222] dark:text-white"
                 >
                   <Text tag="span" variant="textLG" x-text="currentPrice" />
-                  <Text tag="span" class=" text-zinc-500 dark:text-zinc-400 ">
+                  <Text tag="span" class=" text-borderAlt dark:text-borderAlt ">
                     <Text
                       tag="span"
                       variant="textSM"
@@ -161,7 +179,6 @@ export const pricingPlans = [
               <div class="mt-6">
                 <Button
                   size="medium"
-                  variant="secondary"
                   variant={plan.button.variant}
                   href={plan.button.href}
                   title="link to your page"

@@ -1,22 +1,29 @@
 ---
-const { size, variant, gapSize, class: className, ...rest } = Astro.props;
+interface Props {
+  size?: 'small' | 'medium';
+  variant?: 'primary' | 'secondary';
+  gapSize?: 'small' | 'medium';
+  class?: string;
+  [key: string]: any; // For ...rest and other HTML attributes
+}
+const { size, variant, gapSize, class: className, ...rest } = Astro.props as Props;
 
 // Variant styles
 const variantClasses = {
   primary: [
-    "text-white",
-    "bg-black",
-    "hover:bg-black/80",
-    "focus:ring-white",
-    "dark:text-black",
-    "dark:hover:bg-black/80",
-    "dark:bg-white",
+    "text-white", // Text on dark accent
+    "bg-accent",
+    "hover:bg-accent/80",
+    "focus:ring-white", // White ring on dark accent
+    "dark:text-accent", // Dark accent text on light background (dark:bg-white)
+    "dark:hover:bg-borderAlt", // Light gray hover on dark:bg-white
+    "dark:bg-white", // White background in dark mode
   ],
   secondary: [
-    "text-black",
-    "bg-black/5",
-    "hover:bg-black/10",
-    "focus:ring-black",
+    "text-accent", // Dark accent text
+    "bg-borderAlt", // Light gray background (#ededed)
+    "hover:bg-borderAlt/80", // Slightly more opaque light gray
+    "focus:ring-accent", // Accent color ring
     "dark:text-white",
     "dark:hover:bg-white/10",
     "dark:bg-white/10",

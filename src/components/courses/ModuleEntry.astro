@@ -5,10 +5,10 @@ import { ICONS, type IconName } from "./icons";
 
 const iconSvg = icon && ICONS[icon as IconName];
 ---
-<a href={url} title={title} class="group block border border-black/10 dark:border-white/10 rounded-xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-  <div class="p-8 bg-white dark:bg-black rounded-xl h-full flex flex-row items-start gap-6"> {/* Removed hover effects from inner div */}
+<a href={url} title={title} class="group block border border-[#ededed] dark:border-[#ededed] rounded-xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+  <div class="p-8 bg-backgroundLight dark:bg-black rounded-xl h-full flex flex-row items-start gap-6"> {/* Removed hover effects from inner div */}
     {iconSvg && (
-      <div class="flex-shrink-0 h-12 w-12 text-zinc-500 dark:text-zinc-400 mt-1" set:html={iconSvg} />
+      <div class="flex-shrink-0 h-12 w-12 text-borderAlt dark:text-borderAlt mt-1" set:html={iconSvg} />
     )}
     <div class="flex flex-col flex-grow justify-between h-full">
       <div>
@@ -23,7 +23,7 @@ const iconSvg = icon && ICONS[icon as IconName];
         <Text
           tag="p"
           variant="textSM"
-          class="text-zinc-500 dark:text-zinc-400 mb-2 line-clamp-2"
+          class="text-borderAlt dark:text-borderAlt mb-2 line-clamp-2"
         >
           {description}
         </Text>
@@ -32,7 +32,7 @@ const iconSvg = icon && ICONS[icon as IconName];
         <Text
           tag="p"
           variant="textXS"
-          class="text-zinc-400 dark:text-zinc-500"
+          class="text-borderAlt dark:text-borderAlt"
         >
           {lessonCount} {lessonCount === 1 ? 'lesson' : 'lessons'}
         </Text>
@@ -41,7 +41,7 @@ const iconSvg = icon && ICONS[icon as IconName];
     <Text
       tag="span"
       variant="textSM"
-      class="mt-6 text-blue-600 dark:text-blue-400 group-hover:underline self-start"
+      class="mt-6 text-accent dark:text-accent group-hover:underline self-start"
     >
       View Module &rarr;
     </Text>

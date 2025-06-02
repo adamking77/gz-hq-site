@@ -3,18 +3,27 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      colors: {
+        accent: '#1d2739',
+        backgroundLight: '#f4f4f5',
+        borderAlt: '#ededed',
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            '--tw-prose-body': theme('colors.accent'),
+            '--tw-prose-invert-body': theme('colors.borderAlt'),
+            '--tw-prose-links': theme('colors.accent'),
+            '--tw-prose-invert-links': theme('colors.borderAlt'),
+            // You can add other prose elements here like headings, blockquotes, etc.
+            // For example, to make headings use the accent color:
+            // '--tw-prose-headings': theme('colors.accent'),
+            // '--tw-prose-invert-headings': theme('colors.borderAlt'),
             'p': {
-              fontSize: theme('fontSize.base'),      // Should resolve to 1rem
-              lineHeight: theme('lineHeight.relaxed'), // Should resolve to 1.625
-              // Optional: If explicit color override is desired, though prose usually handles this.
-              // color: '#222222',
-              // '--tw-prose-body': '#222222',
-              // '--tw-prose-invert-body': '#ffffff', // For dark mode
+              fontSize: theme('fontSize.base'),
+              lineHeight: theme('lineHeight.relaxed'),
+              // Body color is now handled by --tw-prose-body
             },
-            // Add other prose customizations here if needed in the future
           },
         },
       }),

@@ -12,7 +12,7 @@ const posts = await Promise.all(
   <button
     type="button"
     id="searchButton"
-    class="w-full pr-4 items-center gap-2 flex pl-2 rounded-lg border h-10 dark:bg-white/5 border-black/10 py-2 font-spline text-sm font-medium text-zinc-800 dark:text-zinc-500 placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-600/50 disabled:opacity-50"
+    class="w-full pr-4 items-center gap-2 flex pl-2 rounded-lg border h-10 dark:bg-white/5 border-borderAlt py-2 font-spline text-sm font-medium text-accent dark:text-borderAlt placeholder-borderAlt focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-600/50 disabled:opacity-50"
     aria-label="Search posts"
   >
     <svg
@@ -70,11 +70,11 @@ const posts = await Promise.all(
           type="text"
           id="searchInput"
           placeholder="Search posts..."
-          class="block w-full rounded-lg border h-10 dark:bg-white/5 dark:text-zinc-400 border-black/10 px-4 py-2 font-spline text-sm font-medium text-zinc-800 placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 lg:px-6 focus:ring-zinc-600/50 disabled:opacity-50 dark:focus:border-zinc-900"
+          class="block w-full rounded-lg border h-10 dark:bg-white/5 dark:text-borderAlt border-borderAlt px-4 py-2 font-spline text-sm font-medium text-accent placeholder-borderAlt focus:border-zinc-500 focus:outline-none focus:ring-2 lg:px-6 focus:ring-zinc-600/50 disabled:opacity-50 dark:focus:border-zinc-900"
         />
         <div
           id="searchResults"
-          class="max-h-100 rounded-xl mt-2 overflow-y-auto bg-white dark:bg-black overflow-hidden w-full divide-y divide-zinc-200 border-y border-zinc-200 dark:border-y-black dark:divide-white/5 scrollbar-hide"
+          class="max-h-100 rounded-xl mt-2 overflow-y-auto bg-backgroundLight dark:bg-black overflow-hidden w-full divide-y divide-borderAlt border-y border-borderAlt dark:border-y-black dark:divide-white/5 scrollbar-hide"
         >
         </div>
       </div>
@@ -131,7 +131,7 @@ const posts = await Promise.all(
       if (results.length === 0) {
         searchResults.innerHTML = `
         <div class="p-8">
-            <Text tag="h3" variant="textBase" class="font-medium text-zinc-500 font-medium">
+            <Text tag="h3" variant="textBase" class="font-medium text-borderAlt font-medium">
               There's nothing here,...
             </Text>
         </div>
@@ -144,10 +144,10 @@ const posts = await Promise.all(
         .map(
           (result) => `
             <a href="/blog/posts/${result.item.slug}" class="block p-8 hover:bg-zinc-100 duration-300 dark:hover:bg-white/5">
-              <h3  class="font-medium text-sm text-zinc-900 dark:text-white block">
+              <h3  class="font-medium text-sm text-accent dark:text-white block">
                 ${result.item.title}
               </h3>
-              <p  class="text-zinc-500 text-xs block">
+              <p  class="text-borderAlt text-xs block">
                 ${result.item.description}
               </p>
             </a>

@@ -17,11 +17,11 @@ const { frontmatter } = Astro.props;
       </Text>
     </Wrapper>
     <Wrapper variant="standard" class="py-12">
-      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+      <div class="border-t dark:border-white/10 border-borderAlt pt-2">
         <Text
           tag="p"
           variant="textSM"
-          class="2xl:text-base mt-2 dark:text-zinc-400 text-zinc-500"
+          class="2xl:text-base mt-2 dark:text-borderAlt text-borderAlt"
         >
           {frontmatter.subtitle}
         </Text>
@@ -42,13 +42,13 @@ const { frontmatter } = Astro.props;
             href={frontmatter.live}
             title={frontmatter.title}
             aria-label={frontmatter.title}
-            class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white font-medium"
+            class="text-accent hover:text-accent/80 dark:text-borderAlt dark:hover:text-white font-medium"
           >
             Visit &nbsp; &rarr;
           </Text>
         </div>
       </div>
-      <div class="mt-8 bg-black/5 dark:bg-white/5 p-12 lg:p-20">
+      <div class="mt-8 bg-borderAlt dark:bg-white/5 p-12 lg:p-20">
         <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
       </div>
       <Wrapper variant="prose" class="mt-8">

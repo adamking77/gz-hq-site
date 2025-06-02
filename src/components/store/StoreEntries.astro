@@ -4,7 +4,7 @@ import Text from "@/components/fundations/elements/Text.astro";
 ---
 
 <div class="h-full flex flex-col">
-  <div class="bg-black/5 dark:bg-white/5 rounded-xl p-12 lg:p-20">
+  <div class="bg-borderAlt dark:bg-white/5 rounded-xl p-12 lg:p-20">
     <img class="object-cover w-full" alt={title} src={image} />
   </div>
   <div class="flex flex-col justify-between h-full mt-4">
@@ -19,7 +19,7 @@ import Text from "@/components/fundations/elements/Text.astro";
       <Text
         tag="p"
         variant="textSM"
-        class="text-zinc-500 dark:text-zinc-400 mt-2 2xl:text-base"
+        class="text-borderAlt dark:text-borderAlt mt-2 2xl:text-base"
       >
         {description}
       </Text>
@@ -31,7 +31,7 @@ import Text from "@/components/fundations/elements/Text.astro";
         href={url}
         title={title}
         aria-label={title}
-        class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white font-medium"
+        class="text-accent hover:text-accent/80 dark:text-borderAlt dark:hover:text-white font-medium"
       >
         &rarr; Read more about {title}
       </Text>
