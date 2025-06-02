@@ -20,9 +20,37 @@ export async function getStaticPaths() {
 
 const { course }: { course: CollectionEntry<'courses'> } = Astro.props;
 const { Content } = await course.render();
+
+const courseData = course.data;
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": courseData.title,
+  "description": courseData.description,
+  "image": courseData.image?.url && Astro.site ? new URL(courseData.image.url, Astro.site).toString() : undefined,
+  "datePublished": courseData.pubDate.toISOString(),
+  "author": {
+    "@type": "Person", // Assuming author is a person. Change to Organization if needed.
+    "name": courseData.author
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "GenZen HQ", // Your organization name
+    "sameAs": Astro.site ? Astro.site.toString() : undefined
+  }
+  // TODO: Consider adding "hasCourseInstance" with module/lesson details if beneficial
+  // "hasCourseInstance": courseData.modules.map(module => ({
+  //   "@type": "CourseInstance",
+  //   "courseMode": "online", // or "mixed", "offline"
+  //   "name": module.title,
+  //   "description": module.description
+  //   // Potentially add "instructor" or "startDate", "endDate" if applicable per module
+  // }))
+});
 ---
 
-<BaseLayout>
+<BaseLayout title={courseData.title} description={courseData.description} jsonLd={jsonLd}>
   <section>
     <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
       <Text

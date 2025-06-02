@@ -1,64 +1,70 @@
  ---
-import { AstroSeo } from "@astrolib/seo";
----
-
-<AstroSeo
-  title="GenZen HQ"
-  description="A detailed description of your page content."
-  canonical="https://genzenhq.com"
-  openGraph={{
-    url: "https://genzenhq.com",
-    title: "GenZen HQ",
-    description: "A detailed description of your page content.",
-    images: [
-      {
-        url: "https://genzenhq.com/og-image.jpg", // Placeholder, user should update
-        width: 1200,
-        height: 630,
-        alt: "GenZen HQ Open Graph Image",
-        type: "image/jpeg",
-      },
-    ],
-    site_name: "GenZen HQ",
-    type: "website",
-    locale: "en_US",
-  }}
-  twitter={{
-    handle: "@yourhandle",
-    site: "@yoursite",
-    cardType: "summary_large_image",
-  }}
-/>
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://genzenhq.com/" />
-<meta property="og:title" content="GenZen HQ" />
-<meta
-  property="og:description"
-  content="A brief description of your website content."
-/>
-<meta
-  property="og:image"
-  content="https://www.yourwebsite.com/path/to/image.jpg"
-/>
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://genzenhq.com/" />
-<meta property="twitter:title" content="GenZen HQ" />
-<meta
-  property="twitter:description"
-  content="A brief description of your website content."
-/>
-<meta
-  property="twitter:image"
-  content="https://www.yourwebsite.com/path/to/image.jpg"
-/>
-
-<!-- Canonical URL -->
-<link rel="canonical" href="https://genzenhq.com/" />
-
-<!-- Additional SEO -->
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow" />
+ import { AstroSeo, type AstroSeoProps } from "@astrolib/seo";
+ 
+ export interface Props extends AstroSeoProps {
+   title?: string;
+   description?: string;
+   canonical?: string;
+   og?: {
+     image?: string;
+     imageAlt?: string;
+     type?: string;
+   };
+   twitterHandle?: string; // e.g. @yourhandle
+   twitterSite?: string; // e.g. @yoursite
+   // Add more specific props if needed, e.g., for article schema
+   // article?: { publishedTime?: string; modifiedTime?: string; author?: string; tags?: string[] };
+ }
+ 
+ const {
+   title = "GenZen HQ", // Default title
+   description = "Unlock your potential with courses and resources from GenZen HQ.", // Default description
+   canonical = Astro.url.href,
+   og = {},
+   twitterHandle,
+   twitterSite,
+   ...rest
+ } = Astro.props;
+ 
+ const siteName = "GenZen HQ";
+ const defaultOgImage = new URL("/og-image.jpg", Astro.site).toString(); // Assuming a default OG image at public/og-image.jpg
+ const ogImageUrl = og.image || defaultOgImage;
+ const ogImageAltText = og.imageAlt || `${siteName} Open Graph Image`;
+ const ogType = og.type || "website";
+ ---
+ 
+ <AstroSeo
+   title={title}
+   description={description}
+   canonical={canonical}
+   openGraph={{
+     url: Astro.url.href,
+     title: title,
+     description: description,
+     images: [
+       {
+         url: ogImageUrl,
+         width: 1200,
+         height: 630,
+         alt: ogImageAltText,
+         type: "image/jpeg", // Consider making this dynamic if you use other formats like png
+       },
+     ],
+     site_name: siteName,
+     type: ogType,
+     locale: "en_US",
+   }}
+   twitter={{
+     handle: twitterHandle,
+     site: twitterSite,
+     cardType: "summary_large_image",
+   }}
+   {...rest}
+ />
+ 
+ <!-- Slot for JSON-LD structured data -->
+ <slot name="json-ld" />
+ 
+ <!-- Default robots meta tags (can be overridden by AstroSeo if specific props are passed) -->
+ <meta name="robots" content="index, follow" />
+ <meta name="googlebot" content="index, follow" />

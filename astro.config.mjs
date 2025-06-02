@@ -20,6 +20,6 @@ export default defineConfig({
     skipInline: false,
     drafts: true
   },
-  site: 'https://yourdomain.com', // You may want to update this to your actual domain
+  site: 'https://genzenhq.com',
   integrations: [sitemap(), mdx()]
 });

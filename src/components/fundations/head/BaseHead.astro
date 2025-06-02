@@ -1,18 +1,37 @@
 ---
-import Seo from "@/components/fundations/head/Seo.astro";
+import Seo, { type Props as SeoProps } from "@/components/fundations/head/Seo.astro";
 import Meta from "@/components/fundations/head/Meta.astro";
 import Fonts from "@/components/fundations/head/Fonts.astro";
 import Favicons from "@/components/fundations/head/Favicons.astro";
-import FuseJs from "@/components/fundations/scripts/FuseJS.astro";
+import FuseJS from "@/components/fundations/scripts/FuseJS.astro"; // Corrected duplicate import
 import AlpineJS from "@/components/fundations/scripts/AlpineJS.astro";
-import FuseJS from "@/components/fundations/scripts/FuseJS.astro";
 import ToggleLocalStorage from "@/components/fundations/scripts/ToggleLocalStorage.astro";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  jsonLd?: string; // This will be the JSON-LD script content as a string
+  // We can also allow passing all SeoProps directly if needed for more complex scenarios
+  seo?: SeoProps;
+}
+
+const { title, description, jsonLd, seo } = Astro.props;
+
+// If a full 'seo' object is passed, use it. Otherwise, construct from individual props.
+const seoComponentProps: SeoProps = seo || {
+  title: title, // Will use Seo.astro's default if this is undefined
+  description: description, // Will use Seo.astro's default if this is undefined
+};
 ---
-<Seo />
+
+<Seo {...seoComponentProps}>
+  {jsonLd && (
+    <script type="application/ld+json" set:html={jsonLd} slot="json-ld" />
+  )}
+</Seo>
 <Meta />
 <Fonts />
 <Favicons />
-<FuseJS/>
-<AlpineJS/>
-<ToggleLocalStorage/>
-
+<FuseJS />
+<AlpineJS />
+<ToggleLocalStorage />
