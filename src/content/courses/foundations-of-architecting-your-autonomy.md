@@ -363,7 +363,3 @@ standaloneLessons:
 
 modules: []
 ---
-
-# Course Introduction
-
-Placeholder for course introduction. Edit this with content from your Notion database description if it's not automatically parsed.

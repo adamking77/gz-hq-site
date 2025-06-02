@@ -270,8 +270,6 @@ async function main() {
         const yamlFrontmatter = yaml.dump(frontmatter, { sortKeys: false, lineWidth: -1 }); // lineWidth -1 for no wrapping
         const fileContent = `---
 ${yamlFrontmatter}---
-
-${introductionText}
 `;
         fs.writeFileSync(outputFilePath, fileContent);
         console.log(`Successfully generated Markdown file: ${outputFilePath}`);
