@@ -11,14 +11,14 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       <Text
         tag="h1"
         variant="textBase"
-        class="text-[#222222] dark:text-white font-medium"
+        class="text-[#222222] dark:text-white font-medium mb-8"
       >
         {frontmatter.page}
       </Text>
     </Wrapper>
     <Wrapper variant="standard" class="py-12">
       <div class="border-t dark:border-white/10 border-black/10 pt-2">
-        <Wrapper variant="prose">
+        <Wrapper variant="prose" class="mt-8">
           <slot />
         </Wrapper>
       </div>
