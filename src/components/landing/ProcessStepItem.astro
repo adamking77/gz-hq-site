@@ -12,7 +12,8 @@ interface Props {
 const { title, description, iconSvg, isLast = false, class: extraClass, ...rest } = Astro.props;
 ---
 
-<div class:list={["flex gap-x-3 relative group rounded-lg transition-all duration-2700 ease-in-out hover:scale-105 mb-12", extraClass]} {...rest}>
+<div class:list={["relative group rounded-lg mb-12", extraClass]} {...rest}>
+  <div class="flex gap-x-3 transition-transform duration-300 ease-in-out group-hover:scale-105">
   <!-- Icon Column -->
   <div class:list={[
     "relative last:after:hidden after:absolute after:top-8 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] group-hover:after:bg-gray-400 dark:group-hover:after:bg-neutral-500",
@@ -26,7 +27,7 @@ const { title, description, iconSvg, isLast = false, class: extraClass, ...rest 
   <!-- Content Column -->
   <div class="grow p-2 pb-8">
     {iconSvg && (
-      <div class="mb-3 h-22 w-22 text-gray-700 dark:text-neutral-300 transition-all duration-200 ease-in-out group-hover:scale-110 group-hover:text-gray-900 dark:group-hover:text-white" set:html={iconSvg} />
+      <div class="mb-3 h-22 w-22 text-gray-700 dark:text-neutral-300 transition-colors duration-200 ease-in-out group-hover:text-gray-900 dark:group-hover:text-white" set:html={iconSvg} />
     )}
     {!iconSvg && (
       <!-- Icon placeholder -->
@@ -37,6 +38,7 @@ const { title, description, iconSvg, isLast = false, class: extraClass, ...rest 
     <Text tag="p" variant="textBase" class="text-gray-600 dark:text-neutral-400">
       {description}
     </Text>
+  </div>
   </div>
 </div>
 
