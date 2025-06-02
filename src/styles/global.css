@@ -2,6 +2,23 @@
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 @plugin "tailwind-scrollbar-hide";
+.prose {
+    --tw-prose-body: #222222; /* Override for light mode */
+    color: #222222;           /* Fallback color for light mode */
+}
+
+.prose p {
+    color: #222222 !important; /* Ensure paragraph color in light mode */
+}
+
+.dark .prose {
+    --tw-prose-body: #ededed; /* Override for dark mode (using #ededed) */
+    color: #ededed;           /* Fallback color for dark mode */
+}
+
+.dark .prose p {
+    color: #ededed !important; /* Ensure paragraph color in dark mode */
+}
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
   /* Typography */
