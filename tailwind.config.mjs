@@ -11,7 +11,7 @@ export default {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
-            '--tw-prose-body': theme('colors.accent'),
+            // '--tw-prose-body': '#222222', // Temporarily commented out
             '--tw-prose-invert-body': theme('colors.borderAlt'),
             '--tw-prose-links': theme('colors.accent'),
             '--tw-prose-invert-links': theme('colors.borderAlt'),
@@ -20,9 +20,9 @@ export default {
             // '--tw-prose-headings': theme('colors.accent'),
             // '--tw-prose-invert-headings': theme('colors.borderAlt'),
             'p': {
+              color: '#222222', // Directly set p color
               fontSize: theme('fontSize.base'),
               lineHeight: theme('lineHeight.relaxed'),
-              // Body color is now handled by --tw-prose-body
             },
           },
         },
