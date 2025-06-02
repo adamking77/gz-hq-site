@@ -84,7 +84,7 @@ standaloneLessons:
       This clarity becomes the foundation for everything else. You can't make good strategic decisions if you don't understand what you're actually dealing with.
 
 
-      **Transitional Mastery:** Once you can accurately assess your environment, you're ready to develop adaptive response systems that protect your autonomy while maintaining strategic flexibility.
+      Once you can accurately assess your environment, you're ready to develop adaptive response systems that protect your autonomy while maintaining strategic flexibility.
 
   - title: 'The Water Scroll: Adaptive Response and Emotional Sovereignty'
     slug: water-scroll
@@ -137,7 +137,7 @@ standaloneLessons:
 
       > _"The spirit of defeating a man is the same for ten million men"_ - The principles that protect your autonomy in small interactions scale directly to systematic challenges involving multiple actors or institutional pressure.
 
-      **Developmental Bridge**: With water-like adaptability established, you're prepared for situations requiring direct strategic engagement and decisive intervention.
+      With water-like adaptability established, you're prepared for situations requiring direct strategic engagement and decisive intervention.
 
   - title: 'The Fire Scroll: Strategic Engagement and Decisive Action'
     slug: fire-scroll
@@ -205,7 +205,7 @@ standaloneLessons:
       Choose the timing, location, and circumstances of difficult conversations to maximize your strategic advantage while minimizing opportunities for manipulation or emotional escalation.
 
 
-      **Developmental Bridge**: Mastering direct engagement provides the foundation for understanding how individual manipulation connects to larger systematic patterns.
+      Mastering direct engagement provides the foundation for understanding how individual manipulation connects to larger systematic patterns.
 
   - title: |
       The Wind Scroll: Understanding Manipulation Systems
@@ -273,7 +273,7 @@ standaloneLessons:
       This intelligence allows you to prepare counter-strategies rather than responding reactively to each new manipulation attempt.
 
 
-      **Developmental Bridge**: Complete understanding of manipulation systems prepares you for the integration phase where autonomy becomes natural rather than effortful.
+      Complete understanding of manipulation systems prepares you for the integration phase where autonomy becomes natural rather than effortful.
 
   - title: 'The Void Scroll: Integrated Autonomy and Natural Authority'
     slug: void-scroll
@@ -337,7 +337,7 @@ standaloneLessons:
       Environmental assessment, pattern recognition, and strategic positioning become intuitive rather than requiring conscious effort. You naturally position yourself advantageously and respond to challenges in ways that preserve your autonomy while minimizing unnecessary conflict.
 
 
-      **Developmental Completion**: At this level, autonomy engineering becomes unnecessary because autonomy has become your natural state.
+      At this level, autonomy engineering becomes unnecessary because autonomy has become your natural state.
 
   - title: 'Integration: The Complete Path to Autonomy'
     slug: integration
