@@ -235,9 +235,7 @@ standaloneLessons:
 
       ### **The "Strong Spirit" School - Emotional Overwhelm Strategies**
 
-
-      ### _"If you just wield the long sword in a strong spirit your cutting will be coarse, and if you use the sword coarsely you will have difficulty in winning."_
-
+      > _"If you just wield the long sword in a strong spirit your cutting will be coarse, and if you use the sword coarsely you will have difficulty in winning."_
 
       Manipulation through emotional intensity—rage, overwhelming sadness, dramatic crises—attempts to bypass your rational decision-making through emotional flooding. Musashi teaches that excessive force often defeats itself by creating opportunities for strategic response.
 
