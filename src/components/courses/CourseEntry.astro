@@ -2,7 +2,7 @@
 const { url, title, description, pubDate, image, alt } = Astro.props;
 import Text from "@/components/fundations/elements/Text.astro";
 ---
-<a href={url} title={title} class="group block border border-black/10 dark:border-white/10 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
+<a href={url} title={title} class="group block border border-black/10 dark:border-white/10 rounded-xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
   <div class="flex gap-8 p-10 bg-white dark:bg-black rounded-xl"> {/* Removed hover effects from inner div, padding adjusted if needed */}
     <div class="flex-shrink-0 w-40 h-40 rounded-lg overflow-hidden">
       <img
@@ -13,15 +13,8 @@ import Text from "@/components/fundations/elements/Text.astro";
     </div>
     <div class="flex flex-col flex-1">
       <Text
-        tag="span"
-        variant="textXS"
-        class="font-medium text-zinc-500 dark:text-zinc-400 uppercase mb-1"
-      >
-        <time datetime={pubDate}>{pubDate}</time>
-      </Text>
-      <Text
         tag="h3"
-        variant="textBase"
+        variant="textLG"
         class="text-[#222222] dark:text-white font-medium group-hover:text-black/70 dark:group-hover:text-white/70 leading-tight"
       >
         {title}
@@ -29,9 +22,16 @@ import Text from "@/components/fundations/elements/Text.astro";
       <Text
         tag="p"
         variant="textSM"
-        class="text-zinc-500 dark:text-zinc-400 text-balance line-clamp-2 mt-1"
+        class="text-zinc-500 dark:text-zinc-400 text-balance line-clamp-2 mt-4"
       >
         {description}
+      </Text>
+      <Text
+        tag="p"
+        variant="textSM"
+        class="text-sky-600 dark:text-sky-400 group-hover:text-sky-500 dark:group-hover:text-sky-300 mt-4 font-medium"
+      >
+        View Course →
       </Text>
     </div>
   </div>

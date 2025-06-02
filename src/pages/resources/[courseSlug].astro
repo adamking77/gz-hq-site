@@ -3,10 +3,12 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/elements/Link.astro"; // Added Link component
 import AudioPlayer from "@/components/courses/AudioPlayer.astro";
 import CourseNavigation from "@/components/courses/CourseNavigation.astro";
 import ModuleEntry from "@/components/courses/ModuleEntry.astro";
 import LessonEntry from "@/components/courses/LessonEntry.astro";
+import BackToCoursesLink from "@/components/courses/BackToCoursesLink.astro";
 
 export async function getStaticPaths() {
   const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
@@ -32,8 +34,8 @@ const { Content } = await course.render();
       </Text>
       <Text
         tag="p"
-        variant="textSM"
-        class="text-zinc-500 text-balance mt-4 dark:text-zinc-400 mb-8"
+        variant="textBase"
+        class="w-full mt-8 mb-8"
       >
         {course.data.description}
       </Text>
@@ -73,7 +75,7 @@ const { Content } = await course.render();
               const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
               return (
                 <ModuleEntry
-                  url={`/courses/${course.slug}/${moduleSlug}`}
+                  url={`/resources/${course.slug}/${moduleSlug}`}
                   title={module.title}
                   description={module.description}
                   icon={module.icon}
@@ -89,7 +91,7 @@ const { Content } = await course.render();
           <div class="grid grid-cols-1 gap-6">
             {course.data.standaloneLessons.map((lesson) => (
               <LessonEntry
-                url={`/courses/${course.slug}/${lesson.slug}`}
+                url={`/resources/${course.slug}/${lesson.slug}`}
                 title={lesson.title}
                 description={lesson.description}
                 icon={lesson.icon}
@@ -102,6 +104,7 @@ const { Content } = await course.render();
           No content (modules or lessons) is currently available for this course. Please check back later as content is being updated.
         </Text>
       )}
+      <BackToCoursesLink />
     </Wrapper>
   </section>
 </BaseLayout>

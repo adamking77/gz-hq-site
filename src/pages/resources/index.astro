@@ -16,7 +16,7 @@ const allCourses: CollectionEntry<'courses'>[] = await getCollection("courses");
         variant="display2XL"
         class="text-[#222222] dark:text-white font-medium"
       >
-        Our Courses
+        Resources
       </Text>
       <Text
         tag="p"
@@ -35,7 +35,7 @@ const allCourses: CollectionEntry<'courses'>[] = await getCollection("courses");
       ]}>
         {allCourses.map((course) => (
           <CourseEntry
-            url={"/courses/" + course.slug}
+            url={"/resources/" + course.slug}
             title={course.data.title}
             description={course.data.description}
             pubDate={course.data.pubDate.toString().slice(0, 10)}

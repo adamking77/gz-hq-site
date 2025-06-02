@@ -5,7 +5,7 @@ import { ICONS, type IconName } from "./icons";
 
 const iconSvg = icon && ICONS[icon as IconName];
 ---
-<a href={url} title={title} class="group block border border-black/10 dark:border-white/10 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
+<a href={url} title={title} class="group block border border-black/10 dark:border-white/10 rounded-xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
   <div class="p-6 bg-white dark:bg-black rounded-xl h-full flex flex-row items-start gap-4"> {/* Removed hover effects from inner div */}
     {iconSvg && (
       <div class="flex-shrink-0 h-12 w-12 text-zinc-500 dark:text-zinc-400 mt-1" set:html={iconSvg} />
