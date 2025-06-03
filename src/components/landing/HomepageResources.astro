@@ -20,7 +20,7 @@ const courses = await getCollection("courses");
     <div class="grid grid-cols-1 gap-8 mt-12">
       {courses.map((course, index) => (
         <CourseEntry
-          url={`/resources/${course.slug}`}
+          url={`/courses/${course.slug}`}
           title={course.data.title}
           description={course.data.description}
           image={course.data.image?.url}

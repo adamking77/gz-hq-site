@@ -35,7 +35,7 @@ const allCourses: CollectionEntry<'courses'>[] = await getCollection("courses");
       ]}>
         {allCourses.map((course) => (
           <CourseEntry
-            url={"/resources/" + course.slug}
+            url={"/courses/" + course.slug}
             title={course.data.title}
             description={course.data.description}
             pubDate={course.data.pubDate.toString().slice(0, 10)}

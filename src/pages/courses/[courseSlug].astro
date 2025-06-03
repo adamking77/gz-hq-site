@@ -103,7 +103,7 @@ const jsonLd = JSON.stringify({
               const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
               return (
                 <ModuleEntry
-                  url={`/resources/${course.slug}/${moduleSlug}`}
+                  url={`/courses/${course.slug}/${moduleSlug}`}
                   title={module.title}
                   description={module.description}
                   icon={module.icon}
@@ -119,7 +119,7 @@ const jsonLd = JSON.stringify({
           <div class="grid grid-cols-1 gap-6">
             {course.data.standaloneLessons.map((lesson) => (
               <LessonEntry
-                url={`/resources/${course.slug}/${lesson.slug}`}
+                url={`/courses/${course.slug}/${lesson.slug}`}
                 title={lesson.title}
                 description={lesson.description}
                 icon={lesson.icon}

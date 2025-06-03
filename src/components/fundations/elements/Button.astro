@@ -40,7 +40,7 @@ const gapClasses = {
   small: "gap-2",
   medium: "gap-4",
 };
-const gapClass = gapClasses[gapSize] || "";
+const gapClass = gapSize ? gapClasses[gapSize] || "" : "";
 
 // Additional user-provided classes
 const additionalClasses = className ? className.split(" ") : [];

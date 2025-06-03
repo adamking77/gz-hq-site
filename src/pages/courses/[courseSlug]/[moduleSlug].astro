@@ -63,7 +63,7 @@ const { course, module, moduleSlug } = Astro.props as Props;
       <div class="grid grid-cols-1 gap-6">
         {module.lessons.map((lesson) => (
           <LessonEntry
-            url={`/resources/${course.slug}/${moduleSlug}/${lesson.slug}`}
+            url={`/courses/${course.slug}/${moduleSlug}/${lesson.slug}`}
             title={lesson.title}
             description={lesson.description}
             icon={lesson.icon}

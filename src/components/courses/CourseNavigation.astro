@@ -39,7 +39,7 @@ if (course.data.standaloneLessons && Array.isArray(course.data.standaloneLessons
       allLessons.push({
         title: lesson.title,
         slug: lesson.slug,
-        url: `/resources/${courseSlug}/${lesson.slug}`,
+        url: `/courses/${courseSlug}/${lesson.slug}`,
         courseSlug: courseSlug,
         type: 'standalone'
       });
@@ -57,7 +57,7 @@ if (course.data.modules && Array.isArray(course.data.modules)) {
           allLessons.push({
             title: lesson.title,
             slug: lesson.slug,
-            url: `/resources/${courseSlug}/${derivedModuleSlug}/${lesson.slug}`, // Use derived slug
+            url: `/courses/${courseSlug}/${derivedModuleSlug}/${lesson.slug}`, // Use derived slug
             courseSlug: courseSlug,
             type: 'module',
             moduleSlug: derivedModuleSlug // Store derived slug
@@ -81,7 +81,7 @@ if (currentIndex !== -1 && currentIndex < allLessons.length - 1) {
   nextLesson = allLessons[currentIndex + 1];
 }
 
-const courseHomeUrl = `/resources/${courseSlug}`;
+const courseHomeUrl = `/courses/${courseSlug}`;
 ---
 
 <nav class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center mt-12 pt-8 border-t border-borderAlt dark:border-borderAlt">
