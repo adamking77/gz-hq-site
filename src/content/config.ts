@@ -99,6 +99,8 @@ const courses = defineCollection({
       audio: z.string().optional(),
       body: z.string().optional(), // Added body for standalone lessons
     })).optional(), // Make it optional
+    customInfoHeading: z.string().optional(),
+    customInfoBody: z.string().optional(),
     progress_indicator: z.boolean().optional(),
   }),
 });

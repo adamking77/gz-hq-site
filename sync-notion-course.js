@@ -41,7 +41,7 @@ function parseDbDescription(dbDescriptionRichText) {
     const knownKeys = [
         "Course Title", "Description", "PubDate", "Author",
         "Image URL", "Image Alt", "Course Image URL", "Course Image Alt",
-        "Progress Indicator"
+        "Progress Indicator", "Custom Info Heading", "Custom Info Body"
     ];
     // Regex to capture "Key: Value"
     const metadataLineRegex = new RegExp(`^(${knownKeys.join('|')}):\\s*(.+)`);
@@ -72,6 +72,10 @@ function parseDbDescription(dbDescriptionRichText) {
                 metadata.course_image = { ...metadata.course_image, url: value };
             } else if (key === "Course Image Alt" && value) {
                 metadata.course_image = { ...metadata.course_image, alt: value };
+            } else if (key === "Custom Info Heading") {
+                metadata.customInfoHeading = value;
+            } else if (key === "Custom Info Body") {
+                metadata.customInfoBody = value;
             }
         } else {
             potentialIntroLines.push(line);

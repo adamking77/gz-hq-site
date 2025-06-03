@@ -1,6 +1,8 @@
 ---
 title: Foundations of Architecting Your Autonomy
 description: Strategic Wisdom from Miyamoto Musashi's Book of Five Rings for Modern Interpersonal Dynamics
+customInfoHeading: Your Desired Heading Text Here
+customInfoBody: Your desired body text here (as a single line).
 pubDate: 2023-11-15T00:00:00.000Z
 author: GenZen HQ Resource
 image:

@@ -68,6 +68,26 @@ const jsonLd = JSON.stringify({
         {course.data.description}
       </Text>
 
+      {/* Added section for Custom Info */}
+      {courseData.customInfoHeading && (
+        <Text
+          tag="h2"
+          variant="displaySM"
+          class="text-[#222222] dark:text-white font-medium mt-10 mb-3"
+        >
+          {courseData.customInfoHeading}
+        </Text>
+      )}
+      {courseData.customInfoBody && (
+        <Text
+          tag="p"
+          variant="textBase"
+          class="w-full mb-8"
+        >
+          {courseData.customInfoBody}
+        </Text>
+      )}
+
       {course.data.course_image && (
         <img
           class="object-cover aspect-[16/9] rounded-xl mt-2"
