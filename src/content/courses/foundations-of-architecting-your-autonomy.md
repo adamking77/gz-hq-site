@@ -1,13 +1,16 @@
 ---
 title: Foundations of Architecting Your Autonomy
 description: Strategic Wisdom from Miyamoto Musashi's Book of Five Rings for Modern Interpersonal Dynamics
-customInfoHeading: Your Desired Heading Text Here
-customInfoBody: Your desired body text here (as a single line).
+customInfoHeading: About This Resource
 pubDate: 2023-11-15T00:00:00.000Z
 author: GenZen HQ Resource
 image:
   url: https://by1l2nap8birh2cf.public.blob.vercel-storage.com/Musashi_ts_pic-YzZ4uS22agCAiZtkaX3JuU3EjnOdxk.webp
   alt: Book Of Five Rings
+customInfoBody: |-
+  Some people and situations require strategic thinking instead of better communication skills. This resource takes the battle-tested wisdom from Musashi's Book of Five Rings and shows you how to apply it when you're dealing with manipulation, workplace politics, or relationships where you can't assume the other person has good intentions.
+
+  You'll learn how to build your autonomy systematically—not by hoping your boundaries will magically hold, but by developing the strategic clarity to see what's really happening and respond effectively.
 standaloneLessons:
   - title: Introduction
     slug: intro

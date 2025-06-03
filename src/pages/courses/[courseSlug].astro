@@ -73,20 +73,22 @@ const jsonLd = JSON.stringify({
         <Text
           tag="h3"
           variant="textXL"
-          class="text-[#222222] dark:text-white font-medium mt-10 mb-3"
+          class="text-[#222222] dark:text-white font-medium mt-16 mb-3"
         >
           {courseData.customInfoHeading}
         </Text>
       )}
-      {courseData.customInfoBody && (
-        <Text
-          tag="p"
-          variant="textBase"
-          class="w-full mb-8"
-        >
-          {courseData.customInfoBody}
-        </Text>
-      )}
+      {courseData.customInfoBody &&
+        courseData.customInfoBody.split('\n\n').map((paragraph) => (
+          <Text
+            tag="p"
+            variant="textBase"
+            class="w-full mb-4"
+          >
+            {paragraph}
+          </Text>
+        ))
+      }
 
       {course.data.course_image && (
         <img

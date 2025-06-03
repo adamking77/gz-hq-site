@@ -44,18 +44,26 @@ function parseDbDescription(dbDescriptionRichText) {
         "Progress Indicator", "Custom Info Heading", "Custom Info Body"
     ];
     // Regex to capture "Key: Value"
-    const metadataLineRegex = new RegExp(`^(${knownKeys.join('|')}):\\s*(.+)`);
+    const metadataLineRegex = new RegExp(`^(${knownKeys.join('|')}):\\s*(.*)`);
 
-    for (const line of lines) {
+    let inCustomInfoBody = false;
+    let customInfoBodyLines = [];
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
         const match = line.match(metadataLineRegex);
+
         if (match) {
+            inCustomInfoBody = false; // Reset if we hit a new key
             const key = match[1].trim();
             let value = match[2].trim();
 
-            if (key === "PubDate") {
+            if (key === "Custom Info Body") {
+                customInfoBodyLines.push(value); // Add the first line
+                inCustomInfoBody = true;
+            } else if (key === "PubDate") {
                 const d = new Date(value);
-                // Store as Date object for js-yaml to serialize correctly for z.date()
-                metadata.pubDate = !isNaN(d.getTime()) ? d : value; // Fallback to string if unparsable
+                metadata.pubDate = !isNaN(d.getTime()) ? d : value;
             } else if (key === "Progress Indicator") {
                 metadata.progress_indicator = value.toLowerCase() === 'true';
             } else if (key === "Course Title") {
@@ -74,12 +82,19 @@ function parseDbDescription(dbDescriptionRichText) {
                 metadata.course_image = { ...metadata.course_image, alt: value };
             } else if (key === "Custom Info Heading") {
                 metadata.customInfoHeading = value;
-            } else if (key === "Custom Info Body") {
-                metadata.customInfoBody = value;
             }
         } else {
-            potentialIntroLines.push(line);
+            // If we are in the Custom Info Body, collect the line (even if empty)
+            if (inCustomInfoBody) {
+                customInfoBodyLines.push(line); // Keep original spacing, don't trim here
+            } else {
+                potentialIntroLines.push(line);
+            }
         }
+    }
+
+    if (customInfoBodyLines.length > 0) {
+        metadata.customInfoBody = customInfoBodyLines.join('\n');
     }
 
     // Ensure optional image objects are structured correctly or removed if empty
