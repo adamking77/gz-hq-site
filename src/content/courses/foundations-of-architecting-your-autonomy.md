@@ -37,14 +37,14 @@ standaloneLessons:
   - title: 'The Ground Scroll: Building Strategic Foundations'
     slug: ground-scroll
     body: |+
-      > _"Strategy is the craft of the warrior... If you want to learn the craft of war, ponder over this book. The teacher is as a needle, the disciple is as thread."_
+      > _Strategy is the craft of the warrior... If you want to learn the craft of war, ponder over this book. The teacher is as a needle, the disciple is as thread._
 
       Musashi understood that victory begins long before the first sword is drawn. In autonomy work, this translates to developing strategic clarity about your environment before you attempt to change your position within it.
 
 
       ## **Musashi's Principle: Environmental Assessment Before Engagement**
 
-      > _"Like the foreman carpenter, the commander must know natural rules, and the rules of the country, and the rules of houses."_
+      > _Like the foreman carpenter, the commander must know natural rules, and the rules of the country, and the rules of houses._
 
       Most people lose their autonomy because they're operating with incomplete intelligence about their situation. They assume good faith where none exists, mistake manipulation for communication, and treat systematic exploitation as isolated relationship problems.
 
@@ -79,7 +79,10 @@ standaloneLessons:
       - **Pattern Documentation**: What consistent behaviors have you observed over time versus isolated incidents?
       - **Consequence Mapping**: What real consequences do they typically face for boundary violations?
       - **Resource Independence**: What genuine support systems do you have versus artificial dependencies they've created?
-      > _"You must practise constantly"_ - This environmental awareness becomes automatic through consistent application, not one-time analysis.
+      > _You must practice constantly_
+
+      This environmental awareness becomes automatic through consistent application, not one-time analysis.
+
 
       This clarity becomes the foundation for everything else. You can't make good strategic decisions if you don't understand what you're actually dealing with.
 
@@ -89,28 +92,28 @@ standaloneLessons:
   - title: 'The Water Scroll: Adaptive Response and Emotional Sovereignty'
     slug: water-scroll
     body: |+
-      > _"With water as the basis, the spirit becomes like water. Water adopts the shape of its receptacle, it is sometimes a trickle and sometimes a wild sea."_
+      > _With water as the basis, the spirit becomes like water. Water adopts the shape of its receptacle, it is sometimes a trickle and sometimes a wild sea._
 
       Musashi's water teachings reveal how to maintain your essential nature while adapting tactically to different manipulation strategies. This scroll contains his most psychologically sophisticated insights about maintaining internal stability while navigating external pressure.
 
 
       ## **Musashi's Principle: Consistency of Spirit Through Tactical Flexibility**
 
-      > _"In all forms of strategy, it is necessary to maintain the combat stance in everyday life and to make your everyday stance your combat stance."_
+      > _In all forms of strategy, it is necessary to maintain the combat stance in everyday life and to make your everyday stance your combat stance._
 
       This principle directly addresses the autonomy challenge of maintaining boundaries without becoming defensive or rigid. Your core values remain constant (like water's essential nature), but your expression adapts to circumstances (like water taking the shape of its container).
 
 
       ### Strategic Emotional Regulation Under Pressure
 
-      > _"Meet the situation without tenseness yet not recklessly, your spirit settled yet unbiased. Even when your spirit is calm do not let your body relax, and when your body is relaxed do not let your spirit slacken."_
+      > _Meet the situation without tenseness yet not recklessly, your spirit settled yet unbiased. Even when your spirit is calm do not let your body relax, and when your body is relaxed do not let your spirit slacken._
 
       Musashi describes the exact psychological state needed to handle manipulation attempts effectively. You remain alert to what's happening without becoming emotionally reactive. This calm awareness disrupts manipulation strategies that depend on triggering emotional responses.
 
 
       ### **The "Flowing Water Cut" - Responding to Boundary Violations**
 
-      > _"When he breaks and quickly withdraws trying to spring with his long sword, expand your body and spirit and cut him as slowly as possible... following your body like stagnant water."_
+      > _When he breaks and quickly withdraws trying to spring with his long sword, expand your body and spirit and cut him as slowly as possible... following your body like stagnant water._
 
       This teaching applies directly to handling people who test boundaries, retreat when confronted, then test again. Musashi advises a measured, persistent response rather than emotional reactivity. When someone violates a boundary, your response should be calm, consistent, and inevitable—like water wearing down stone.
 
@@ -135,49 +138,52 @@ standaloneLessons:
 
       Your commitment to self-respect remains constant, but how you express it adapts to circumstances. With professional manipulation, documentation and formal processes may be most effective. With family dynamics, consistent consequences paired with emotional detachment often works better.
 
-      > _"The spirit of defeating a man is the same for ten million men"_ - The principles that protect your autonomy in small interactions scale directly to systematic challenges involving multiple actors or institutional pressure.
+      > _The spirit of defeating a man is the same for ten million men._
+
+      The principles that protect your autonomy in small interactions scale directly to systematic challenges involving multiple actors or institutional pressure.
+
 
       With water-like adaptability established, you're prepared for situations requiring direct strategic engagement and decisive intervention.
 
   - title: 'The Fire Scroll: Strategic Engagement and Decisive Action'
     slug: fire-scroll
     body: |+
-      > _"In this the Fire Book... I describe fighting as fire. In the first place, people think narrowly about the benefit of strategy."_
+      > _In this the Fire Book... I describe fighting as fire. In the first place, people think narrowly about the benefit of strategy._
 
       The Fire Scroll addresses the moment when indirect approaches prove insufficient and direct intervention becomes necessary. Musashi teaches us how to engage manipulation decisively while maintaining strategic advantage.
 
 
       ## **Musashi's Principle: Taking the Initiative Through Strategic Timing**
 
-      > _"There are three ways of forestalling: Ken No Sen (to set him up), Tai No Sen (to wait for the initiative), Tai Tai No Sen (to accompany him and forestall him)."_
+      > _There are three ways of forestalling: Ken No Sen (to set him up), Tai No Sen (to wait for the initiative), Tai Tai No Sen (to accompany him and forestall him)._
 
       These three approaches provide a complete framework for engaging manipulation attempts:
 
 
       ### **Ken No Sen - Preemptive Disruption**
 
-      > _"When you decide to attack, keep calm and dash in quickly, forestalling the enemy."_
+      > _When you decide to attack, keep calm and dash in quickly, forestalling the enemy._
 
       When you recognize a manipulation pattern forming, disrupt it immediately rather than waiting for it to fully develop. If someone begins laying groundwork for a guilt trip, address the pattern directly: "It sounds like you're building toward asking me to do something I've already said no to."
 
 
       ### **Tai No Sen - Responsive Counter-Strategy**
 
-      > _"When the enemy attacks, remain undisturbed but feign weakness. As the enemy reaches you, suddenly move away... then dash in attacking strongly."_
+      > _When the enemy attacks, remain undisturbed but feign weakness. As the enemy reaches you, suddenly move away... then dash in attacking strongly._
 
       Sometimes the most effective response is letting manipulation attempts play out fully before responding. Document the behavior, let others witness it, then respond with measured consequences that address the entire pattern rather than just the immediate incident.
 
 
       ### **Tai Tai No Sen - Simultaneous Engagement**
 
-      > _"When the enemy makes a quick attack, you must attack strongly and calmly, aim for his weak point as he draws near."_
+      > _When the enemy makes a quick attack, you must attack strongly and calmly, aim for his weak point as he draws near._
 
       When someone escalates manipulation in real-time, meet their escalation with superior strategic force. This might mean involving authorities, implementing immediate consequences, or escalating to supervisors or family members who can influence the situation.
 
 
       ## **"To Hold Down a Pillow" - Preventing Manipulation Escalation**
 
-      > _"You must stop the enemy as he attempts to cut; you must push down his thrust, and throw off his hold when he tries to grapple."_
+      > _You must stop the enemy as he attempts to cut; you must push down his thrust, and throw off his hold when he tries to grapple._
 
       This principle teaches proactive suppression of manipulation attempts. Instead of defending against fully-formed manipulation, you interrupt the pattern as it begins to develop. When someone starts the emotional buildup that typically precedes boundary violations, you address the buildup itself.
 
@@ -187,14 +193,14 @@ standaloneLessons:
 
       ### **Strategic Documentation and Transparency**
 
-      > _"Depending on the place... Stand in the sun; that is, take up an attitude with the sun behind you."_
+      > _Depending on the place... Stand in the sun; that is, take up an attitude with the sun behind you._
 
       Control the environmental factors that give you advantage. Document interactions, involve witnesses when appropriate, and ensure problematic behavior occurs under conditions where accountability is possible.
 
 
       ### **Decisive Consequence Implementation**
 
-      > _"You win in battles with the timing in the Void born of the timing of cunning by knowing the enemies' timing, and thus using a timing which the enemy does not expect."_
+      > _You win in battles with the timing in the Void born of the timing of cunning by knowing the enemies' timing, and thus using a timing which the enemy does not expect._
 
       Implement consequences when the manipulator least expects resistance. Many manipulation strategies rely on your predictable accommodation. Strategic timing disrupts their calculations and makes continued manipulation unprofitable.
 
@@ -211,14 +217,14 @@ standaloneLessons:
       The Wind Scroll: Understanding Manipulation Systems
     slug: wind-scroll
     body: |+
-      > _"In strategy you must know the Ways of other schools... Without knowledge of the Ways of other schools, it is difficult to understand the essence of my Ichi school."_
+      > _In strategy you must know the Ways of other schools... Without knowledge of the Ways of other schools, it is difficult to understand the essence of my Ichi school._
 
       The Wind Scroll teaches strategic intelligence about how different manipulation systems operate. Musashi understood that you cannot defend against techniques you don't recognize, and you cannot develop effective counter-strategies without understanding your opponent's methods.
 
 
       ## **Musashi's Principle: Study Enemy Methods to Develop Superior Strategy**
 
-      > _"I have recorded the unsatisfactory points of other schools one by one in this book. You must study these matters deeply to appreciate the benefit of my Ni To Ichi school."_
+      > _I have recorded the unsatisfactory points of other schools one by one in this book. You must study these matters deeply to appreciate the benefit of my Ni To Ichi school._
 
       Musashi dedicates an entire scroll to analyzing the weaknesses of competing strategic approaches. For autonomy work, this translates to understanding how different manipulation systems function so you can recognize and counter them effectively.
 
@@ -228,21 +234,21 @@ standaloneLessons:
 
       ### **The "Extra-Long Sword" School - Intimidation Through Artificial Authority** 
 
-      > _"Some other schools have a liking for extra-long swords... relying on the virtue of its length, they think to defeat the enemy from a distance."_
+      > _Some other schools have a liking for extra-long swords... relying on the virtue of its length, they think to defeat the enemy from a distance._
 
       Some manipulation operates through artificial authority or credentials designed to intimidate you into compliance. Like Musashi's critique of over-reliance on weapon length, these approaches fail when you recognize that legitimate authority doesn't require intimidation tactics.
 
 
       ### **The "Strong Spirit" School - Emotional Overwhelm Strategies**
 
-      > _"If you just wield the long sword in a strong spirit your cutting will be coarse, and if you use the sword coarsely you will have difficulty in winning."_
+      > _If you just wield the long sword in a strong spirit your cutting will be coarse, and if you use the sword coarsely you will have difficulty in winning._
 
       Manipulation through emotional intensity—rage, overwhelming sadness, dramatic crises—attempts to bypass your rational decision-making through emotional flooding. Musashi teaches that excessive force often defeats itself by creating opportunities for strategic response.
 
 
       ### **The "Many Techniques" School - Complexity and Confusion Tactics**
 
-      > _"I think it is held in other schools that there are many methods of using the long sword in order to gain the admiration of beginners. This is selling the Way."_
+      > _I think it is held in other schools that there are many methods of using the long sword in order to gain the admiration of beginners. This is selling the Way._
 
       Some manipulation systems operate through complexity designed to confuse and overwhelm your ability to analyze what's happening. Multiple simultaneous complaints, rapidly shifting topics, or overwhelming amounts of information serve to prevent clear thinking and strategic response.
 
@@ -252,14 +258,14 @@ standaloneLessons:
 
       ### **Pattern Recognition Over Incident Analysis**
 
-      > _"What is known as 'attitude' applies when there is no enemy... In duels of strategy you must move the opponent's attitude."_
+      > _What is known as 'attitude' applies when there is no enemy... In duels of strategy you must move the opponent's attitude._
 
       Instead of responding to individual manipulation attempts, learn to recognize the larger patterns that individual incidents serve. Someone who consistently creates crises isn't unlucky—they're demonstrating a systematic approach to extracting attention and resources.
 
 
       ### **Strategic Assessment of Relationship Dynamics**
 
-      > _"Fixing the eyes means gazing at the man's heart."_
+      > _Fixing the eyes means gazing at the man's heart._
 
       Look beyond surface behaviors to understand the underlying motivations and strategic objectives driving someone's interactions with you. Are they seeking genuine connection, professional collaboration, or resource extraction?
 
@@ -278,21 +284,21 @@ standaloneLessons:
   - title: 'The Void Scroll: Integrated Autonomy and Natural Authority'
     slug: void-scroll
     body: |+
-      > _"What is called the spirit of the void is where there is nothing... By knowing things that exist, you can know that which does not exist. That is the void."_
+      > _What is called the spirit of the void is where there is nothing... By knowing things that exist, you can know that which does not exist. That is the void._
 
       The Void Scroll represents Musashi's highest teaching—the state where strategy becomes natural and unconscious. For autonomy work, this represents the integration point where healthy boundaries and strategic thinking become your default operating mode rather than conscious techniques.
 
 
       ## **Musashi's Principle: Transcendent Mastery Through Integration**
 
-      > _"Until you realise the true Way... you may think that things are correct and in order. However, if we look at things objectively, from the viewpoint of laws of the world, we see various doctrines departing from the true Way."_
+      > _Until you realise the true Way... you may think that things are correct and in order. However, if we look at things objectively, from the viewpoint of laws of the world, we see various doctrines departing from the true Way._
 
       This passage directly addresses the autonomy challenge of trusting your own perception when systems around you insist that exploitation is normal, boundaries are selfish, or manipulation is care. Musashi teaches that ultimate mastery involves seeing reality clearly regardless of social pressure to accept distorted versions.
 
 
       ### **Natural Authority vs. Manufactured Power**
 
-      > _"In the void is virtue, and no evil. Wisdom has existence, principle has existence, the Way has existence, spirit is nothingness."_
+      > _In the void is virtue, and no evil. Wisdom has existence, principle has existence, the Way has existence, spirit is nothingness._
 
       True autonomy operates from what Musashi calls "virtue"—natural authority that emerges from genuine self-possession rather than from controlling or impressing others. This authority is recognizable to others without being asserted or defended, and it naturally repels manipulation attempts because it provides no vulnerable points to exploit.
 
@@ -305,7 +311,7 @@ standaloneLessons:
 
       ### **Emotional Independence and Internal Validation**
 
-      > _"Then you will come to think of things in a wide sense, and taking the void as the Way, you will see the Way as void."_
+      > _Then you will come to think of things in a wide sense, and taking the void as the Way, you will see the Way as void._
 
       At this level of integration, your sense of worth and direction comes from internal sources rather than external validation. This doesn't mean disregarding others' perspectives—it means maintaining your center regardless of social pressure, criticism, or attempts to manipulate your self-perception.
 
@@ -342,7 +348,7 @@ standaloneLessons:
   - title: 'Integration: The Complete Path to Autonomy'
     slug: integration
     body: |+
-      > _"When you have attained the Way of strategy there will be not one thing that you cannot understand" and "You will see the Way in everything."_
+      > _When you have attained the Way of strategy there will be not one thing that you cannot understand" and "You will see the Way in everything._
 
       Musashi's complete system provides a developmental path from recognition through mastery. Each scroll builds on the previous ones:
 
@@ -357,7 +363,7 @@ standaloneLessons:
 
       This serves everyone around you as well, because they get to interact with someone who is genuinely present rather than defensive, authentic rather than strategic, and generous from abundance rather than operating from fear or obligation.
 
-      > _"Step by step walk the thousand-mile road."_
+      > _Step by step walk the thousand-mile road._
 
       Autonomy develops systematically through consistent application of these principles rather than through dramatic confrontations or sudden transformations. Each interaction becomes an opportunity to practice strategic clarity, emotional sovereignty, and natural authority until these responses become as natural as breathing.
 
