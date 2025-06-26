@@ -1,0 +1,138 @@
+---
+interface Item {
+  title: string;
+  description: string;
+  meta?: string;
+}
+
+interface Props {
+  leftTitle: string;
+  leftDescription: string;
+  rightTitle: string;
+  rightItems: Item[];
+  reversed?: boolean;
+}
+
+const { 
+  leftTitle,
+  leftDescription,
+  rightTitle,
+  rightItems,
+  reversed = false 
+} = Astro.props;
+---
+
+<section class="py-24 lg:py-40 bg-secondary/30">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12">
+    <div class={`grid grid-cols-12 gap-x-8 gap-y-16 lg:gap-x-20 ${reversed ? 'lg:[&>*:nth-child(1)]:col-start-7 lg:[&>*:nth-child(2)]:col-start-1 lg:[&>*:nth-child(2)]:row-start-1' : ''}`}>
+      {/* Left Content */}
+      <div class={`col-span-12 lg:col-span-6`}>
+        <div class="space-y-12">
+          <div class="space-y-8">
+            <h2 class="text-4xl md:text-5xl font-light leading-[1.1] tracking-tight text-foreground">
+              {leftTitle}
+            </h2>
+            <div class="w-16 h-px bg-border"></div>
+            <div class="space-y-6">
+              <p class="text-lg font-light text-muted-foreground leading-relaxed">
+                {leftDescription}
+              </p>
+              <p class="text-base font-light text-muted-foreground leading-relaxed">
+                Our comprehensive approach integrates cutting-edge methodologies with time-tested practices to deliver exceptional results. We believe in the power of strategic thinking combined with tactical execution, ensuring that every project we undertake contributes meaningfully to our clients' long-term success.
+              </p>
+              <p class="text-base font-light text-muted-foreground leading-relaxed">
+                Through decades of experience across diverse industries, we've developed a unique perspective on what drives sustainable growth and innovation. Our team brings together expertise from technology, design, strategy, and operations to create holistic solutions that address complex business challenges.
+              </p>
+            </div>
+            
+            <div class="space-y-4 pt-6 border-t border-border">
+              <h3 class="text-xl font-light text-foreground tracking-tight">
+                Core Principles
+              </h3>
+              <ul class="space-y-3 text-sm font-light text-muted-foreground">
+                <li class="flex items-start space-x-3">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary/50 mt-2 flex-shrink-0"></div>
+                  <span>Human-centered design thinking that prioritizes user experience and accessibility</span>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary/50 mt-2 flex-shrink-0"></div>
+                  <span>Data-driven decision making supported by comprehensive analytics and market research</span>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary/50 mt-2 flex-shrink-0"></div>
+                  <span>Agile methodologies that enable rapid iteration and continuous improvement</span>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary/50 mt-2 flex-shrink-0"></div>
+                  <span>Sustainable practices that consider long-term environmental and social impact</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Content */}
+      <div class={`col-span-12 lg:col-span-6`}>
+        <div class="space-y-12">
+          <div class="space-y-6">
+            <h3 class="text-2xl font-light tracking-tight text-foreground">
+              {rightTitle}
+            </h3>
+            <p class="text-base font-light text-muted-foreground leading-relaxed">
+              Our methodology has been refined through hundreds of successful engagements, combining industry best practices with innovative approaches tailored to each client's unique context and objectives.
+            </p>
+          </div>
+          
+          <div class="space-y-8">
+            {rightItems.map((item) => (
+              <div class="group border-b border-border pb-8 last:border-b-0">
+                <div class="flex items-start justify-between mb-4">
+                  <h4 class="text-xl font-light text-foreground group-hover:text-primary transition-colors duration-300">
+                    {item.title}
+                  </h4>
+                  {item.meta && (
+                    <div class="text-xs font-light text-muted-foreground tracking-wider uppercase bg-secondary px-3 py-1 rounded">
+                      {item.meta}
+                    </div>
+                  )}
+                </div>
+                <div class="space-y-4">
+                  <p class="text-base font-light text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                  <p class="text-sm font-light text-muted-foreground leading-relaxed">
+                    Each phase builds upon the previous one, creating a comprehensive framework that ensures all stakeholders are aligned and that deliverables meet the highest standards of quality and effectiveness. Our iterative approach allows for continuous feedback and refinement throughout the engagement.
+                  </p>
+                  
+                  <div class="pt-3">
+                    <div class="flex flex-wrap gap-2">
+                      <span class="text-xs font-light text-muted-foreground bg-secondary px-2 py-1 rounded">
+                        Deliverables Included
+                      </span>
+                      <span class="text-xs font-light text-muted-foreground bg-secondary px-2 py-1 rounded">
+                        Client Review Sessions
+                      </span>
+                      <span class="text-xs font-light text-muted-foreground bg-secondary px-2 py-1 rounded">
+                        Progress Reports
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div class="space-y-4 pt-6 border-t border-border">
+            <h4 class="text-lg font-light text-foreground">
+              Success Metrics
+            </h4>
+            <p class="text-sm font-light text-muted-foreground leading-relaxed">
+              We measure success not just by project completion, but by the lasting impact our work has on your organization's capabilities, market position, and long-term strategic objectives. Our post-engagement support ensures sustained value creation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

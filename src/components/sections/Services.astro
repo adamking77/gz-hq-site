@@ -1,0 +1,73 @@
+---
+const services = [
+  {
+    number: "01",
+    title: "Strategic Planning",
+    description: "Comprehensive strategic frameworks that align organizational vision with executable roadmaps"
+  },
+  {
+    number: "02", 
+    title: "Data Analytics",
+    description: "Transform raw data into actionable insights for informed decision-making"
+  },
+  {
+    number: "03",
+    title: "Process Optimization",
+    description: "Streamline operations and maximize organizational performance"
+  },
+  {
+    number: "04",
+    title: "Digital Transformation",
+    description: "Modernize workflows and enhance competitive positioning"
+  },
+  {
+    number: "05",
+    title: "Change Management",
+    description: "Guide organizations through transitions while maintaining excellence"
+  }
+];
+---
+
+<section id="services" class="py-32 lg:py-40">
+  <div class="max-w-5xl mx-auto px-16 lg:px-20">
+    <div class="grid lg:grid-cols-12 gap-24">
+      <div class="lg:col-span-4">
+        <div class="space-y-8 sticky top-32">
+          <h2 class="text-4xl md:text-5xl font-light leading-tight tracking-tight text-foreground">
+            Services
+          </h2>
+          <div class="w-12 h-px bg-foreground/20"></div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="space-y-16">
+          {services.map((service, index) => (
+            <div 
+              class="group"
+              style={{ animationDelay: `${index * 100}ms` }} 
+            > 
+              <!-- The style attribute with animationDelay might not work as expected without client-side JS or specific CSS animations. 
+                   Keeping it for structural parity but it might need adjustment for Astro. -->
+              <div class="grid grid-cols-12 gap-8 items-start py-8">
+                <div class="col-span-2">
+                  <span class="text-2xl font-light text-foreground/30">
+                    {service.number}
+                  </span>
+                </div>
+                <div class="col-span-10 space-y-4">
+                  <h3 class="text-2xl font-light text-foreground">
+                    {service.title}
+                  </h3>
+                  <p class="text-base font-light text-foreground/60 leading-relaxed max-w-md">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

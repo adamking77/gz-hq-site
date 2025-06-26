@@ -1,0 +1,59 @@
+---
+const currentYear = new Date().getFullYear();
+
+// Simple SVG icons (replace with actual icons or a proper icon library if available)
+const LinkedinIcon = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect width="4" height="12" x="2" y="9"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+  </svg>
+`;
+
+const TwitterIcon = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter">
+    <path d="M22 4s-.7 2.1-2 3.4c1.6 1.4 3.3 4.4 3.3 4.4s-1.4-.6-2.8-.9c-1.2 2.2-2.8 4.3-4.6 5.9s-4.1 2.6-6.7 2.6c-4.2 0-8.1-2.3-8.1-2.3s2.1.4 4.2-.3c-1.3-.3-2.3-1.4-2.8-2.8s-.5-3.3-.4-3.9c.5.2 1.1.4 1.7.4s.8-.3 1.1-.7c-.9-1.3-1.5-3-1.5-4.6s.6-3.2 1.7-4.3c1.7-1.7 4.1-2.7 6.8-2.7s5.2 1 7.2 2.9l.3-.2z"></path>
+  </svg>
+`;
+
+const InstagramIcon = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+  </svg>
+`;
+---
+
+<footer class="py-16 border-t border-foreground/10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+      <div class="text-center md:text-left">
+        <div class="text-sm font-light text-foreground/50">
+          © {currentYear} Design & Engineering Co. All rights reserved.
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-6">
+        <a 
+          href="#" 
+          class="text-foreground/40 hover:text-foreground/70 transition-colors"
+          aria-label="LinkedIn"
+          set:html={LinkedinIcon}
+        />
+        <a 
+          href="#" 
+          class="text-foreground/40 hover:text-foreground/70 transition-colors"
+          aria-label="Twitter"
+          set:html={TwitterIcon}
+        />
+        <a 
+          href="#" 
+          class="text-foreground/40 hover:text-foreground/70 transition-colors"
+          aria-label="Instagram"
+          set:html={InstagramIcon}
+        />
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,48 +1,45 @@
-# Astro Starter Kit: Basics
+# GZS Astro Theme (Working Title)
 
-```sh
-npm create astro@latest -- --template basics
+A modern, flexible, and reusable Astro theme designed for [describe target use-case, e.g., corporate sites, portfolios, blogs]. This theme provides a collection of well-crafted components, layouts, and styling defaults to kickstart your Astro project.
+
+## Installation
+
+```bash
+npm install gzs-astro-midcentury-theme # Or your chosen package name
 ```
+You will also need to install peer dependencies like React, Tailwind CSS, and Astro integrations if not already present in your project. This theme uses `@astrojs/react` and `@astrojs/tailwind`.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Usage
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Import layouts and components into your Astro pages:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```astro
+---
+import BaseLayout from 'gzs-astro-midcentury-theme/layouts/BaseLayout.astro';
+import { Button } from 'gzs-astro-midcentury-theme/components/ui/button.tsx';
+---
+<BaseLayout title="My Page" description="An example page using the theme.">
+  <h1>Hello from the Theme!</h1>
+  <Button>Click Me</Button>
+</BaseLayout>
 ```
+Refer to `docs/THEME_ARCHITECTURE.md` for more details on available components and customization.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Customization
 
-## 🧞 Commands
+*(Placeholder)*
 
-All commands are run from the root of the project, from a terminal:
+Learn how to tailor the theme to your specific needs:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+*   **Styling:**
+    *   **Tailwind CSS:** How to extend or override the theme's Tailwind configuration.
+    *   **CSS Variables:** A list of available CSS variables and how to override them.
+*   **Content:**
+    *   **Props:** Customizing components and layouts by passing props.
+    *   **Slots:** Using Astro slots to inject custom content.
+    *   **Content Collections:** Replacing or extending example content.
+*   **Data:** Providing custom data to components.
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+*This theme is currently under development.*

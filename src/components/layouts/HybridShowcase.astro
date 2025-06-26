@@ -1,0 +1,100 @@
+---
+interface GridItem {
+  label: string;
+  value: string;
+  description?: string;
+}
+
+interface Props {
+  primaryText: string;
+  accentText: string;
+  gridTitle: string;
+  gridItems: GridItem[];
+}
+
+const { primaryText, accentText, gridTitle, gridItems } = Astro.props;
+---
+
+<section class="hybrid-showcase py-24 lg:py-32 bg-foreground/5">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12">
+    <!-- Typographic Hero Section -->
+    <div class="text-center mb-24 showcase-content opacity-100 translate-y-0 transition-all duration-1000">
+      <div class="space-y-8">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-light leading-[0.85] tracking-tight text-foreground">
+          {primaryText}
+        </h1>
+        <div class="text-lg font-light text-foreground/50 tracking-widest uppercase">
+          {accentText}
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-12 gap-4 pt-16 mb-16">
+        <div class="col-span-4 h-px bg-foreground/20"></div>
+        <div class="col-span-4"></div>
+        <div class="col-span-4 h-px bg-foreground/20"></div>
+      </div>
+    </div>
+
+    <!-- Grid Showcase Section -->
+    <div class="showcase-content opacity-100 translate-y-0 transition-all duration-1000 delay-300">
+      <div class="grid grid-cols-12 gap-8">
+        <div class="col-span-12 lg:col-span-3">
+          <h2 class="text-3xl font-light tracking-tight text-foreground mb-8">
+            {gridTitle}
+          </h2>
+          <div class="w-full h-px bg-foreground/20"></div>
+        </div>
+        
+        <div class="col-span-12 lg:col-span-9">
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {gridItems.map((item, index) => (
+              <div class="group">
+                <div class="border border-foreground/10 p-6 h-32 flex flex-col justify-between hover:border-foreground/30 transition-colors duration-300">
+                  <div class="text-xs font-light text-foreground/50 tracking-wider uppercase">
+                    {item.label}
+                  </div>
+                  <div class="text-xl font-light text-foreground group-hover:text-blue-500 transition-colors duration-300">
+                    {item.value}
+                  </div>
+                  {item.description && (
+                    <div class="text-xs font-light text-foreground/60 mt-2">
+                      {item.description}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const showcaseSection = document.querySelector('.hybrid-showcase');
+    
+    if (!showcaseSection) return;
+
+    const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
+        if (entry.isIntersecting) {
+          const elementsToAnimate = entry.target.querySelectorAll('.showcase-content');
+          elementsToAnimate.forEach((el: Element) => {
+            el.classList.remove('opacity-0', 'translate-y-10');
+            el.classList.add('opacity-100', 'translate-y-0');
+          });
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    observer.observe(showcaseSection);
+  });
+</script>

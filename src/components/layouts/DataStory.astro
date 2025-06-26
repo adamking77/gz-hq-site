@@ -1,0 +1,183 @@
+---
+interface Props {
+  year: string;
+  storyTitle: string;
+  storyDescription: string;
+  dataTitle: string;
+  dataSubtitle?: string;
+  dataGrid: string[][];
+}
+
+const { year, storyTitle, storyDescription, dataTitle, dataSubtitle, dataGrid } = Astro.props;
+
+// Simulate isVisible = true for initial rendering, scroll animations would need client-side JS
+const isVisible = true;
+---
+
+<section class="py-32 lg:py-48 bg-background text-foreground">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    {/* Extended Story Section */}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 mb-32">
+      <div class={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div class="space-y-10">
+          <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
+            Since {year}
+          </div>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight text-foreground">
+            {storyTitle}
+          </h2>
+          
+          <div class="space-y-6 pt-8">
+            <h3 class="text-xl font-light text-foreground tracking-tight">
+              Our Evolution
+            </h3>
+            <p class="text-base font-light text-foreground/70 leading-relaxed">
+              What began as a vision to transform how organizations leverage data has evolved into a comprehensive ecosystem of analytical capabilities, predictive modeling, and strategic intelligence systems that serve as the foundation for informed decision-making across industries.
+            </p>
+            <p class="text-base font-light text-foreground/70 leading-relaxed">
+              Our journey has been marked by continuous innovation, from early adoption of machine learning algorithms to the development of proprietary analytical frameworks that have become industry standards. Each milestone has strengthened our ability to extract meaningful insights from complex datasets.
+            </p>
+          </div>
+          
+          <div class="space-y-6 pt-8 border-t border-foreground/10">
+            <h3 class="text-xl font-light text-foreground tracking-tight">
+              Industry Recognition
+            </h3>
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <div class="w-2 h-2 rounded-full bg-foreground/30"></div>
+                <span class="text-sm font-light text-foreground/70">Analytics Excellence Award - Data Science Institute (2023)</span>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div class="w-2 h-2 rounded-full bg-foreground/30"></div>
+                <span class="text-sm font-light text-foreground/70">Innovation in Business Intelligence - Tech Leadership Council (2022)</span>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div class="w-2 h-2 rounded-full bg-foreground/30"></div>
+                <span class="text-sm font-light text-foreground/70">Best Practice Implementation - Strategic Analytics Forum (2021)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class={`space-y-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div class="space-y-8">
+          <p class="text-lg font-light text-foreground/80 leading-relaxed">
+            {storyDescription}
+          </p>
+          <p class="text-base font-light text-foreground/70 leading-relaxed">
+            Our methodology integrates quantitative analysis with qualitative insights, creating a holistic view of market dynamics, consumer behavior, and operational performance. This approach has enabled our clients to anticipate market shifts, optimize resource allocation, and identify new growth opportunities with unprecedented accuracy.
+          </p>
+          <p class="text-base font-light text-foreground/70 leading-relaxed">
+            The sophistication of our analytical models continues to evolve, incorporating real-time data streams, predictive algorithms, and scenario planning capabilities that provide strategic advantage in an increasingly complex business environment. Our commitment to methodological rigor ensures that every insight is actionable and every recommendation is grounded in robust analysis.
+          </p>
+        </div>
+        
+        <div class="space-y-6 pt-8 border-t border-foreground/10">
+          <h3 class="text-xl font-light text-foreground tracking-tight">
+            Methodological Framework
+          </h3>
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h4 class="text-base font-light text-foreground">Data Collection & Validation</h4>
+              <p class="text-sm font-light text-foreground/60 leading-relaxed">
+                Multi-source data aggregation with comprehensive quality assurance protocols ensuring accuracy and completeness across all analytical inputs.
+              </p>
+            </div>
+            <div class="space-y-2">
+              <h4 class="text-base font-light text-foreground">Advanced Analytics</h4>
+              <p class="text-sm font-light text-foreground/60 leading-relaxed">
+                Statistical modeling, machine learning algorithms, and predictive analytics applied to identify patterns, trends, and correlations within complex datasets.
+              </p>
+            </div>
+            <div class="space-y-2">
+              <h4 class="text-base font-light text-foreground">Strategic Interpretation</h4>
+              <p class="text-sm font-light text-foreground/60 leading-relaxed">
+                Translation of analytical findings into actionable business strategies with clear implementation pathways and success metrics.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-12 h-px bg-foreground/30"></div>
+      </div>
+    </div>
+
+    {/* Enhanced Data Grid Section */}
+    <div class={`transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div class="space-y-20">
+        <div class="space-y-8">
+          <h3 class="text-3xl md:text-4xl font-light tracking-tight text-foreground">
+            {dataTitle}
+          </h3>
+          {dataSubtitle && (
+            <div class="space-y-4">
+              <p class="text-lg font-light text-foreground/70 max-w-3xl leading-relaxed">
+                {dataSubtitle}
+              </p>
+              <p class="text-base font-light text-foreground/60 max-w-4xl leading-relaxed">
+                These metrics represent the culmination of rigorous data collection, analysis, and validation processes conducted across multiple business cycles and market conditions. Each data point has been carefully verified and contextualized to provide meaningful insights into performance trends, market dynamics, and operational excellence indicators.
+              </p>
+            </div>
+          )}
+          <div class="w-16 h-px bg-foreground/20"></div>
+        </div>
+        
+        <div class="grid grid-cols-12 gap-px bg-foreground/10 rounded-lg overflow-hidden">
+          {dataGrid.map((row, rowIndex) => (
+            row.map((cell, cellIndex) => (
+              <div 
+                class="col-span-12 md:col-span-6 lg:col-span-3 bg-background p-8 hover:bg-foreground/5 transition-all duration-300 group"
+              >
+                <div class="space-y-3">
+                  <div class="text-base font-light text-foreground group-hover:text-blue-500 transition-colors duration-300">
+                    {cell}
+                  </div>
+                  <div class="text-xs font-light text-foreground/50 leading-tight">
+                    {cellIndex === 0 && rowIndex === 0 && "Total projects delivered across all service lines and market segments"}
+                    {cellIndex === 1 && rowIndex === 0 && "Comprehensive project completion rate demonstrating operational excellence"}
+                    {cellIndex === 2 && rowIndex === 0 && "International presence spanning multiple continents and time zones"}
+                    {cellIndex === 3 && rowIndex === 0 && "Client satisfaction rating based on post-engagement surveys"}
+                    {cellIndex === 0 && rowIndex === 1 && "Professional team members across all operational divisions"}
+                    {cellIndex === 1 && rowIndex === 1 && "Strategic consulting and technology professionals"}
+                    {cellIndex === 2 && rowIndex === 1 && "Industry recognition for excellence and innovation"}
+                    {cellIndex === 3 && rowIndex === 1 && "Round-the-clock client support and technical assistance"}
+                    {cellIndex === 0 && rowIndex === 2 && "Global markets served with localized expertise"}
+                    {cellIndex === 1 && rowIndex === 2 && "Countries with established operational presence"}
+                    {cellIndex === 2 && rowIndex === 2 && "Combined industry experience across senior leadership"}
+                    {cellIndex === 3 && rowIndex === 2 && "Fortune 500 companies in our client portfolio"}
+                    {cellIndex === 0 && rowIndex === 3 && "Data points processed through our analytics platform"}
+                    {cellIndex === 1 && rowIndex === 3 && "Individual data processing operations per day"}
+                    {cellIndex === 2 && rowIndex === 3 && "Documented client success case studies"}
+                    {cellIndex === 3 && rowIndex === 3 && "Additional revenue generated for clients through our initiatives"}
+                  </div>
+                </div>
+              </div>
+            ))
+          ))}
+        </div>
+        
+        <div class="space-y-8 pt-12 border-t border-foreground/10">
+          <h4 class="text-2xl font-light text-foreground tracking-tight">
+            Performance Context
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <h5 class="text-lg font-light text-foreground">Measurement Methodology</h5>
+              <p class="text-sm font-light text-foreground/60 leading-relaxed">
+                All performance indicators are measured using industry-standard methodologies with independent validation where applicable. Our measurement framework incorporates both quantitative metrics and qualitative assessments to provide a comprehensive view of organizational performance and client impact.
+              </p>
+            </div>
+            <div class="space-y-4">
+              <h5 class="text-lg font-light text-foreground">Reporting Standards</h5>
+              <p class="text-sm font-light text-foreground/60 leading-relaxed">
+                Data collection and reporting processes adhere to international standards for transparency, accuracy, and consistency. Regular audits and validation procedures ensure the integrity of all reported metrics and maintain the highest standards of professional reporting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
