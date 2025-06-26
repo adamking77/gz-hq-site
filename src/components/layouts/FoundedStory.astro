@@ -23,7 +23,7 @@ const parsedYear = parseInt(year);
 <section id="founded-story-section" class="py-32 lg:py-48 bg-background text-foreground">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
-      <div id="founded-story-left-col" class="transition-all duration-1000 opacity-0 translate-y-10">
+      <div class="transition-all duration-1000 "" data-animate="founded-story-left">
         <div class="space-y-12">
           <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
             Founded in {year}
@@ -97,7 +97,7 @@ const parsedYear = parseInt(year);
         </div>
       </div>
       
-      <div id="founded-story-right-col" class="space-y-16 transition-all duration-1000 delay-200 opacity-0 translate-y-10">
+      <div class="space-y-16 transition-all duration-1000 delay-200 "" data-animate="founded-story-right">
         <div class="space-y-8">
           <h3 class="text-lg font-medium text-foreground tracking-wide">
             {aboutTitle}
@@ -180,27 +180,44 @@ const parsedYear = parseInt(year);
       </div>
     </div>
   </div>
-<script is:inline>
-  const section = document.getElementById('founded-story-section');
-  const leftCol = document.getElementById('founded-story-left-col');
-  const rightCol = document.getElementById('founded-story-right-col');
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px'
+    };
 
-  if (section && leftCol && rightCol) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          leftCol.classList.remove('opacity-0', 'translate-y-10');
-          leftCol.classList.add('opacity-100', 'translate-y-0');
+    // Observe left column
+    const leftElement = document.querySelector('[data-animate="founded-story-left"]');
+    if (leftElement) {
+      const leftObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            element.classList.remove('opacity-0', 'translate-y-10');
+            element.classList.add('opacity-100', 'translate-y-0');
+          }
+        });
+      }, observerOptions);
 
-          rightCol.classList.remove('opacity-0', 'translate-y-10');
-          rightCol.classList.add('opacity-100', 'translate-y-0');
-          
-          observer.unobserve(section); // Stop observing after animation
-        }
-      });
-    }, { threshold: 0.2 });
+      leftObserver.observe(leftElement);
+    }
 
-    observer.observe(section);
-  }
+    // Observe right column with delay
+    const rightElement = document.querySelector('[data-animate="founded-story-right"]');
+    if (rightElement) {
+      const rightObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            element.classList.remove('opacity-0', 'translate-y-10');
+            element.classList.add('opacity-100', 'translate-y-0');
+          }
+        });
+      }, observerOptions);
+
+      rightObserver.observe(rightElement);
+    }
+  });
 </script>
 </section>

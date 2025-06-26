@@ -1,5 +1,6 @@
 ---
 import { Button } from '../ui/button.tsx';
+import ScrollAnimator from '../interactive/ScrollAnimator.tsx';
 
 interface Props {
   title: string;
@@ -18,64 +19,41 @@ const {
 } = Astro.props;
 ---
 
-<section class="company-hero-section pt-80 pb-48 lg:pt-96 lg:pb-56 bg-background text-foreground">
+<section class="company-hero-section pt-60 pb-48 lg:pt-72 lg:pb-56 bg-background text-foreground">
   <div class="max-w-6xl mx-auto px-6 lg:px-8">
     <div class="space-y-12">
-      <div class="hero-content-block opacity-100 translate-y-0 transition-all duration-1000">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight max-w-5xl text-foreground">
-          {title} <span class="text-foreground/50">{location}</span>
-        </h1>
+      <div>
+        <ScrollAnimator client:load threshold={0.2} duration={1000}>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight max-w-5xl text-foreground">
+            {title} <span class="text-foreground/50">{location}</span>
+          </h1>
+        </ScrollAnimator>
       </div>
       
       {subtitle && (
-        <div class="hero-content-block opacity-100 translate-y-0 transition-all duration-1000 delay-200">
-          <p class="text-lg font-light text-foreground/70 leading-relaxed max-w-2xl">
-            {subtitle}
-          </p>
+        <div>
+          <ScrollAnimator client:load threshold={0.2} duration={1000} delay={200}>
+            <p class="text-lg font-light text-foreground/70 leading-relaxed max-w-2xl">
+              {subtitle}
+            </p>
+          </ScrollAnimator>
         </div>
       )}
       
-      <div class="hero-content-block opacity-100 translate-y-0 transition-all duration-1000 delay-400">
-        <a href={ctaLink}>
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="font-light text-base px-8 py-3 border-2 border-foreground/30 hover:border-foreground/60 hover:bg-foreground/10 hover:scale-105 transition-all duration-300 rounded-full"
-          >
-            {ctaText}
-          </Button>
-        </a>
+      <div>
+        <ScrollAnimator client:load threshold={0.2} duration={1000} delay={400}>
+          <a href={ctaLink}>
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="font-light text-base px-8 py-3 border-2 border-foreground/30 hover:border-foreground/60 hover:bg-foreground/10 hover:scale-105 transition-all duration-300 rounded-full"
+            >
+              {ctaText}
+            </Button>
+          </a>
+        </ScrollAnimator>
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const heroSection = document.querySelector('.company-hero-section');
-    
-    if (!heroSection) return;
-
-    const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      entries.forEach((entry: IntersectionObserverEntry) => {
-        if (entry.isIntersecting) {
-          const elementsToAnimate = entry.target.querySelectorAll('.hero-content-block');
-          elementsToAnimate.forEach((el: Element) => {
-            el.classList.remove('opacity-0', 'translate-y-10');
-            el.classList.add('opacity-100', 'translate-y-0');
-          });
-          // No need to unobserve if animation is one-shot per page load on this section
-          // observer.unobserve(entry.target); 
-        }
-      });
-    };
-
-    const observerOptions = {
-      root: null, // viewport
-      threshold: 0.2, // 20% of the element is visible
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    observer.observe(heroSection);
-  });
-</script>

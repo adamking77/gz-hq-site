@@ -1,54 +1,60 @@
 ---
+import ScrollAnimator from '../interactive/ScrollAnimator.tsx';
 ---
 <section id="about" class="py-32 lg:py-48 bg-secondary/20">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-24 items-center">
       <div>
-        <div class="space-y-12">
-          <div class="space-y-8">
-            <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
-              Our Story
+        <ScrollAnimator client:load threshold={0.2} duration={1000}>
+          <div class="space-y-12">
+            <div class="space-y-8">
+              <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
+                Our Story
+              </div>
+              <h2 class="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight text-foreground">
+                About Us
+              </h2>
+              <div class="w-16 h-px bg-foreground/20"></div>
             </div>
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight text-foreground">
-              About Us
-            </h2>
-            <div class="w-16 h-px bg-foreground/20"></div>
-          </div>
-          
-          <div class="space-y-6">
-            <p class="text-lg font-light text-foreground/70 leading-relaxed">
-              We combine analytical rigor with creative thinking to transform complex challenges into strategic opportunities.
-            </p>
-            <p class="text-base font-light text-foreground/60 leading-relaxed">
-              Our team brings decades of experience across industries, delivering solutions that are both strategically sound and practically implementable.
-            </p>
-          </div>
+            
+            <div class="space-y-6">
+              <p class="text-lg font-light text-foreground/70 leading-relaxed">
+                We combine analytical rigor with creative thinking to transform complex challenges into strategic opportunities.
+              </p>
+              <p class="text-base font-light text-foreground/60 leading-relaxed">
+                Our team brings decades of experience across industries, delivering solutions that are both strategically sound and practically implementable.
+              </p>
+            </div>
 
-          <div class="grid grid-cols-2 gap-8 pt-8 border-t border-foreground/10">
-            <div>
-              <div class="text-2xl font-light mb-2 text-foreground">150+</div>
-              <div class="text-sm font-light text-foreground/50">Projects</div>
-            </div>
-            <div>
-              <div class="text-2xl font-light mb-2 text-foreground">5+</div>
-              <div class="text-sm font-light text-foreground/50">Years</div>
+            <div class="grid grid-cols-2 gap-8 pt-8 border-t border-foreground/10">
+              <div>
+                <div class="text-2xl font-light mb-2 text-foreground">150+</div>
+                <div class="text-sm font-light text-foreground/50">Projects</div>
+              </div>
+              <div>
+                <div class="text-2xl font-light mb-2 text-foreground">5+</div>
+                <div class="text-sm font-light text-foreground/50">Years</div>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollAnimator>
       </div>
       
       <div>
-        <div class="flex items-center justify-center h-full">
-          <div class="relative">
-            <img
-              src="/lovable-uploads/17dfb47c-7f8c-4217-b901-c9be47f59a84.png"
-              alt="Team Profile"
-              class="w-80 h-96 object-cover rounded-lg shadow-xl"
-            />
-            <div class="absolute inset-0 rounded-lg bg-gradient-to-tr from-primary/10 to-transparent"></div>
+        <ScrollAnimator client:load threshold={0.2} duration={1000} delay={200}>
+          <div class="flex items-center justify-center h-full">
+            <div class="relative">
+              <img
+                src="/lovable-uploads/17dfb47c-7f8c-4217-b901-c9be47f59a84.png"
+                alt="Team Profile"
+                class="w-80 h-96 object-cover rounded-lg shadow-xl"
+              />
+              <div class="absolute inset-0 rounded-lg bg-gradient-to-tr from-primary/10 to-transparent"></div>
+            </div>
           </div>
-        </div>
+        </ScrollAnimator>
       </div>
     </div>
   </div>
 </section>
+

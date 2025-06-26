@@ -32,7 +32,7 @@ const services = [
   <div class="max-w-5xl mx-auto px-16 lg:px-20">
     <div class="grid lg:grid-cols-12 gap-24">
       <div class="lg:col-span-4">
-        <div class="space-y-8 sticky top-32">
+        <div class="space-y-8 sticky top-32 "" data-animate="services-title">
           <h2 class="text-4xl md:text-5xl font-light leading-tight tracking-tight text-foreground">
             Services
           </h2>
@@ -44,11 +44,10 @@ const services = [
         <div class="space-y-16">
           {services.map((service, index) => (
             <div 
-              class="group"
-              style={{ animationDelay: `${index * 100}ms` }} 
-            > 
-              <!-- The style attribute with animationDelay might not work as expected without client-side JS or specific CSS animations. 
-                   Keeping it for structural parity but it might need adjustment for Astro. -->
+              class="group ""
+              data-animate="service-item"
+              data-delay={index * 100}
+            >
               <div class="grid grid-cols-12 gap-8 items-start py-8">
                 <div class="col-span-2">
                   <span class="text-2xl font-light text-foreground/30">
@@ -71,3 +70,48 @@ const services = [
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px'
+    };
+
+    // Observe services title
+    const titleElement = document.querySelector('[data-animate="services-title"]');
+    if (titleElement) {
+      const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            element.classList.remove('opacity-0', 'translate-y-8');
+            element.classList.add('opacity-100', 'translate-y-0');
+          }
+        });
+      }, observerOptions);
+
+      titleObserver.observe(titleElement);
+    }
+
+    // Observe service items with staggered delays
+    const serviceItems = document.querySelectorAll('[data-animate="service-item"]');
+    serviceItems.forEach((item) => {
+      const delay = parseInt(item.getAttribute('data-delay') || '0');
+      
+      const itemObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            setTimeout(() => {
+              element.classList.remove('opacity-0', 'translate-y-8');
+              element.classList.add('opacity-100', 'translate-y-0');
+            }, delay);
+          }
+        });
+      }, observerOptions);
+
+      itemObserver.observe(item);
+    });
+  });
+</script>

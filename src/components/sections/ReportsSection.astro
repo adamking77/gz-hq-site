@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import ScrollAnimator from '../interactive/ScrollAnimator.tsx';
 
 const allReports = await getCollection('reports');
 
@@ -14,39 +15,43 @@ const featuredReports = allReports
     <div class="grid grid-cols-12 gap-8 lg:gap-12">
       <!-- Left Column - Title -->
       <div class="col-span-12 lg:col-span-4">
-        <div class="space-y-8">
-          <div class="space-y-4">
-            <div class="text-sm font-medium tracking-widest text-foreground/60 uppercase">
-              Strategic Intelligence
+        <ScrollAnimator client:load threshold={0.2} duration={800}>
+          <div class="space-y-8">
+            <div class="space-y-4">
+              <div class="text-sm font-medium tracking-widest text-foreground/60 uppercase">
+                Strategic Intelligence
+              </div>
+              <h2 class="text-4xl lg:text-5xl font-light leading-[1.1] tracking-tight text-foreground">
+                Latest Reports
+              </h2>
+              <p class="text-lg font-light text-foreground/70 leading-relaxed">
+                Comprehensive analysis and strategic insights driving informed decision-making across global markets.
+              </p>
             </div>
-            <h2 class="text-4xl lg:text-5xl font-light leading-[1.1] tracking-tight text-foreground">
-              Latest Reports
-            </h2>
-            <p class="text-lg font-light text-foreground/70 leading-relaxed">
-              Comprehensive analysis and strategic insights driving informed decision-making across global markets.
-            </p>
+            
+            <a 
+              href="/reports" 
+              class="inline-flex items-center space-x-2 text-foreground hover:text-foreground/70 transition-colors group"
+            >
+              <span class="text-sm font-light tracking-wide">View All Reports</span>
+              <svg class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
           </div>
-          
-          <a 
-            href="/reports" 
-            class="inline-flex items-center space-x-2 text-foreground hover:text-foreground/70 transition-colors group"
-          >
-            <span class="text-sm font-light tracking-wide">View All Reports</span>
-            <svg class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </a>
-        </div>
+        </ScrollAnimator>
       </div>
       
       <!-- Right Column - Reports Grid -->
       <div class="col-span-12 lg:col-span-8">
         <div class="space-y-8">
           {featuredReports.map((report, index) => (
-            <a
-              href={`/reports/${report.data.slug}`}
-              class="group block relative overflow-hidden transition-all duration-300"
-            >
+            <div>
+              <ScrollAnimator client:load threshold={0.2} duration={800} delay={index * 100}>
+                <a
+                  href={`/reports/${report.data.slug}`}
+                  class="group block relative overflow-hidden transition-all duration-300"
+                >
               <div class="border border-foreground/10 rounded-lg p-6 hover:border-foreground/30 transition-all duration-300 hover:bg-foreground/[0.02] hover:shadow-lg hover:shadow-foreground/5">
                 <div class="grid grid-cols-12 gap-6 items-start">
                   <!-- Report Number -->
@@ -104,10 +109,13 @@ const featuredReports = allReports
                 <!-- Animated border on hover -->
                 <div class="absolute bottom-0 left-0 h-[1px] bg-foreground/20 w-0 group-hover:w-full transition-all duration-500 ease-out"></div>
               </div>
-            </a>
+                </a>
+              </ScrollAnimator>
+            </div>
           ))}
         </div>
       </div>
     </div>
   </div>
 </section>
+
