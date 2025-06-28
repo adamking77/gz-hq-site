@@ -16,17 +16,19 @@ import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
 
 const introContent = `
-<p class="mb-4">GenZen transforms patterns of exploitation into systems that are predictable and transformable. Protecting hundreds of millions in assets and creating pathways out of “impossible” situations by seeing what others miss.</p>
+<p class="mb-4">GenZen exists because autonomy under attack requires intelligence, not advice. We've protected hundreds of millions in assets, transformed "impossible" situations into strategic advantages, and helped people reclaim their autonomy when everyone else said it couldn't be done. Protecting hundreds of millions in assets and creating pathways out of “impossible” situations by recognizing what others miss.</p>
+<p class="mb-4">These patterns of exploitation aren't random - they're predictable, systematic, and therefore transformable by design.</p>
 <h3 class="text-xl font-semibold mt-6 mb-4 text-[#222222] dark:text-white">Adam King, Founder</h3>
-<p class="mb-4">For fifteen years, I’ve focused on helping leaders maintain control when their power faces sophisticated attack. What began as my personal system for navigating complex power dynamics evolved into something larger when I saw these same patterns threatening others.</p>
-<p class="mb-4">I’ve guided clients through high-figure negotiations, protected against systemic manipulation, and transformed crisis into strategic advantage.</p>
+<p class="mb-4">GenZen didn't start as a business concept - it became my own pathway back to autonomy after nearly a lifetime of having it systematically stripped away. What I discovered through that process was that the patterns targeting my personal agency weren't unique to me. They were systematic, predictable, and therefore transformable.</p>
+<p class="mb-4">For fifteen years, I've focused on restoring human autonomy when systematic exploitation targets what matters most. I've guided clients through high-stakes extractions, multi-figure negotiations, sophisticated threat scenarios, and professional identity crises - because I've navigated my own.</p>
+<p class="mb-4">The methodologies that work aren't theoretical. They're born from lived experience of what it takes to engineer real autonomy when every system designed to support you becomes a weapon against you.</p>
 <p>GenZen exists because these patterns of exploitation aren’t random – they’re predictable, and therefore transformable by design.</p>
 `;
 
 const newCoreProblemContent = `
-<h3 class="text-xl font-semibold mb-4 text-[#222222] dark:text-white">What are you expected to do when every system that was supposed to support you, is actually being weaponized against you?</h3>
-<p class="mb-4">How do you regain actual autonomy?</p>
-<p>These are the fundamental questions that drive every initiative at GenZen HQ. Traditional solutions fail because they don’t recognize the true nature of these attacks. We do. GenZen uses a systematic approach to reclaiming autonomy when protection systems become weapons.</p>
+<h3 class="text-xl font-semibold mb-4 text-[#222222] dark:text-white">When the systems that were supposed to protect and empower you are systematically weaponized against you...</h3>
+<p class="mb-4">Traditional solutions fail because they're designed for random threats—not systematic exploitation. They can't see the patterns because they were never built to recognize them.</p>
+<p>We see what others miss: the difference between random failure and systematic attack. Traditional solutions fail because they don’t recognize patterns. GenZen transforms exploitative patterns into predictable, manageable systems you can control.</p>
 `;
 ---
 
@@ -36,13 +38,13 @@ const newCoreProblemContent = `
     <InfoSection sectionTitle="The Core Problem" sectionContent={newCoreProblemContent} data-aos="fade-up" data-aos-offset="200" />
   </Wrapper>
   <Wrapper variant="standard" class="py-24 mb-24">
-    <InfoSection sectionTitle="The Process" data-aos="fade-up" data-aos-offset="200">
+    <InfoSection sectionTitle="The Three Pillars" data-aos="fade-up" data-aos-offset="200">
       <Fragment slot="card-content">
         <div class="ps-2 mt-8"> <!-- This is the main timeline container from the example -->
           <!-- Process Step 1 -->
           <ProcessStepItem
             title="Pattern Recognition"
-            description="Recognizing exploitation patterns before they manifest."
+            description="Identifying systematic exploitation patterns before they can be weaponized against you."
             data-aos="fade-up" data-aos-delay="100"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
         <g id="rotatingPatternRecognitionIcon">
@@ -57,8 +59,8 @@ const newCoreProblemContent = `
           />
           <!-- Process Step 2 -->
           <ProcessStepItem
-            title="Protection Architecture"
-            description="Engineering frameworks that restore autonomy and resilience."
+            title="Resilience Architecture"
+            description="Building systems that transform your vulnerabilities into strategic advantages."
             data-aos="fade-up" data-aos-delay="200"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
             <path id="path1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 234 140.5 C 234 88.861374 192.138626 47 140.5 47 C 88.861374 47 47 88.861374 47 140.5 C 47 192.138626 88.861374 234 140.5 234 C 192.138626 234 234 192.138626 234 140.5 Z"/>
@@ -72,8 +74,8 @@ const newCoreProblemContent = `
           />
           <!-- Process Step 3 -->
           <ProcessStepItem
-            title="Transformation Design"
-            description="Converting your vulnerabilities into your strongest assets."
+            title="Strategic Transformation"
+            description="Converting exploitative dynamics into controlled, predictable systems you direct."
             isLast={true}
             data-aos="fade-up" data-aos-delay="300"
             iconSvg={`<svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
@@ -92,25 +94,37 @@ const newCoreProblemContent = `
     </InfoSection>
   </Wrapper>
   <Wrapper variant="standard" class="py-24 mb-24" data-aos="fade-up">
-    <InfoSection sectionTitle="Current Initiatives">
+    <InfoSection sectionTitle="Autonomy Intelligence Divisions">
       <Fragment slot="card-content">
         <div class="flex flex-col gap-6 mt-8">
           <div data-aos="fade-up" data-aos-delay="100">
             <EntriesOne
-              title="Legacy Resilience"
-              description="When the systems you thought were supposed to preserve your legacy are systematically hijaking it instead."
-              url="https://genzen.solutions"
+              title="Personal Autonomy"
+              description="When your accomplishments, relationships, or reputation are weaponized to control your choices."
+              url="https://genzen.pro"
             >
-              <p slot="additional-content" class="mt-4 text-[#222222] dark:text-white">Visit GenZen Solutions</p>
+              <p slot="additional-content" class="mt-4 text-[#222222] dark:text-white">Communication intelligence and extraction protocols for high-stakes interpersonal situations.</p>
+              <p slot="additional-content" class="mt-2 text-[#222222] dark:text-white font-medium">Visit GenZen Pro →</p>
             </EntriesOne>
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <EntriesOne
-              title="Leadership Resilience"
-              description="When the accomplishments you trusted to amplify your authority are weaponized to undermine it."
-              url="https://genzen.pro"
+              title="Professional Autonomy"
+              description="When your business model, industry position, or operational systems stop serving your actual goals."
+              url="#"
             >
-              <p slot="additional-content" class="mt-4 text-[#222222] dark:text-white">Visit GenZen Pro</p>
+              <p slot="additional-content" class="mt-4 text-[#222222] dark:text-white">Operational redesign and professional identity restoration when industry standards conflict with your capabilities.</p>
+              <p slot="additional-content" class="mt-2 text-[#222222] dark:text-white font-medium">Explore Business Autonomy Intelligence →</p>
+            </EntriesOne>
+          </div>
+          <div data-aos="fade-up" data-aos-delay="300">
+            <EntriesOne
+              title="Generational Autonomy"
+              description="When your wealth, legacy, or family systems become targets for sophisticated exploitation."
+              url="https://genzen.solutions"
+            >
+              <p slot="additional-content" class="mt-4 text-[#222222] dark:text-white">Legacy intelligence and wealth protection for families and institutions facing sophisticated threats.</p>
+              <p slot="additional-content" class="mt-2 text-[#222222] dark:text-white font-medium">Visit GenZen Solutions →</p>
             </EntriesOne>
           </div>
         </div>
