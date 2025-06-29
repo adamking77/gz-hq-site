@@ -1,0 +1,106 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CourseEntry from "../../components/courses/CourseEntry.astro";
+import ScrollAnimator from "../../components/interactive/ScrollAnimator.tsx";
+import CTA from "../../components/sections/CTA.astro";
+
+const allCourses: CollectionEntry<'courses'>[] = await getCollection("courses");
+
+// Transform courses for display
+const courseStats = {
+  totalCourses: allCourses.length,
+  totalLessons: allCourses.reduce((total, course) => {
+    const moduleCount = course.data.modules?.reduce((sum, module) => sum + (module.lessons?.length || 0), 0) || 0;
+    const standaloneCount = course.data.standaloneLessons?.length || 0;
+    return total + moduleCount + standaloneCount;
+  }, 0)
+};
+---
+
+<BaseLayout title="Resources - GenZen Intelligence" description="Strategic wisdom and autonomy intelligence resources for building and protecting your legacies.">
+  <!-- Hero Section - Using site's consistent pattern -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-8">
+          <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
+            Autonomy Intelligence
+          </div>
+          <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+            Resources
+          </h1>
+          <div class="w-16 h-px bg-foreground/20"></div>
+          <div class="space-y-6 pt-8">
+            <p class="text-lg font-light text-foreground leading-relaxed">
+              Strategic wisdom and proven frameworks for restoring your power by identifying and transforming systematic exploitation targeting your personal, professional, and generational legacies.
+            </p>
+            <p class="text-base font-light text-foreground leading-relaxed">
+              Each resource provides comprehensive frameworks that have been tested in real-world situations where traditional approaches consistently fail. These aren't theoretical concepts—they're battle-tested methodologies for systematic autonomy development.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- Course Overview Section -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-20 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+          {/* Left Column - Section Header */}
+          <div class="col-span-12 lg:col-span-5">
+            <div class="space-y-8 lg:sticky lg:top-8">
+              <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase">
+                Available Resources
+              </div>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                Strategic Frameworks for Autonomy Intelligence
+              </h2>
+              <div class="w-16 h-px bg-foreground/20"></div>
+              
+              {/* Resource Stats */}
+              <div class="grid grid-cols-2 gap-6 pt-8">
+                <div>
+                  <div class="text-2xl font-light text-foreground mb-1">{courseStats.totalCourses}</div>
+                  <div class="text-xs font-light text-foreground/60 tracking-wider uppercase">Resource{courseStats.totalCourses !== 1 ? 's' : ''}</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-light text-foreground mb-1">{courseStats.totalLessons}</div>
+                  <div class="text-xs font-light text-foreground/60 tracking-wider uppercase">Lesson{courseStats.totalLessons !== 1 ? 's' : ''}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Course Cards */}
+          <div class="col-span-12 lg:col-span-7">
+            <ScrollAnimator client:visible staggerChildren={true} staggerDelay={150} className="space-y-12 sm:space-y-20 lg:space-y-32">
+              {allCourses.map((course, index) => (
+                <CourseEntry
+                  url={"/courses/" + course.slug}
+                  title={course.data.title}
+                  description={course.data.description}
+                  pubDate={course.data.pubDate.toString().slice(0, 10)}
+                  image={course.data.image.url}
+                  alt={course.data.image.alt}
+                />
+              ))}
+            </ScrollAnimator>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- Call to Action -->
+  <ScrollAnimator client:visible>
+    <CTA 
+      headline="Ready to Explore Autonomy Intelligence?"
+      subtext="Autonomy under attack requires different approaches depending on which dimension faces the greatest threat. Explore the division that addresses your most urgent and immediate situation, or schedule a Strategic Analysis Call to determine which approach applies to your situation."
+      buttonText="Schedule Strategic Analysis Call"
+      buttonLink="#"
+    />
+  </ScrollAnimator>
+</BaseLayout>

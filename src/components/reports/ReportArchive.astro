@@ -14,7 +14,7 @@ const regularReports = allReports.filter(report => !report.featured);
     {/* Header */}
     <div class="space-y-12 mb-20">
       <div class="space-y-8">
-        <div class="text-sm font-medium tracking-widest text-foreground/60 uppercase">
+        <div class="text-sm font-medium tracking-widest text-foreground uppercase">
           REPORTS ARCHIVE
         </div>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight max-w-4xl text-foreground">
@@ -22,7 +22,7 @@ const regularReports = allReports.filter(report => !report.featured);
           <br />
           & Market Analysis
         </h1>
-        <p class="text-lg font-light text-foreground/70 leading-relaxed max-w-2xl">
+        <p class="text-lg font-light text-foreground leading-relaxed max-w-2xl">
           Comprehensive collection of strategic reports, market analysis, and performance insights 
           that drive informed decision-making across global markets.
         </p>
@@ -90,7 +90,7 @@ const regularReports = allReports.filter(report => !report.featured);
     <div class="text-center py-20 hidden" id="no-results">
       <div class="space-y-4">
         <h3 class="text-xl font-light text-foreground">No reports found</h3>
-        <p class="text-base font-light text-foreground/70">
+        <p class="text-base font-light text-foreground">
           Try adjusting your search terms or filter criteria.
         </p>
       </div>
@@ -100,15 +100,15 @@ const regularReports = allReports.filter(report => !report.featured);
     <div class="grid grid-cols-3 gap-8 pt-20 mt-20 border-t border-foreground/10">
       <div class="text-center space-y-2">
         <div class="text-3xl font-light text-foreground">{reportsData.length}</div>
-        <div class="text-sm font-light text-foreground/60 tracking-wider">TOTAL REPORTS</div>
+        <div class="text-sm font-light text-foreground tracking-wider">TOTAL REPORTS</div>
       </div>
       <div class="text-center space-y-2">
         <div class="text-3xl font-light text-foreground">{categories.length - 1}</div>
-        <div class="text-sm font-light text-foreground/60 tracking-wider">CATEGORIES</div>
+        <div class="text-sm font-light text-foreground tracking-wider">CATEGORIES</div>
       </div>
       <div class="text-center space-y-2">
         <div class="text-3xl font-light text-foreground">2024</div> {/* Assuming latest year is 2024 based on data */}
-        <div class="text-sm font-light text-foreground/60 tracking-wider">LATEST YEAR</div>
+        <div class="text-sm font-light text-foreground tracking-wider">LATEST YEAR</div>
       </div>
     </div>
   </div>
@@ -207,7 +207,7 @@ const regularReports = allReports.filter(report => !report.featured);
               <h3 class="${featured ? 'text-2xl lg:text-3xl' : 'text-xl'} font-light leading-tight tracking-tight text-foreground group-hover:text-foreground/80 transition-colors duration-300">
                 ${report.title}
               </h3>
-              <p class="text-base font-light text-foreground/70 leading-relaxed line-clamp-3">
+              <p class="text-base font-light text-foreground leading-relaxed line-clamp-3">
                 ${report.description}
               </p>
             </div>

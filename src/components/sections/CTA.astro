@@ -1,10 +1,12 @@
 ---
-import { Button } from '@/components/ui/button.tsx'; // Assuming .tsx, adjust if .astro
+import SimpleQualificationModal from '../interactive/SimpleQualificationModal.tsx';
+import { Button } from '../ui/button.tsx';
 
 export interface Props {
   headline?: string;
   subtext?: string;
   buttonText?: string;
+  useModal?: boolean;
   buttonLink?: string;
 }
 
@@ -12,6 +14,7 @@ const {
   headline = "Ready to get started?",
   subtext = "Let's discuss how we can help transform your business with strategic insights and innovative solutions.",
   buttonText = "Start a Conversation",
+  useModal = true,
   buttonLink = "#contact", // Default link, can be overridden
 }: Props = Astro.props;
 ---
@@ -21,7 +24,7 @@ const {
     <div class="grid grid-cols-12 gap-16">
       <div class="col-span-12 lg:col-span-5">
         {headline && (
-          <h2 class="text-4xl md:text-5xl font-light leading-tight tracking-tight text-foreground">
+          <h2 class="text-4xl md:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
             {headline}
           </h2>
         )}
@@ -30,21 +33,25 @@ const {
       <div class="col-span-12 lg:col-span-6 lg:col-start-7">
         <div class="space-y-8">
           {subtext && (
-            <p class="text-lg font-light text-foreground/70 leading-relaxed">
+            <p class="text-lg font-light text-foreground leading-relaxed">
               {subtext}
             </p>
           )}
-          {buttonText && buttonLink && (
+          {buttonText && (
             <div>
-              <a href={buttonLink}>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="font-light border-foreground/20 hover:border-foreground/40"
-                >
-                  {buttonText}
-                </Button>
-              </a>
+              {useModal ? (
+                <SimpleQualificationModal client:load triggerText={buttonText} />
+              ) : (
+                <a href={buttonLink}>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
+                  >
+                    {buttonText}
+                  </Button>
+                </a>
+              )}
             </div>
           )}
         </div>

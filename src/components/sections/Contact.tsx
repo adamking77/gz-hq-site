@@ -33,7 +33,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="space-y-8">
-                  <p className="text-lg font-light text-foreground/70 leading-relaxed">
+                  <p className="text-lg font-light text-foreground leading-relaxed">
                     Ready to transform your business? We're here to listen and craft solutions 
                     that drive meaningful results.
                   </p>
@@ -42,11 +42,11 @@ const Contact = () => {
                 <div className="space-y-8">
                   <div>
                     <h3 className="font-light mb-2 text-foreground">Email</h3>
-                    <p className="text-foreground/60 font-light">hello@consulting.com</p>
+                    <p className="text-foreground font-light">hello@consulting.com</p>
                   </div>
                   <div>
                     <h3 className="font-light mb-2 text-foreground">Phone</h3>
-                    <p className="text-foreground/60 font-light">+1 (555) 123-4567</p>
+                    <p className="text-foreground font-light">+1 (555) 123-4567</p>
                   </div>
                 </div>
               </div>
@@ -56,7 +56,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-light mb-3 text-foreground/70">Name</label>
+                    <label htmlFor="name" className="block text-sm font-light mb-3 text-foreground">Name</label>
                     <Input 
                       id="name"
                       name="name" // Added name attribute
@@ -65,7 +65,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="company" className="block text-sm font-light mb-3 text-foreground/70">Company</label>
+                    <label htmlFor="company" className="block text-sm font-light mb-3 text-foreground">Company</label>
                     <Input 
                       id="company"
                       name="company" // Added name attribute
@@ -76,7 +76,7 @@ const Contact = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-light mb-3 text-foreground/70">Email</label>
+                  <label htmlFor="email" className="block text-sm font-light mb-3 text-foreground">Email</label>
                   <Input 
                     id="email"
                     name="email" // Added name attribute
@@ -87,7 +87,7 @@ const Contact = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-light mb-3 text-foreground/70">Message</label>
+                  <label htmlFor="message" className="block text-sm font-light mb-3 text-foreground">Message</label>
                   <Textarea 
                     id="message"
                     name="message" // Added name attribute

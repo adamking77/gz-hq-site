@@ -19,12 +19,12 @@ const {
 } = Astro.props;
 ---
 
-<section class="company-hero-section pt-60 pb-48 lg:pt-72 lg:pb-56 bg-background text-foreground">
-  <div class="max-w-6xl mx-auto px-6 lg:px-8">
-    <div class="space-y-12">
+<section class="company-hero-section pt-32 pb-24 sm:pt-40 sm:pb-32 md:pt-48 md:pb-40 lg:pt-72 lg:pb-56 bg-background text-foreground">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="space-y-8 sm:space-y-10 lg:space-y-12">
       <div>
         <ScrollAnimator client:load threshold={0.2} duration={1000}>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight max-w-5xl text-foreground">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight max-w-5xl text-foreground">
             {title} <span class="text-foreground/50">{location}</span>
           </h1>
         </ScrollAnimator>
@@ -33,7 +33,7 @@ const {
       {subtitle && (
         <div>
           <ScrollAnimator client:load threshold={0.2} duration={1000} delay={200}>
-            <p class="text-lg font-light text-foreground/70 leading-relaxed max-w-2xl">
+            <p class="text-base sm:text-lg font-light text-foreground leading-relaxed max-w-full sm:max-w-xl lg:max-w-2xl">
               {subtitle}
             </p>
           </ScrollAnimator>
@@ -46,7 +46,7 @@ const {
             <Button 
               variant="outline" 
               size="lg"
-              className="font-light text-base px-8 py-3 border-2 border-foreground/30 hover:border-foreground/60 hover:bg-foreground/10 hover:scale-105 transition-all duration-300 rounded-full"
+              className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
             >
               {ctaText}
             </Button>

@@ -1,0 +1,376 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import AudioPlayer from "../../../components/courses/AudioPlayer.astro";
+import CourseNavigation from "../../../components/courses/CourseNavigation.astro";
+import ScrollAnimator from "../../../components/interactive/ScrollAnimator.tsx";
+import { marked } from 'marked';
+
+export async function getStaticPaths() {
+  const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
+
+  const paths = [];
+  for (const course of courses) {
+    // Lessons within modules
+    if (course.data.modules && Array.isArray(course.data.modules)) {
+      for (const module of course.data.modules) {
+        if (module.lessons && Array.isArray(module.lessons)) {
+          for (const lesson of module.lessons) {
+            if (lesson.slug && typeof lesson.title === 'string') {
+              paths.push({
+                params: {
+                  courseSlug: course.slug,
+                  lessonSlug: lesson.slug,
+                },
+                props: {
+                  course,
+                  lesson,
+                },
+              });
+            }
+          }
+        }
+      }
+    }
+
+    // Standalone lessons
+    if (course.data.standaloneLessons && Array.isArray(course.data.standaloneLessons)) {
+      for (const lessonFrontmatter of course.data.standaloneLessons) {
+        if (lessonFrontmatter.slug && typeof lessonFrontmatter.title === 'string') {
+          const lessonProps = { ...lessonFrontmatter };
+
+          // If the standalone lesson from frontmatter doesn't have its own body,
+          // assume it should use the main course body.
+          if (lessonProps.body === undefined) {
+            lessonProps.body = course.body;
+          }
+
+          paths.push({
+            params: {
+              courseSlug: course.slug,
+              lessonSlug: lessonProps.slug,
+            },
+            props: {
+              course,
+              lesson: lessonProps,
+            },
+          });
+        }
+      }
+    }
+  }
+  return paths;
+}
+
+const { course, lesson } = Astro.props;
+
+// Prepare lesson metadata and content structure
+const lessonDescription = lesson.description || "Strategic autonomy intelligence lesson designed to build your systematic understanding of exploitation patterns and defense mechanisms.";
+
+// Calculate reading time (rough estimate based on content length)
+const estimatedReadTime = lesson.body ? Math.max(2, Math.ceil(lesson.body.length / 1000)) : 5;
+
+// Calculate lesson number by finding position in course structure
+let lessonNumber = 1;
+let found = false;
+
+// Check standalone lessons first
+if (course.data.standaloneLessons && Array.isArray(course.data.standaloneLessons)) {
+  for (let i = 0; i < course.data.standaloneLessons.length; i++) {
+    if (course.data.standaloneLessons[i].slug === lesson.slug) {
+      lessonNumber = i + 1;
+      found = true;
+      break;
+    }
+  }
+}
+
+// If not found in standalone, check modules
+if (!found && course.data.modules && Array.isArray(course.data.modules)) {
+  let totalLessons = course.data.standaloneLessons ? course.data.standaloneLessons.length : 0;
+  
+  for (const module of course.data.modules) {
+    if (module.lessons && Array.isArray(module.lessons)) {
+      for (const moduleLesson of module.lessons) {
+        totalLessons++;
+        if (moduleLesson.slug === lesson.slug) {
+          lessonNumber = totalLessons;
+          found = true;
+          break;
+        }
+      }
+      if (found) break;
+    }
+  }
+}
+
+---
+
+<BaseLayout title={lesson.title} description={`${lesson.title} - Part of ${course.data.title}`}>
+  <!-- Hero Section - Refined for lesson focus -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-8">
+          <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
+            <a href={`/courses/${course.slug}`} class="hover:text-foreground/60 transition-colors">
+              {course.data.title}
+            </a> • Lesson {lessonNumber}
+          </div>
+          <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+            {lesson.title}
+          </h1>
+          <div class="w-16 h-px bg-foreground/20"></div>
+          <div class="space-y-6 pt-8">
+            <p class="text-lg font-light text-foreground leading-relaxed">
+              {lessonDescription}
+            </p>
+            <div class="flex items-center gap-x-6 text-sm font-light text-foreground/60">
+              <span>By {course.data.author}</span>
+              <span>•</span>
+              <span>{estimatedReadTime} min read</span>
+              {lesson.audio && (
+                <>
+                  <span>•</span>
+                  <span>Audio available</span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+
+  <!-- Audio Integration - If available -->
+  {lesson.audio && (
+    <ScrollAnimator client:visible>
+      <section class="py-16 sm:py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+            <div class="col-span-12 lg:col-span-5">
+              <div class="space-y-8 lg:sticky lg:top-8">
+                <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase">
+                  Audio Content
+                </div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-light leading-[1.8] tracking-tight text-foreground">
+                  Listen & Learn
+                </h2>
+                <div class="w-16 h-px bg-foreground/20"></div>
+                <p class="text-base font-light text-foreground leading-relaxed">
+                  This lesson includes audio content for enhanced learning. Listen while reading, or use audio-only mode for focused absorption of strategic concepts.
+                </p>
+              </div>
+            </div>
+            <div class="col-span-12 lg:col-span-7">
+              <div class="bg-secondary/30 rounded-lg p-8">
+                <AudioPlayer src={lesson.audio} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ScrollAnimator>
+  )}
+
+  <!-- Main Lesson Content -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-12">
+          <div class="border-t border-foreground/10 pt-12">
+            <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-12">
+              Lesson Content
+            </div>
+
+            {lesson.body ? (
+              <div class="lesson-content space-y-8">
+                <div set:html={marked(lesson.body)} />
+              </div>
+            ) : (
+              <div class="text-center py-24">
+                <div class="space-y-8">
+                  <div class="text-8xl opacity-20">📚</div>
+                  <div class="space-y-4">
+                    <h3 class="text-2xl font-light text-foreground">Content In Development</h3>
+                    <div class="w-16 h-px bg-foreground/20 mx-auto"></div>
+                    <p class="text-base font-light text-foreground/70 max-w-md mx-auto leading-relaxed">
+                      This lesson content is being carefully prepared with strategic frameworks and real-world applications. Please explore other lessons while we complete this material.
+                    </p>
+                  </div>
+                  <div class="pt-8">
+                    <a 
+                      href={`/courses/${course.slug}`}
+                      class="text-sm font-light text-foreground hover:text-blue-500 transition-colors duration-300"
+                    >
+                      Return to Course Overview →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- Implementation Guide - Only show if content exists -->
+  {lesson.body && (
+    <ScrollAnimator client:visible>
+      <section class="py-16 sm:py-20 lg:py-32 bg-secondary/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+            <div class="col-span-12 lg:col-span-6">
+              <div class="space-y-8">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-light leading-[1.8] tracking-tight text-foreground">
+                  Apply These Concepts
+                </h2>
+                <div class="w-16 h-px bg-foreground/20"></div>
+                <div class="space-y-6">
+                  <p class="text-lg font-light text-foreground leading-relaxed">
+                    Strategic autonomy requires systematic application of these frameworks in your daily environment.
+                  </p>
+                  <p class="text-base font-light text-foreground leading-relaxed">
+                    Take time to identify current patterns in your personal or professional situation that align with the concepts covered. The goal is integration, not just understanding.
+                  </p>
+                </div>
+                
+                <div class="space-y-4 pt-6 border-t border-foreground/10">
+                  <h3 class="text-xl font-light text-foreground tracking-tight">
+                    Next Steps
+                  </h3>
+                  <ul class="space-y-3 text-sm font-light text-foreground/70">
+                    <li class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-foreground/30 mt-2 flex-shrink-0"></div>
+                      <span>Review your current situation for patterns discussed in this lesson</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-foreground/30 mt-2 flex-shrink-0"></div>
+                      <span>Practice identifying exploitation strategies before they fully manifest</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-foreground/30 mt-2 flex-shrink-0"></div>
+                      <span>Continue to the next lesson to build upon these foundational concepts</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-span-12 lg:col-span-6">
+              <div class="bg-background border border-foreground/10 rounded-lg p-8">
+                <div class="space-y-6">
+                  <h4 class="text-lg font-light text-foreground">
+                    Resource Integration
+                  </h4>
+                  <p class="text-sm font-light text-foreground/70 leading-relaxed">
+                    This lesson is part of a systematic approach to autonomy intelligence. Each concept builds upon previous frameworks to create comprehensive protection against sophisticated exploitation.
+                  </p>
+                  
+                  <div class="space-y-4 pt-4 border-t border-foreground/10">
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-light text-foreground/60">Course Progress</span>
+                      <span class="text-sm font-light text-foreground">Ongoing</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-light text-foreground/60">Estimated Practice Time</span>
+                      <span class="text-sm font-light text-foreground">2-4 weeks</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-light text-foreground/60">Application Level</span>
+                      <span class="text-sm font-light text-foreground">Strategic</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ScrollAnimator>
+  )}
+
+  <!-- Lesson Navigation -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CourseNavigation course={course} currentLessonSlug={lesson.slug} />
+      </div>
+    </section>
+  </ScrollAnimator>
+</BaseLayout>
+
+<style>
+  /* Custom lesson content typography matching site design system */
+  .lesson-content :global(h2) {
+    @apply text-xl sm:text-2xl md:text-3xl font-light leading-[1.8] tracking-tight text-foreground mt-12 mb-6;
+  }
+  
+  .lesson-content :global(h3) {
+    @apply text-lg sm:text-xl font-light leading-[1.8] tracking-tight text-foreground mt-10 mb-5;
+  }
+  
+  .lesson-content :global(h4) {
+    @apply text-base sm:text-lg font-light leading-[1.8] tracking-tight text-foreground mt-8 mb-4;
+  }
+  
+  .lesson-content :global(h5) {
+    @apply text-base sm:text-lg font-light leading-[1.8] tracking-tight text-foreground mt-6 mb-3;
+  }
+  
+  .lesson-content :global(p) {
+    @apply text-base sm:text-lg font-light text-foreground leading-relaxed mb-6;
+  }
+  
+  .lesson-content :global(ul), 
+  .lesson-content :global(ol) {
+    @apply text-base sm:text-lg font-light text-foreground leading-relaxed mb-6 space-y-2;
+  }
+  
+  .lesson-content :global(li) {
+    @apply leading-relaxed;
+  }
+  
+  .lesson-content :global(blockquote) {
+    @apply border-l-2 border-foreground/20 pl-6 py-4 bg-secondary/20 rounded-r-lg mb-6 italic;
+  }
+  
+  .lesson-content :global(blockquote p) {
+    @apply text-foreground/80 mb-0;
+  }
+  
+  .lesson-content :global(strong) {
+    @apply font-medium text-foreground;
+  }
+  
+  .lesson-content :global(em) {
+    @apply italic text-foreground/90;
+  }
+  
+  .lesson-content :global(code) {
+    @apply bg-secondary/30 px-2 py-1 rounded text-sm font-mono text-foreground;
+  }
+  
+  .lesson-content :global(pre) {
+    @apply bg-secondary/30 p-4 rounded-lg overflow-x-auto mb-6;
+  }
+  
+  .lesson-content :global(pre code) {
+    @apply bg-transparent p-0 text-sm;
+  }
+  
+  .lesson-content :global(a) {
+    @apply text-blue-500 hover:text-blue-400 transition-colors duration-300 underline decoration-1 underline-offset-2;
+  }
+  
+  /* Add subtle dividers between major sections */
+  .lesson-content :global(h2:not(:first-child)) {
+    @apply border-t border-foreground/10 pt-12;
+  }
+  
+  .lesson-content :global(h3:not(:first-child)) {
+    @apply border-t border-foreground/10 pt-10;
+  }
+</style>

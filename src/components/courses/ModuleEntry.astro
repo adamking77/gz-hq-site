@@ -1,0 +1,46 @@
+---
+const { url, title, description, icon, lessonCount } = Astro.props;
+import { ICONS, type IconName } from "./icons";
+
+const iconSvg = icon && ICONS[icon as IconName];
+---
+<a href={url} title={title} class="group block transition-all duration-300 hover:scale-105 mb-8 last:mb-0">
+  <div class="bg-background border border-foreground/10 rounded-lg p-4 sm:p-6 lg:p-8 hover:border-accent hover:shadow-md hover:bg-gradient-to-r hover:from-background hover:to-accent/30 transition-all duration-300 h-full">
+    <div class="space-y-4 sm:space-y-6 lg:space-y-8 flex flex-col justify-between h-full">
+      <div>
+        <div class="flex items-start justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center space-x-2">
+              <span class="px-3 py-1 bg-foreground/10 text-foreground text-xs font-light rounded-full">
+                Module
+              </span>
+              {lessonCount !== undefined && (
+                <span class="text-xs font-light text-foreground/50 tracking-wider uppercase">
+                  {lessonCount} lesson{lessonCount !== 1 ? 's' : ''}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6">
+          <h3 class="text-lg sm:text-xl font-light leading-[1.8] tracking-tight text-foreground group-hover:text-foreground/80 transition-colors duration-300">
+            {title}
+          </h3>
+          
+          {description && (
+            <p class="text-base font-light text-foreground leading-relaxed">
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 border-t border-foreground/10 mt-6">
+        <div class="text-sm font-light text-foreground group-hover:text-blue-500 transition-colors duration-300">
+          Explore Module →
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

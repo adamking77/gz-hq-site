@@ -16,7 +16,7 @@ const { title, subtitle, data } = Astro.props;
           {title}
         </h2>
         {subtitle && (
-          <p class="text-base font-light text-foreground/60 max-w-2xl">
+          <p class="text-base font-light text-foreground max-w-2xl">
             {subtitle}
           </p>
         )}
@@ -27,7 +27,7 @@ const { title, subtitle, data } = Astro.props;
         {data.map((row, _rowIndex) => (
           row.map((cell, _cellIndex) => (
             <div 
-              class="col-span-12 md:col-span-6 lg:col-span-3 bg-background p-6 hover:bg-foreground/5 transition-colors duration-300"
+              class="col-span-12 md:col-span-6 lg:col-span-3 bg-background p-6 hover:bg-gradient-to-r hover:from-background hover:to-accent/30 hover:scale-105 hover:shadow-md transition-all duration-300 cursor-pointer rounded-lg border border-foreground/10 hover:border-accent"
             >
               <div class="text-sm font-light text-foreground">
                 {cell}

@@ -62,14 +62,14 @@ const initiatives = [
                           <div class="text-xl font-light text-foreground">
                             {projection.revenue}
                           </div>
-                          <div class="text-sm font-light text-foreground/70 bg-foreground/10 px-2 py-1 rounded-full inline-block">
+                          <div class="text-sm font-light text-foreground bg-foreground/10 px-2 py-1 rounded-full inline-block">
                             {projection.growth}
                           </div>
                         </div>
                       </div>
                       <div class="col-span-4">
                         <div class="space-y-2">
-                          <div class="text-sm font-light text-foreground/70">
+                          <div class="text-sm font-light text-foreground">
                             Confidence: {projection.confidence}%
                           </div>
                           <div class="w-full bg-foreground/5 h-1 rounded-full overflow-hidden">
@@ -111,12 +111,12 @@ const initiatives = [
                             "text-xs font-light px-2 py-1 rounded-full transition-all duration-300",
                             initiative.impact === 'High' 
                               ? 'bg-foreground/20 text-foreground/80' 
-                              : 'bg-foreground/10 text-foreground/70'
+                              : 'bg-foreground/10 text-foreground'
                           ]}>
                             {initiative.impact} Impact
                           </span>
                         </div>
-                        <p class="text-sm font-light text-foreground/70 leading-relaxed">
+                        <p class="text-sm font-light text-foreground leading-relaxed">
                           {initiative.description}
                         </p>
                         <div class="text-xs font-light text-foreground/50">
@@ -137,7 +137,7 @@ const initiatives = [
             <p class="text-base font-light text-foreground/80 leading-relaxed mb-4">
               Our strategic positioning leverages deep industry expertise, technological innovation, and client-centric service delivery to maintain competitive differentiation. The roadmap prioritizes sustainable growth while preserving the agility and responsiveness that define our market approach.
             </p>
-            <p class="text-sm font-light text-foreground/70 leading-relaxed">
+            <p class="text-sm font-light text-foreground leading-relaxed">
               Risk mitigation strategies include diversified revenue streams, flexible resource allocation, and continuous investment in emerging technologies and talent development programs.
             </p>
           </div>

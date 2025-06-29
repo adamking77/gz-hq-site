@@ -6,52 +6,45 @@ const THEME_CHANGE_REQUEST_EVENT = 'theme-change-request';
 const THEME_ACTUALLY_CHANGED_EVENT = 'theme-actually-changed';
 
 export function ThemeToggle() {
-  const [currentActualTheme, setCurrentActualTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window !== 'undefined') {
-      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    }
-    return 'light';
-  });
-
-  // console.log('[ThemeToggle] Initial actual theme (client/SSR):', currentActualTheme);
+  const [currentActualTheme, setCurrentActualTheme] = useState<'light' | 'dark' | undefined>(undefined);
 
   useEffect(() => {
+    // On mount, read the theme from the DOM
+    const initialTheme = document.documentElement.getAttribute('data-theme') as 'light' | 'dark';
+    setCurrentActualTheme(initialTheme);
+
     const handleActualThemeChange = (event: Event) => {
       const { actualTheme } = (event as CustomEvent).detail;
-      // console.log('[ThemeToggle] Received actual theme change event:', actualTheme);
       setCurrentActualTheme(actualTheme);
     };
     document.addEventListener(THEME_ACTUALLY_CHANGED_EVENT, handleActualThemeChange);
 
     const root = window.document.documentElement;
     const observerCallback = () => {
-      const newActual = root.classList.contains('dark') ? 'dark' : 'light';
-      if (newActual !== currentActualTheme) {
-        // console.log('[ThemeToggle] MutationObserver: class changed. New actual theme:', newActual);
+      const newActual = root.getAttribute('data-theme') as 'light' | 'dark';
+      if (newActual && newActual !== currentActualTheme) {
         setCurrentActualTheme(newActual);
       }
     };
     const observer = new MutationObserver(observerCallback);
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
-    // console.log('[ThemeToggle] MutationObserver observing.');
+    observer.observe(root, { attributes: true, attributeFilter: ['data-theme'] });
     
-    observerCallback(); // Initial sync
-
     return () => {
       document.removeEventListener(THEME_ACTUALLY_CHANGED_EVENT, handleActualThemeChange);
       observer.disconnect();
-      // console.log('[ThemeToggle] Cleaned up event listener and MutationObserver.');
     };
   }, []); // Empty dependency array
 
   const isActuallyDark = currentActualTheme === 'dark';
-  // console.log('[ThemeToggle] Render. isActuallyDark:', isActuallyDark, 'currentActualTheme:', currentActualTheme);
 
   const handleToggle = useCallback(() => {
     const newPreference = isActuallyDark ? 'light' : 'dark';
-    // console.log('[ThemeToggle] handleToggle called. Current actual:', currentActualTheme, 'Requesting preference:', newPreference);
     document.dispatchEvent(new CustomEvent(THEME_CHANGE_REQUEST_EVENT, { detail: { theme: newPreference } }));
   }, [isActuallyDark]);
+
+  if (currentActualTheme === undefined) {
+    return <div className="w-[50px] h-[26px] bg-transparent" />; // Render a transparent placeholder
+  }
 
   return (
     <button

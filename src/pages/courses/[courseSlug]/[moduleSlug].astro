@@ -1,0 +1,172 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import TypographicHero from "../../../components/layouts/TypographicHero.astro";
+import MinimalList from "../../../components/layouts/MinimalList.astro";
+import LessonEntry from "../../../components/courses/LessonEntry.astro";
+import ScrollAnimator from "../../../components/interactive/ScrollAnimator.tsx";
+
+export async function getStaticPaths() {
+  const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
+  const paths = [];
+
+  for (const course of courses) {
+    for (const module of course.data.modules) {
+      // Create a slug for the module (e.g., from its title)
+      // For simplicity, let's assume module titles are URL-friendly or we have a slug property
+      const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
+      paths.push({
+        params: {
+          courseSlug: course.slug,
+          moduleSlug: moduleSlug,
+        },
+        props: {
+          course,
+          module,
+          moduleSlug, // Pass moduleSlug for potential use in breadcrumbs or titles
+        },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  course: CollectionEntry<'courses'>;
+  module: CollectionEntry<'courses'>['data']['modules'][number];
+  moduleSlug: string;
+}
+
+const { course, module, moduleSlug } = Astro.props as Props;
+
+// Prepare breadcrumb data
+const breadcrumb = `${course.data.title} • Module`;
+
+// Transform lessons for MinimalList component
+const lessonItems = module.lessons.map(lesson => ({
+  title: lesson.title,
+  description: lesson.description || "Strategic lesson content designed to build your autonomy intelligence.",
+  meta: lesson.icon ? "Interactive" : "Essential"
+}));
+---
+
+<BaseLayout title={module.title} description={`${module.title} - ${course.data.title}`}>
+  <!-- Hero Section -->
+  <TypographicHero 
+    primaryText={module.title}
+    accentText={breadcrumb}
+    secondaryText={module.description || "Strategic lessons designed to build systematic autonomy intelligence through proven frameworks and real-world applications."}
+    alignment="left"
+  />
+
+  <!-- Module Statistics -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 bg-foreground/5">
+      <div class="max-w-7xl mx-auto px-8 lg:px-12">
+        <div class="grid grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="text-3xl font-light text-foreground mb-2">{module.lessons.length}</div>
+            <div class="text-sm font-light text-foreground/60 tracking-wider uppercase">Lesson{module.lessons.length !== 1 ? 's' : ''}</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-light text-foreground mb-2">∞</div>
+            <div class="text-sm font-light text-foreground/60 tracking-wider uppercase">Access</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-light text-foreground mb-2">
+              <a href={`/courses/${course.slug}`} class="hover:text-foreground/70 transition-colors">↗</a>
+            </div>
+            <div class="text-sm font-light text-foreground/60 tracking-wider uppercase">
+              <a href={`/courses/${course.slug}`} class="hover:text-foreground/70 transition-colors">Course Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- Lessons Overview -->
+  <MinimalList
+    title="Module Content"
+    items={lessonItems}
+    numbered={true}
+  />
+
+  <!-- Interactive Lesson Grid -->
+  <ScrollAnimator client:visible>
+    <section class="py-24">
+      <div class="max-w-7xl mx-auto px-8 lg:px-12">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-6">
+            Ready to Begin?
+          </h2>
+          <div class="w-16 h-px bg-foreground/20 mx-auto mb-8"></div>
+          <p class="text-base font-light text-foreground/70 leading-relaxed max-w-2xl mx-auto">
+            Each lesson builds upon the previous one, creating a comprehensive framework for systematic autonomy development.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8">
+          {module.lessons.map((lesson, index) => (
+            <div data-animate="fade-up" style={`animation-delay: ${index * 100}ms`}>
+              <LessonEntry
+                url={`/courses/${course.slug}/${moduleSlug}/${lesson.slug}`}
+                title={lesson.title}
+                description={lesson.description}
+                icon={lesson.icon}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- Navigation -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 bg-foreground/5">
+      <div class="max-w-4xl mx-auto px-8 lg:px-12 text-center">
+        <div class="space-y-6">
+          <h3 class="text-xl font-light text-foreground">
+            Continue Your Learning Journey
+          </h3>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href={`/courses/${course.slug}`}
+              class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-foreground hover:text-foreground/70 transition-colors border border-foreground/20 rounded-lg hover:border-foreground/40"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+              Back to Course
+            </a>
+            <a 
+              href="/courses"
+              class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-foreground hover:text-foreground/70 transition-colors border border-foreground/20 rounded-lg hover:border-foreground/40"
+            >
+              All Resources
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+</BaseLayout>
+
+<style>
+  [data-animate="fade-up"] {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -26,18 +26,18 @@ const technologies = [
               </p>
               
               <h3 class="text-xl font-light text-foreground mb-4 mt-8">Cloud-First Architecture</h3>
-              <p class="text-base font-light text-foreground/80 leading-relaxed mb-6">
+              <p class="text-base font-light text-foreground leading-relaxed mb-6">
                 Our multi-cloud strategy leverages the strengths of AWS, Azure, and Google Cloud Platform to deliver unparalleled flexibility and redundancy. This approach has resulted in 99.8% uptime across all client-facing applications while maintaining cost efficiency through intelligent workload distribution.
               </p>
               
               <h3 class="text-xl font-light text-foreground mb-4">Advanced Analytics Capabilities</h3>
-              <p class="text-base font-light text-foreground/80 leading-relaxed mb-6">
+              <p class="text-base font-light text-foreground leading-relaxed mb-6">
                 Integration of Tableau, Power BI, and Looker provides comprehensive visualization and reporting capabilities that transform raw data into actionable insights. Our analytics team has developed over 200 custom dashboards that drive strategic decision-making for clients across various industries.
               </p>
               
               <div class="bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-lg p-6 mt-8">
                 <h4 class="text-lg font-light text-foreground mb-3">Digital Transformation Impact</h4>
-                <p class="text-sm font-light text-foreground/70 leading-relaxed">
+                <p class="text-sm font-light text-foreground leading-relaxed">
                   The implementation of our modern technology stack has reduced manual processes by 73%, improved data processing speeds by 4x, and increased client satisfaction scores by 28% over the past year.
                 </p>
               </div>
@@ -52,12 +52,12 @@ const technologies = [
                 class="group cursor-pointer animate-fade-in hover:scale-105 transition-all duration-300"
                 style={`animation-delay: ${400 + (index * 150)}ms;`}
               >
-                <div class="space-y-4 p-6 rounded-lg hover:bg-foreground/5 transition-colors duration-300 border border-foreground/10 hover:border-foreground/20">
+                <div class="space-y-4 p-6 rounded-lg hover:bg-gradient-to-r hover:from-background hover:to-accent/30 hover:shadow-md transition-all duration-300 border border-foreground/10 hover:border-accent">
                   <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-light text-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                    <h3 class="text-xl font-light text-foreground group-hover:text-foreground transition-colors duration-300">
                       {tech.category}
                     </h3>
-                    <div class="text-sm font-light text-foreground/70">
+                    <div class="text-sm font-light text-foreground">
                       {tech.adoption}% adoption
                     </div>
                   </div>
@@ -85,11 +85,11 @@ const technologies = [
 
             <div class="grid grid-cols-2 gap-6 pt-8">
               <div class="group cursor-pointer hover:scale-110 transition-all duration-300 animate-fade-in text-center" style="animation-delay: 800ms;">
-                <div class="text-3xl font-light text-foreground group-hover:text-foreground/80 transition-colors duration-300">47</div>
+                <div class="text-3xl font-light text-foreground group-hover:text-foreground transition-colors duration-300">47</div>
                 <div class="text-xs font-light text-foreground tracking-wider">INTEGRATIONS</div>
               </div>
               <div class="group cursor-pointer hover:scale-110 transition-all duration-300 animate-fade-in text-center" style="animation-delay: 900ms;">
-                <div class="text-3xl font-light text-foreground group-hover:text-foreground/80 transition-colors duration-300">99.8%</div>
+                <div class="text-3xl font-light text-foreground group-hover:text-foreground transition-colors duration-300">99.8%</div>
                 <div class="text-xs font-light text-foreground tracking-wider">UPTIME</div>
               </div>
             </div>

@@ -23,6 +23,49 @@ const reportsCollection = defineCollection({
   }),
 });
 
+const courses = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.date(),
+    author: z.string(),
+    image: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
+    course_image: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }).optional(),
+    modules: z.array(z.object({
+      title: z.string(),
+      description: z.string().optional(),
+      icon: z.string().optional(), // Will correspond to keys in ICONS
+      lessons: z.array(z.object({
+        title: z.string(),
+        slug: z.string(),
+        description: z.string().optional(),
+        icon: z.string().optional(), // Will correspond to keys in ICONS
+        audio: z.string().optional(),
+        body: z.string().optional(), // Added body for regular lessons
+      })),
+    })),
+    // Add the new field here:
+    standaloneLessons: z.array(z.object({
+      title: z.string(),
+      slug: z.string(),
+      description: z.string().optional(),
+      icon: z.string().optional(),
+      audio: z.string().optional(),
+      body: z.string().optional(), // Added body for standalone lessons
+    })).optional(), // Make it optional
+    customInfoHeading: z.string().optional(),
+    customInfoBody: z.string().optional(),
+    progress_indicator: z.boolean().optional(),
+  }),
+});
+
 export const collections = {
   reports: reportsCollection,
+  courses: courses,
 };

@@ -82,7 +82,7 @@ const relatedReports = allReports.filter(r => r.data.id !== report.id).slice(0, 
       <div class="space-y-8">
         <a 
           href="/reports" 
-          class="inline-flex items-center space-x-2 text-foreground/70 hover:text-foreground transition-colors group"
+          class="inline-flex items-center space-x-2 text-foreground hover:text-foreground transition-colors group"
         >
           <svg class="h-4 w-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -108,7 +108,7 @@ const relatedReports = allReports.filter(r => r.data.id !== report.id).slice(0, 
                 {report.title}
               </h1>
               
-              <p class="text-xl font-light text-foreground/70 leading-relaxed">
+              <p class="text-xl font-light text-foreground leading-relaxed">
                 {report.subtitle}
               </p>
             </div>
@@ -210,7 +210,7 @@ const relatedReports = allReports.filter(r => r.data.id !== report.id).slice(0, 
                     {relatedReport.title}
                   </h3>
                   
-                  <p class="text-sm font-light text-foreground/70 line-clamp-2">
+                  <p class="text-sm font-light text-foreground line-clamp-2">
                     {relatedReport.description}
                   </p>
                   

@@ -2,6 +2,7 @@ import React, { type PropsWithChildren } from 'react';
 import { useScrollTrigger } from '../../hooks/useScrollTrigger';
 
 interface ScrollAnimatorProps extends PropsWithChildren {
+  className?: string;
   threshold?: number;
   rootMargin?: string;
   initialState?: 'fadeUp' | 'fadeDown' | 'fade';
@@ -13,6 +14,7 @@ interface ScrollAnimatorProps extends PropsWithChildren {
 
 export function ScrollAnimator({
   children,
+  className,
   threshold = 0.2,
   rootMargin = '0px',
   initialState = 'fadeUp',
@@ -50,7 +52,7 @@ export function ScrollAnimator({
   // Handle staggered children
   if (staggerChildren && React.Children.count(children) > 1) {
     return (
-      <div ref={ref}>
+      <div ref={ref} className={className}>
         {React.Children.map(children, (child, index) => (
           <div 
             key={index}
@@ -67,7 +69,7 @@ export function ScrollAnimator({
   }
 
   return (
-    <div ref={ref} className={getAnimationClasses()} style={style}>
+    <div ref={ref} className={`${getAnimationClasses()} ${className || ''}`} style={style}>
       {children}
     </div>
   );

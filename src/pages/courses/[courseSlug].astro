@@ -1,0 +1,227 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AudioPlayer from "../../components/courses/AudioPlayer.astro";
+import CourseNavigation from "../../components/courses/CourseNavigation.astro";
+import ModuleEntry from "../../components/courses/ModuleEntry.astro";
+import LessonEntry from "../../components/courses/LessonEntry.astro";
+import BackToCoursesLink from "../../components/courses/BackToCoursesLink.astro";
+import ScrollAnimator from "../../components/interactive/ScrollAnimator.tsx";
+
+export async function getStaticPaths() {
+  const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
+  return courses.map((course) => ({
+    params: { courseSlug: course.slug },
+    props: { course },
+  }));
+}
+
+const { course }: { course: CollectionEntry<'courses'> } = Astro.props;
+const { Content } = await course.render();
+
+const courseData = course.data;
+
+// Calculate course statistics
+const totalLessons = (courseData.modules?.reduce((sum, module) => sum + (module.lessons?.length || 0), 0) || 0) + 
+                    (courseData.standaloneLessons?.length || 0);
+
+const totalModules = courseData.modules?.length || 0;
+---
+
+<BaseLayout title={courseData.title} description={courseData.description}>
+  <!-- Hero Section - Using site's consistent pattern -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-8">
+          <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
+            Autonomy Intelligence Resource
+          </div>
+          <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+            {courseData.title}
+          </h1>
+          <div class="w-16 h-px bg-foreground/20"></div>
+          <div class="space-y-6 pt-8">
+            <p class="text-lg font-light text-foreground leading-relaxed">
+              {courseData.description}
+            </p>
+            <div class="flex items-center gap-x-6 text-sm font-light text-foreground/60">
+              <span>By {courseData.author}</span>
+              <span>•</span>
+              <span>{totalLessons} lesson{totalLessons !== 1 ? 's' : ''}</span>
+              {totalModules > 0 && (
+                <>
+                  <span>•</span>
+                  <span>{totalModules} module{totalModules !== 1 ? 's' : ''}</span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- Course Information -->
+  {courseData.customInfoHeading && courseData.customInfoBody && (
+    <ScrollAnimator client:visible>
+      <section class="py-16 sm:py-20 lg:py-32 bg-secondary/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+            {/* Left Content */}
+            <div class="col-span-12 lg:col-span-6">
+              <div class="space-y-8">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-light leading-[1.8] tracking-tight text-foreground">
+                  {courseData.customInfoHeading}
+                </h2>
+                <div class="w-16 h-px bg-foreground/20"></div>
+                <div class="space-y-6">
+                  {courseData.customInfoBody.split('\n\n').map((paragraph) => (
+                    <p class="text-base font-light text-foreground leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+                
+                {/* Learning Outcomes */}
+                <div class="space-y-6 pt-8 border-t border-foreground/10">
+                  <h3 class="text-lg font-light text-foreground tracking-tight">
+                    What You'll Develop
+                  </h3>
+                  <div class="grid gap-4">
+                    <div class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-foreground/30 mt-2 flex-shrink-0"></div>
+                      <span class="text-sm font-light text-foreground/70 leading-relaxed">Pattern recognition skills for identifying sophisticated exploitation strategies</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-foreground/30 mt-2 flex-shrink-0"></div>
+                      <span class="text-sm font-light text-foreground/70 leading-relaxed">Strategic response frameworks for maintaining operational autonomy</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-foreground/30 mt-2 flex-shrink-0"></div>
+                      <span class="text-sm font-light text-foreground/70 leading-relaxed">Integration methods for systematic daily application</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content - Course Image & Details */}
+            <div class="col-span-12 lg:col-span-6">
+              <div class="space-y-8">
+                {courseData.course_image && (
+                  <img
+                    class="object-cover aspect-[4/3] rounded-lg w-full"
+                    src={courseData.course_image.url}
+                    alt={courseData.course_image.alt}
+                  />
+                )}
+                
+                {/* Course Details Card */}
+                <div class="bg-secondary/20 border border-foreground/10 rounded-lg p-6">
+                  <h4 class="text-lg font-light text-foreground mb-6 tracking-tight">
+                    Overview
+                  </h4>
+                  
+                  <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-light text-foreground/60">Approach</span>
+                      <span class="text-sm font-light text-foreground">Strategic Frameworks</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-light text-foreground/60">Application Level</span>
+                      <span class="text-sm font-light text-foreground">Professional & Personal</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-light text-foreground/60">Time Commitment</span>
+                      <span class="text-sm font-light text-foreground">Self-Paced</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-light text-foreground/60">Implementation</span>
+                      <span class="text-sm font-light text-foreground">Systematic Integration</span>
+                    </div>
+                  </div>
+                  
+                  <div class="pt-6 mt-6 border-t border-foreground/10">
+                    <p class="text-sm font-light text-foreground/70 leading-relaxed">
+                      Designed for systematic application in high-stakes environments where strategic autonomy is essential.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ScrollAnimator>
+  )}
+
+  <!-- Course Structure -->
+  {(courseData.modules?.length > 0 || courseData.standaloneLessons?.length > 0) && (
+    <ScrollAnimator client:visible>
+      <section class="py-16 sm:py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+            {/* Left Column - Section Header */}
+            <div class="col-span-12 lg:col-span-5">
+              <div class="space-y-8 lg:sticky lg:top-8">
+                <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase">
+                  {courseData.modules?.length > 0 ? 'Course Structure' : 'Course Content'}
+                </div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                  {courseData.modules?.length > 0 ? 'Modules & Lessons' : 'Available Lessons'}
+                </h2>
+                <div class="w-16 h-px bg-foreground/20"></div>
+              </div>
+            </div>
+
+            {/* Right Column - Content */}
+            <div class="col-span-12 lg:col-span-7">
+              <ScrollAnimator client:visible staggerChildren={true} staggerDelay={150} className="space-y-12 sm:space-y-20 lg:space-y-32">
+                {courseData.modules?.length > 0 ? (
+                  courseData.modules.map((module) => {
+                    const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
+                    return (
+                      <ModuleEntry
+                        url={`/courses/${course.slug}/${moduleSlug}`}
+                        title={module.title}
+                        description={module.description}
+                        icon={module.icon}
+                        lessonCount={module.lessons.length}
+                      />
+                    );
+                  })
+                ) : courseData.standaloneLessons?.length > 0 ? (
+                  courseData.standaloneLessons.map((lesson, index) => (
+                    <LessonEntry
+                      url={`/courses/${course.slug}/${lesson.slug}`}
+                      title={lesson.title}
+                      description={lesson.description}
+                      icon={lesson.icon}
+                      lessonNumber={index + 1}
+                    />
+                  ))
+                ) : (
+                  <div class="text-center py-16">
+                    <p class="text-base font-light text-foreground/70">
+                      Course content is being updated. Please check back soon.
+                    </p>
+                  </div>
+                )}
+              </ScrollAnimator>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ScrollAnimator>
+  )}
+
+  <!-- Navigation -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48 bg-secondary/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <BackToCoursesLink />
+      </div>
+    </section>
+  </ScrollAnimator>
+</BaseLayout>

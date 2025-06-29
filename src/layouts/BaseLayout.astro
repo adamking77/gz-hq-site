@@ -17,6 +17,8 @@ const {
     title = 'Default Title',
     description = 'Default description'
 } = Astro.props;
+
+const initialTheme = Astro.request.headers.get('cookie')?.includes('astro-ui-theme=dark') ? 'dark' : 'light';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +28,9 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script is:inline>
       (function() {
         const storageKey = 'astro-ui-theme';
@@ -47,6 +52,7 @@ const {
         const theme = isDark() ? 'dark' : 'light';
         document.documentElement.classList.add(theme);
         document.documentElement.setAttribute('data-theme', theme);
+        console.log('[BaseLayout] Theme applied:', theme);
       })();
     </script>
 </head>

@@ -25,16 +25,16 @@ const financialData = [
                 Our financial performance this quarter demonstrates exceptional resilience and strategic execution across all key metrics. The organization has successfully navigated market volatility while maintaining strong growth trajectories in both traditional and emerging revenue streams.
               </p>
               
-              <p class="text-base font-light text-foreground/80 leading-relaxed mb-6">
+              <p class="text-base font-light text-foreground leading-relaxed mb-6">
                 Revenue growth of 18.2% year-over-year reflects our diversified portfolio approach and successful client acquisition strategy. The improvement in operating margin to 32.4% indicates operational efficiency gains from our digital transformation initiatives and streamlined service delivery processes.
               </p>
               
-              <p class="text-base font-light text-foreground/80 leading-relaxed mb-8">
+              <p class="text-base font-light text-foreground leading-relaxed mb-8">
                 Cash flow performance remains robust at $12.3M, providing substantial flexibility for strategic investments and expansion opportunities. This strong financial foundation positions us well for continued growth while maintaining prudent risk management practices.
               </p>
               
               <div class="bg-background/60 border-l-4 border-foreground/30 pl-6 py-4 rounded-r-lg">
-                <p class="text-sm font-light text-foreground/70 italic leading-relaxed">
+                <p class="text-sm font-light text-foreground italic leading-relaxed">
                   "The consistent performance across all financial metrics validates our strategic focus on operational excellence and client-centric innovation. These results provide a solid foundation for our ambitious growth plans in the coming quarters."
                 </p>
                 <cite class="text-xs font-light text-foreground/50 mt-2 block">— Chief Financial Officer</cite>
@@ -48,12 +48,12 @@ const financialData = [
             {financialData.map((item) => (
               // Removed animate-fade-in class and style attribute for animationDelay
               <div class="group relative cursor-pointer hover:scale-105 transition-all duration-300">
-                <div class="bg-background/80 backdrop-blur-sm border border-foreground/10 rounded-lg p-6 space-y-4 hover:border-foreground/30 hover:shadow-xl transition-all duration-300">
+                <div class="bg-background/80 backdrop-blur-sm border border-foreground/10 rounded-lg p-6 space-y-4 hover:border-accent hover:shadow-md hover:bg-gradient-to-r hover:from-background hover:to-accent/30 transition-all duration-300">
                   <div class="space-y-2">
-                    <div class="text-2xl font-light text-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                    <div class="text-2xl font-light text-foreground group-hover:text-foreground transition-colors duration-300">
                       {item.value}
                     </div>
-                    <div class="text-sm font-light text-foreground/70 tracking-wider">
+                    <div class="text-sm font-light text-foreground tracking-wider">
                       {item.label.toUpperCase()}
                     </div>
                   </div>
@@ -62,8 +62,8 @@ const financialData = [
                     <div class:list={[
                       "text-sm font-light px-3 py-1 rounded-full transition-all duration-300",
                       item.change.startsWith('+') 
-                        ? 'bg-foreground/10 text-foreground/70 group-hover:bg-foreground/20' 
-                        : 'bg-foreground/20 text-foreground/80 group-hover:bg-foreground/30'
+                        ? 'bg-foreground/10 text-foreground group-hover:bg-foreground/20' 
+                        : 'bg-foreground/20 text-foreground group-hover:bg-foreground/30'
                     ]}>
                       {item.change}
                     </div>

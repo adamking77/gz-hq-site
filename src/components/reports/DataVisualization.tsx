@@ -100,7 +100,7 @@ const DataVisualization: React.FC<DataVisualizationProps> = ({ chartType, data, 
           </h2>
         )}
         {description && (
-          <p className="text-base font-light text-foreground/70 leading-relaxed mb-8 text-center max-w-2xl mx-auto">
+          <p className="text-base font-light text-foreground leading-relaxed mb-8 text-center max-w-2xl mx-auto">
             {description}
           </p>
         )}

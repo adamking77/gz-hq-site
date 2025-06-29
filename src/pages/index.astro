@@ -1,132 +1,318 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-// Layout Components
-import CompanyHero from '../components/layouts/CompanyHero.astro';
-import HybridShowcase from '../components/layouts/HybridShowcase.astro';
-import FoundedStory from '../components/layouts/FoundedStory.astro';
-import BrandPlatform from '../components/layouts/BrandPlatform.astro';
-import BookHero from '../components/layouts/BookHero.astro';
-import ContentSplit from '../components/layouts/ContentSplit.astro';
-import DataStory from '../components/layouts/DataStory.astro';
-
-// Section Components
-import About from '../components/sections/About.astro';
-import Services from '../components/sections/Services.astro';
-import ReportsSection from '../components/sections/ReportsSection.astro';
+import ScrollAnimator from '../components/interactive/ScrollAnimator.tsx';
+import { Button } from '../components/ui/button.tsx';
 import CTA from '../components/sections/CTA.astro';
-import Contact from '../components/sections/Contact.tsx';
 
-// Data for components
-const contentSplitRightItems = [
+// Strategic Component Mapping
+import CompanyHero from '../components/layouts/CompanyHero.astro';
+
+
+// GenZen Data
+const threePillarsItems = [
   { 
-    title: "Discovery & Strategy", 
-    description: "Deep dive into your business objectives and user needs",
-    meta: "Week 1-2"
+    title: "Pattern Recognition", 
+    description: "Identifying sophisticated exploitation strategies before they manifest, proactively preventing damage rather than reacting to the aftermath",
+    meta: "Phase 1"
   },
   { 
-    title: "Design & Prototyping", 
-    description: "Create and test solutions with real users",
-    meta: "Week 3-6"
+    title: "Resilience Architecture", 
+    description: "Designing adaptive systems that transform vulnerabilities into strategic advantages while maintaining autonomy against new threats",
+    meta: "Phase 2"
   },
   { 
-    title: "Development & Launch", 
-    description: "Build, deploy, and optimize your solution",
-    meta: "Week 7-12"
-  },
-  { 
-    title: "Growth & Evolution", 
-    description: "Continuous improvement and scaling",
-    meta: "Ongoing"
+    title: "Strategic Transformation", 
+    description: "Converting potential threats into catalysts for growth, transforming potential vulnerabilities into high leverage strategic advantages",
+    meta: "Phase 3"
   }
 ];
 
-const hybridShowcaseItems = [
-  { label: "Strategy", value: "Business", description: "Strategic planning" },
-  { label: "Design", value: "Digital", description: "User experience" },
-  { label: "Technology", value: "Development", description: "Technical solutions" },
-  { label: "Analytics", value: "Data", description: "Business intelligence" },
-  { label: "Growth", value: "Marketing", description: "Brand development" },
-  { label: "Operations", value: "Consulting", description: "Process optimization" },
-  { label: "Leadership", value: "Training", description: "Team development" },
-  { label: "Innovation", value: "R&D", description: "Future solutions" }
-];
-
-const dataStoryGrid = [
-  ["500+", "Projects Completed", "Global Reach", "99% Satisfaction"],
-  ["50+", "Team Members", "Industry Awards", "24/7 Support"],
-  ["15+", "Countries Served", "Years Experience", "Enterprise Clients"],
-  ["100M+", "Data Points", "Success Stories", "Revenue Generated"]
+const autonomyDivisions = [
+  {
+    name: "Personal Autonomy",
+    serviceName: "GenZen Pro",
+    description: "GenZen Pro - When your accomplishments, relationships, or reputation are weaponized to control your choices. Communication intelligence and extraction protocols for high-stakes interpersonal situations.",
+    cta: "Explore GenZen Pro",
+    url: "https://genzen.pro"
+  },
+  {
+    name: "Professional Autonomy", 
+    serviceName: "Business Autonomy Intelligence",
+    description: "Business Autonomy Intelligence - When your business model, industry position, or operational systems stop serving your actual goals. Operational redesign and professional identity restoration when industry standards conflict with your capabilities."
+  },
+  {
+    name: "Generational Autonomy",
+    serviceName: "GenZen Solutions",
+    description: "GenZen Solutions - When your wealth, legacy, or family systems become targets for sophisticated exploitation. Legacy intelligence and wealth protection for families and institutions facing sophisticated threats.",
+    cta: "Explore GenZen Solutions",
+    url: "https://genzen.solutions"
+  }
 ];
 ---
 
 <BaseLayout 
-  title="Software Design & Engineering Company - Copenhagen" 
-  description="We create digital experiences that connect people and transform businesses through innovative design and strategic thinking."
+  title="Architects of Autonomy - GenZen Intelligence" 
+  description="Global provider of autonomy intelligence - restoring your power by exposing and transforming systematic exploitation that targets your personal, professional, and generational legacies."
 >
-  <CompanyHero 
-    title="Software design & engineering company from"
-    location="Copenhagen"
-    subtitle="We create digital experiences that connect people and transform businesses through innovative design and strategic thinking."
-    ctaText="See our recent work"
-    ctaLink="#services"
-  />
+  <!-- 1. Hero -->
+  <ScrollAnimator client:visible>
+    <CompanyHero 
+      title="Architects of"
+      location="Autonomy"
+      subtitle="GenZen is a global provider of autonomy intelligence - restoring your power by exposing and transforming systematic exploitation that targets your personal, professional, and generational legacies."
+      ctaText="Explore Intelligence Divisions"
+      ctaLink="#divisions"
+    />
+  </ScrollAnimator>
 
-  <HybridShowcase 
-    primaryText="Innovation"
-    accentText="Our Expertise"
-    gridTitle="Core Services"
-    gridItems={hybridShowcaseItems}
-  />
-  
-  <Services />
-  
-  <About />
-  
-  <ReportsSection />
-  
-  <FoundedStory 
-    year="1921"
-    title="Hand-crafted from only the finest materials."
-    aboutTitle="About the Brand"
-    aboutDescription="One of the oldest rug companies in the Americas. Odabashan focuses on bespoke design and manufacture of hand-woven luxury area rugs for the hospitality, design and retail industries."
-    collectionsTitle="Main Collections"
-    collections={["Hotels", "Collaborations", "Bespoke"]}
-  />
+  <!-- 2. Core Problem -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-8">
+          <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
+            Recognition & Solution
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+            The Core Problem
+          </h2>
+          <div class="w-16 h-px bg-foreground/20"></div>
+          <div class="space-y-6 pt-8">
+            <p class="text-lg font-light text-foreground leading-relaxed">
+              What are you expected to do when every system that was supposed to support you is actually being weaponized against you? How do you regain actual autonomy when protection systems turn against you?
+            </p>
+            <p class="text-base font-light text-foreground leading-relaxed">
+              Traditional solutions fail because they address symptoms while missing the exploitation patterns targeting your agency. GenZen provides comprehensive autonomy intelligence across every dimension where human agency faces attack. We don't compete with executive coaches, business consultants, or wealth advisors - we address what they can't: the systematic erosion of human autonomy.
+            </p>
+          </div>
+          
+          <div class="pt-8">
+            <a href="/autonomy-intelligence">
+              <Button
+                variant="outline"
+                size="lg"
+                className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
+              >
+                Explore Autonomy Intelligence
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+              </Button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
 
-  <ContentSplit 
-    leftTitle="Building the Future"
-    leftDescription="We combine cutting-edge technology with human-centered design to create solutions that don't just meet today's needs, but anticipate tomorrow's challenges. Our approach is rooted in understanding both the technical possibilities and the human experiences that drive meaningful innovation."
-    rightTitle="Our Process"
-    rightItems={contentSplitRightItems}
-  />
-  
-  <BrandPlatform 
-    backText="BACK"
-    company="Vision ICL"
-    title="A simple, engaging, and educational brand-first platform"
-    subtitle="BRANDING & WEBSITE DESIGN"
-    description="Vision ICL needed a strong voice on the digital landscape, a platform on which it educates and engages people with its removable lens implant."
-  />
+  <!-- 3. The Three Pillars -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-20 lg:py-40 bg-secondary/30">
+      <div class="max-w-7xl mx-auto px-8 lg:px-12">
+        <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+          {/* Left Content */}
+          <div class="col-span-12 lg:col-span-6">
+            <div class="space-y-12">
+              <div class="space-y-8">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                  The Three Pillars of Autonomy Intelligence
+                </h2>
+                <div class="w-16 h-px bg-border"></div>
+              </div>
+            </div>
+          </div>
 
-  <DataStory 
-    year="2019"
-    storyTitle="Data-Driven Excellence"
-    storyDescription="Since our founding, we have built a comprehensive analytics infrastructure that transforms raw business data into actionable strategic insights. Our approach combines advanced statistical modeling with industry expertise to deliver meaningful recommendations that drive measurable results across diverse market sectors."
-    dataTitle="Key Metrics"
-    dataSubtitle="Performance indicators that demonstrate our impact and growth trajectory"
-    dataGrid={dataStoryGrid}
-  />
-  
-  <BookHero 
-    title="Good Omens"
-    author="Terry Pratchett and Neil Gaiman"
-    publication="Corgi Adult"
-    quote="A hilarious dark fantasy"
-    quoteAuthor="Dave Martin, The Bookbag"
-    description="In England the Antichrist is about to be born. Unfortunately, thanks to a couple of bumbling Satanic Midwives, the Antichrist has a new name: Adam knows nothing of the evil thing he is to become."
-  />
-  
-  <CTA />
-  <Contact client:visible />
+          {/* Right Content */}
+          <div class="col-span-12 lg:col-span-6">
+            <ScrollAnimator client:visible staggerChildren={true} staggerDelay={150} className="space-y-8">
+              {threePillarsItems.map((item) => (
+                <div class="group border-b border-border last:border-b-0 p-8">
+                  <div class="flex items-start justify-between mb-4">
+                    <h4 class="text-xl font-light text-foreground group-hover:text-primary transition-colors duration-300">
+                      {item.title}
+                    </h4>
+                    {item.meta && (
+                      <div class="text-xs font-light text-foreground tracking-wider uppercase bg-secondary px-3 py-1 rounded">
+                        {item.meta}
+                      </div>
+                    )}
+                  </div>
+                  <div class="space-y-4 px-8 py-8">
+                    <p class="text-base font-light text-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </ScrollAnimator>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 4. Autonomy Intelligence Divisions -->
+  <ScrollAnimator client:visible>
+    <section id="divisions" class="py-16 sm:py-20 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+          {/* Left Column - Section Header */}
+          <div class="col-span-12 lg:col-span-5">
+            <div class="space-y-8 lg:sticky lg:top-8">
+              <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase">
+                Proven Solutions
+              </div>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                Autonomy Intelligence Divisions
+              </h2>
+              <div class="w-16 h-px bg-foreground/20"></div>
+            </div>
+          </div>
+
+          {/* Right Column - Cards */}
+          <div class="col-span-12 lg:col-span-7">
+            <ScrollAnimator client:visible staggerChildren={true} staggerDelay={150} className="space-y-12 sm:space-y-20 lg:space-y-32">
+              {autonomyDivisions.map((division, index) => (
+                <a href={division.url || '#'} target="_blank" rel="noopener noreferrer" class="group block transition-all duration-300 hover:scale-105 mb-8 last:mb-0">
+                  <div class="bg-background border border-foreground/10 rounded-lg p-4 sm:p-6 lg:p-8 hover:border-accent hover:shadow-md hover:bg-gradient-to-r hover:from-background hover:to-accent/30 transition-all duration-300 h-full">
+                    <div class="space-y-4 sm:space-y-6 lg:space-y-8 flex flex-col justify-between h-full">
+                      <div>
+                        <div class="flex items-start justify-between">
+                          <div class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                              <span class="px-3 py-1 bg-foreground/10 text-foreground text-xs font-light rounded-full">
+                                {division.serviceName}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="space-y-4 mt-6">
+                          <h3 class="text-lg sm:text-xl font-light leading-[1.8] tracking-tight text-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                            {division.name}
+                          </h3>
+                          
+                          <p class="text-base font-light text-foreground leading-relaxed">
+                            {division.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="flex items-center justify-between pt-4 border-t border-foreground/10 mt-6">
+                        <div class="text-sm font-light text-foreground group-hover:text-blue-500 transition-colors duration-300">
+                          {division.cta || 'Explore Division →'}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </ScrollAnimator>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 5. About -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48 bg-secondary/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+          {/* Left Column - Section Header */}
+          <div class="col-span-12 lg:col-span-5">
+            <div class="lg:sticky lg:top-8">
+              <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase mb-8">
+                About GenZen
+              </div>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                GenZen exists because autonomy under attack requires intelligence, not advice.
+              </h2>
+              <div class="w-16 h-px bg-foreground/20 mt-8"></div>
+            </div>
+          </div>
+
+          {/* Right Column - Content */}
+          <div class="col-span-12 lg:col-span-7">
+            <div class="space-y-8 lg:pt-12">
+              <p class="text-lg font-light text-foreground leading-relaxed">
+                GenZen exists because autonomy under attack requires intelligence, not advice. We've protected hundreds of millions in assets, transformed "impossible" situations into strategic advantages, and helped people reclaim their autonomy when everyone else said it couldn't be done.
+              </p>
+              <p class="text-base font-light text-foreground leading-relaxed">
+                These patterns of exploitation aren't random - they're predictable, systematic, and therefore transformable by design.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 6. About Adam King -->
+  <ScrollAnimator client:visible>
+    <section id="about" class="py-16 sm:py-24 lg:py-48">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-24 items-center">
+          <div>
+            <div class="space-y-12">
+              <div class="space-y-8">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                  Adam King,
+                  <span class="block text-foreground">Founder</span>
+                </h2>
+                <div class="w-16 h-px bg-foreground/20"></div>
+              </div>
+              
+              <div class="space-y-6">
+                <p class="text-lg font-light text-foreground leading-relaxed">
+                  GenZen didn't start as a business concept - it became my own pathway back to autonomy after nearly a lifetime of having it systematically stripped away.
+                </p>
+                <p class="text-base font-light text-foreground leading-relaxed">
+                  For fifteen years, I've focused on restoring human autonomy when systematic exploitation targets what matters most. The methodologies that work aren't theoretical—they're born from lived experience of what it takes to engineer real autonomy.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-8 pt-8 border-t border-foreground/10">
+                <div>
+                  <div class="text-2xl font-light mb-2 text-foreground">250M+</div>
+                  <div class="text-sm font-light text-foreground/50">Assets Protected</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-light mb-2 text-foreground">15+</div>
+                  <div class="text-sm font-light text-foreground/50">Years Experience</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <div class="space-y-8">
+              <div class="space-y-6">
+                <h3 class="text-2xl font-light text-foreground">
+                  The Core Recognition
+                </h3>
+                <p class="text-base font-light text-foreground leading-relaxed">
+                  What I discovered through that process was that the patterns targeting my personal agency weren't unique to me. They were systematic, predictable, and therefore transformable.
+                </p>
+                <p class="text-base font-light text-foreground leading-relaxed">
+                  Whether the threat targets your personal power, professional identity, or generational legacy, the solution is comprehensive autonomy intelligence that transforms systematic exploitation into strategic advantage.
+                </p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 7. Ready to Explore -->
+  <ScrollAnimator client:visible>
+    <CTA 
+      headline="Ready to Explore Autonomy Intelligence?"
+      subtext="Autonomy under attack requires different approaches depending on which dimension faces the greatest threat. Explore the division that addresses your most urgent and immediate situation, or schedule a Strategic Analysis Call to determine which approach applies to your situation."
+      buttonText="Schedule Strategic Analysis Call"
+      buttonLink="#"
+    />
+  </ScrollAnimator>
 </BaseLayout>

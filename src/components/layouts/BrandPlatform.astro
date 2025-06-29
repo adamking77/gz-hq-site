@@ -20,7 +20,7 @@ const { backText, company, title, subtitle, description } = Astro.props;
           <!-- Unicode arrow, can be replaced with an SVG or icon component if available -->
           &larr; {backText}
         </button>
-        <div class="text-sm font-light text-foreground/60 mb-4 tracking-wide">
+        <div class="text-sm font-light text-foreground mb-4 tracking-wide">
           {company}
         </div>
       </div>
@@ -38,7 +38,7 @@ const { backText, company, title, subtitle, description } = Astro.props;
       </div>
       
       <div class="transition-all duration-1000 delay-400 "" data-animate="brand-description">
-        <p class="text-base font-light text-foreground/70 leading-relaxed max-w-2xl">
+        <p class="text-base font-light text-foreground leading-relaxed max-w-2xl">
           {description}
         </p>
       </div>

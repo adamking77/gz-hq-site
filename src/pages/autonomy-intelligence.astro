@@ -1,0 +1,331 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ScrollAnimator from '../components/interactive/ScrollAnimator.tsx';
+import TypographicHero from '../components/layouts/TypographicHero.astro';
+import CTA from '../components/sections/CTA.astro';
+
+// Intelligence Streams Data
+const intelligenceStreams = [
+  {
+    number: "01",
+    title: "Cultural Intelligence",
+    description: "How trust networks, traditions, and social systems get weaponized against the communities that depend on them."
+  },
+  {
+    number: "02", 
+    title: "Human Intelligence",
+    description: "How relationships, authorities, and networks get compromised to manipulate decision-making and remove agency."
+  },
+  {
+    number: "03",
+    title: "Behavioral Intelligence", 
+    description: "How decision-making patterns and responses get hijacked to create predictable, controllable outcomes."
+  }
+];
+---
+
+<BaseLayout 
+  title="Autonomy Intelligence - GenZen HQ" 
+  description="The systematic application of intelligence gathering and analysis to restore human agency when it's being stripped away by design."
+>
+  <!-- 1. Hero -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-32">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-8">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.8] tracking-tight text-foreground">
+            Autonomy Intelligence
+          </h1>
+          <p class="text-base sm:text-lg lg:text-xl font-light text-foreground leading-relaxed max-w-2xl">
+            The systematic application of intelligence gathering and analysis to restore human agency when it's being stripped away by design.
+          </p>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 2. What Makes It Different -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+          <!-- Left Column - Section Header -->
+          <div class="col-span-12 lg:col-span-5">
+            <div class="space-y-8 lg:sticky lg:top-8">
+              <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase">
+                Core Differentiator
+              </div>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                What Makes It Fundamentally Different
+              </h2>
+              <div class="w-16 h-px bg-foreground/20"></div>
+            </div>
+          </div>
+
+          <!-- Right Column - Content -->
+          <div class="col-span-12 lg:col-span-7">
+            <div class="space-y-8 lg:pt-12">
+              <p class="text-base sm:text-lg font-light text-foreground leading-relaxed">
+                Most intelligence work is about understanding threats to protect assets or gain strategic advantage.
+              </p>
+              <p class="text-base sm:text-lg font-light text-foreground leading-relaxed">
+                <strong class="font-medium">Autonomy Intelligence is about understanding how power itself is being systematically removed</strong> from individuals, organizations, and cultures - and then engineering the restoration of that power.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 3. Traditional vs Autonomy Intelligence -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48 bg-secondary/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-16 sm:space-y-20 lg:space-y-32">
+          <!-- Section Header -->
+          <div class="text-center space-y-8">
+            <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase">
+              Fundamental Distinction
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+              Think About It This Way
+            </h2>
+            <div class="w-16 h-px bg-foreground/20 mx-auto"></div>
+          </div>
+          
+          <!-- Comparison Grid -->
+          <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+            <!-- Traditional Intelligence -->
+            <div class="col-span-12 lg:col-span-6">
+              <div class="space-y-8 lg:space-y-12">
+                <div class="space-y-6">
+                  <div class="flex items-center space-x-4">
+                    <div class="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center">
+                      <span class="text-xs font-light text-foreground/60">01</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-light text-foreground tracking-tight">
+                      Traditional Intelligence
+                    </h3>
+                  </div>
+                  <div class="pl-12">
+                    <div class="w-full h-px bg-foreground/10 mb-8"></div>
+                    <blockquote class="text-lg sm:text-xl font-light text-foreground leading-relaxed italic">
+                      "Here's what's happening to you."
+                    </blockquote>
+                  </div>
+                </div>
+                
+                <div class="pl-12 space-y-6">
+                  <div class="space-y-4">
+                    <h4 class="text-sm font-light text-foreground/60 tracking-wider uppercase">
+                      Approach
+                    </h4>
+                    <p class="text-base font-light text-foreground leading-relaxed">
+                      Information delivery focused on external threats and market conditions. Reactive analysis that identifies problems after they emerge.
+                    </p>
+                  </div>
+                  
+                  <div class="space-y-4">
+                    <h4 class="text-sm font-light text-foreground/60 tracking-wider uppercase">
+                      Outcome
+                    </h4>
+                    <p class="text-base font-light text-foreground leading-relaxed">
+                      Awareness without agency. You know what's happening but remain dependent on external systems for solutions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Autonomy Intelligence -->
+            <div class="col-span-12 lg:col-span-6">
+              <div class="space-y-8 lg:space-y-12">
+                <div class="space-y-6">
+                  <div class="flex items-center space-x-4">
+                    <div class="w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center">
+                      <span class="text-xs font-light text-foreground/60">02</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-light text-foreground tracking-tight">
+                      Autonomy Intelligence
+                    </h3>
+                  </div>
+                  <div class="pl-12">
+                    <div class="w-full h-px bg-foreground/10 mb-8"></div>
+                    <blockquote class="text-lg sm:text-xl font-light text-foreground leading-relaxed italic">
+                      "Here's how your own systems are being turned against you, here's exactly how the manipulation works, and here's how to not just stop it but reverse it so you end up more powerful than before."
+                    </blockquote>
+                  </div>
+                </div>
+                
+                <div class="pl-12 space-y-6">
+                  <div class="space-y-4">
+                    <h4 class="text-sm font-light text-foreground/60 tracking-wider uppercase">
+                      Approach
+                    </h4>
+                    <p class="text-base font-light text-foreground leading-relaxed">
+                      Systems analysis that exposes how power structures exploit existing dependencies. Proactive engineering of autonomous alternatives.
+                    </p>
+                  </div>
+                  
+                  <div class="space-y-4">
+                    <h4 class="text-sm font-light text-foreground/60 tracking-wider uppercase">
+                      Outcome
+                    </h4>
+                    <p class="text-base font-light text-foreground leading-relaxed">
+                      Restored agency with enhanced capabilities. You not only escape manipulation but become systematically more powerful.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 4. Three Intelligence Streams -->
+  <ScrollAnimator client:visible>
+    <section id="streams" class="py-16 sm:py-20 lg:py-40">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+          <div class="lg:col-span-4">
+            <div class="space-y-8 sticky top-32">
+              <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase">
+                Intelligence Streams
+              </div>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                Three Vectors of
+                <span class="block text-foreground/50">Autonomy Erosion</span>
+              </h2>
+              <div class="w-12 h-px bg-foreground/20"></div>
+              <p class="text-sm sm:text-base font-light text-foreground leading-relaxed">
+                The three intelligence streams aren't just gathering different types of data. They're mapping the three primary vectors through which autonomy gets systematically eroded.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="space-y-12 sm:space-y-20 lg:space-y-32">
+              {intelligenceStreams.map((stream, index) => (
+                <div class="group">
+                  <div class="grid grid-cols-12 gap-8 items-start py-4 sm:py-6 lg:py-8 border-b border-foreground/10 last:border-b-0 group-hover:border-accent group-hover:scale-105 group-hover:shadow-md group-hover:bg-gradient-to-r group-hover:from-background group-hover:to-accent/30 transition-all duration-300 rounded-lg px-4 sm:px-6 cursor-pointer">
+                    <div class="col-span-2">
+                      <span class="text-xl sm:text-2xl font-light text-foreground/30 group-hover:text-foreground/50 transition-colors duration-300">
+                        {stream.number}
+                      </span>
+                    </div>
+                    <div class="col-span-10 space-y-4">
+                      <h3 class="text-lg sm:text-xl lg:text-2xl font-light text-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                        {stream.title}
+                      </h3>
+                      <p class="text-sm sm:text-base font-light text-foreground leading-relaxed max-w-lg">
+                        {stream.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 5. Philosophy & Positioning -->
+  <ScrollAnimator client:visible>
+    <section class="py-16 sm:py-24 lg:py-48 bg-secondary/30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-12 gap-8 sm:gap-12 lg:gap-20">
+          <!-- Left Content - Philosophy -->
+          <div class="col-span-12 lg:col-span-6">
+            <div class="space-y-8 lg:space-y-12">
+              <div class="space-y-8">
+                <div class="text-xs font-normal text-foreground/40 tracking-widest uppercase">
+                  The Transformation Philosophy
+                </div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.8] tracking-tight text-foreground">
+                  Beyond Defense.<br/>Beyond Protection.
+                </h2>
+                <div class="w-16 h-px bg-foreground/20"></div>
+              </div>
+              
+              <div class="space-y-8">
+                <p class="text-base sm:text-lg font-light text-foreground leading-relaxed">
+                  Autonomy Intelligence isn't about building defenses against exploitation - it's about exposing exploitation so clearly that it becomes impossible to maintain, while teaching people to engineer their own unassailable autonomy.
+                </p>
+                
+                <div class="pt-8 border-t border-foreground/10">
+                  <blockquote class="text-lg sm:text-xl font-light text-foreground leading-relaxed italic">
+                    "While traditional firms are just playing defense, Autonomy Intelligence is specifically designed to restore and enhance human agency."
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content - Context & Positioning -->
+          <div class="col-span-12 lg:col-span-6">
+            <div class="space-y-8 lg:space-y-12 lg:pt-12">
+              <div class="space-y-6">
+                <h3 class="text-xl sm:text-2xl font-light tracking-tight text-foreground">
+                  The Strategic Difference
+                </h3>
+                <p class="text-base font-light text-foreground leading-relaxed">
+                  Most consulting approaches focus on optimization within existing systems. Autonomy Intelligence questions the systems themselves, identifies where they've been compromised, and engineers systematic liberation.
+                </p>
+              </div>
+              
+              <div class="space-y-8 border-t border-foreground/10 pt-8">
+                <div class="space-y-4">
+                  <h4 class="text-sm font-light text-foreground/60 tracking-wider uppercase">
+                    Core Methodology
+                  </h4>
+                  <ul class="space-y-3 text-sm font-light text-foreground">
+                    <li class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-accent/60 mt-2 flex-shrink-0"></div>
+                      <span>Systematic exposure of manipulation mechanisms</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-accent/60 mt-2 flex-shrink-0"></div>
+                      <span>Engineering of autonomous alternatives</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-accent/60 mt-2 flex-shrink-0"></div>
+                      <span>Transfer of capabilities, not just solutions</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                      <div class="w-1.5 h-1.5 rounded-full bg-accent/60 mt-2 flex-shrink-0"></div>
+                      <span>Measurable enhancement of agency over time</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="space-y-4 pt-6">
+                  <h4 class="text-sm font-light text-foreground/60 tracking-wider uppercase">
+                    Long-term Impact
+                  </h4>
+                  <p class="text-sm font-light text-foreground leading-relaxed">
+                    Clients don't just solve immediate problems - they develop systematic immunity to future manipulation while gaining enhanced capabilities for autonomous operation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ScrollAnimator>
+
+  <!-- 6. CTA Section -->
+  <ScrollAnimator client:visible>
+    <CTA 
+      headline="Ready to Explore Autonomy Intelligence?"
+      subtext="Autonomy under attack requires different approaches depending on which dimension faces the greatest threat. Explore the division that addresses your most urgent and immediate situation, or schedule a Strategic Analysis Call to determine which approach applies to your situation."
+      buttonText="Schedule Strategic Analysis Call"
+      buttonLink="#"
+    />
+  </ScrollAnimator>
+</BaseLayout>
