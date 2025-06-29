@@ -182,12 +182,12 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
                   <div className="space-y-8">
                     <div className="w-16 h-px bg-foreground/20 mx-auto"></div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-light leading-[0.9] text-foreground">
-                      Ready to build something 
-                      <span className="block">great?</span>
+                      Ready to restore your 
+                      <span className="block">autonomy?</span>
                     </h1>
                   </div>
                   <p className="text-base sm:text-lg font-light leading-relaxed text-foreground/80 max-w-xl mx-auto">
-                    Let's start with a few questions to understand your needs and create the perfect solution.
+                    This brief assessment helps us understand your specific situation so we can provide targeted guidance in your Strategic Analysis Call.
                   </p>
                   <Button 
                     onClick={() => setCurrentQuestion(0)}
@@ -195,7 +195,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
                     size="lg"
                     className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
                   >
-                    Begin Journey
+                    Start Assessment
                   </Button>
                 </motion.div>
               )}
