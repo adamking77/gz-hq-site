@@ -161,7 +161,9 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
                   </p>
                   <Button 
                     onClick={() => setCurrentQuestion(0)}
-                    className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary/80 hover:scale-105 transition-all duration-300 font-light px-8 py-3 text-base rounded-full"
+                    variant="outline"
+                    size="lg"
+                    className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
                   >
                     Begin Journey
                   </Button>
@@ -273,7 +275,8 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
                 <Button 
                   variant="outline" 
                   onClick={handlePrev}
-                  className="font-light px-6 py-3 text-base rounded-full border-2 border-foreground/20 hover:border-foreground/40 hover:scale-105 transition-all duration-300"
+                  size="lg"
+                  className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
                 >
                   Previous
                 </Button>
@@ -281,21 +284,27 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
               {currentQuestion < questions.length -1 ? (
                 <Button 
                   onClick={handleNext}
-                  className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary/80 hover:scale-105 transition-all duration-300 font-light px-6 py-3 text-base rounded-full"
+                  variant="outline"
+                  size="lg"
+                  className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
                 >
                   Next
                 </Button>
               ) : currentQuestion === questions.length -1 ? (
                   <Button 
                     onClick={handleNext}
-                    className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary/80 hover:scale-105 transition-all duration-300 font-light px-6 py-3 text-base rounded-full"
+                    variant="outline"
+                    size="lg"
+                    className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
                   >
                     Review
                   </Button>
               ) : (
                 <Button 
                   onClick={handleSubmit}
-                  className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary/80 hover:scale-105 transition-all duration-300 font-light px-8 py-3 text-base rounded-full"
+                  variant="outline"
+                  size="lg"
+                  className="font-light text-base px-8 py-3 border-2 border-foreground/30 rounded-full"
                 >
                   Submit Application
                 </Button>
