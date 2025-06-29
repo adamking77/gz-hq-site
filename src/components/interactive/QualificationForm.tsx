@@ -135,16 +135,50 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
           <div className="space-y-8">
             <div className="w-16 h-px bg-foreground/20 mx-auto"></div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-light leading-[0.9] text-foreground">
-              Thank You!
+              Assessment Complete
             </h1>
-            <p className="text-base sm:text-lg font-light leading-relaxed text-foreground/80 max-w-xl mx-auto">
-              Your submission has been received. We will be in touch shortly to discuss your project.
+            <p className="text-base sm:text-lg font-light leading-relaxed text-foreground/80 max-w-2xl mx-auto">
+              Thank you for taking the time to share your situation with us.
             </p>
           </div>
+          
+          <div className="text-left space-y-8 max-w-3xl mx-auto">
+            <div className="space-y-4">
+              <h2 className="text-xl font-light text-foreground">What happens next:</h2>
+              <div className="space-y-4 text-base font-light leading-relaxed text-foreground/80">
+                <p>Within 48 hours, I'll personally review your responses and determine if our Autonomy Intelligence approach is the right fit for your specific situation.</p>
+                <p>If we're a good match, you'll receive a custom scheduling link to book your Strategic Analysis Call at a time that works for you.</p>
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <h2 className="text-xl font-light text-foreground">To prepare for the call:</h2>
+              <ul className="space-y-3 text-base font-light leading-relaxed text-foreground/80 list-disc list-inside">
+                <li>Have specific examples ready of how your autonomy is being undermined</li>
+                <li>Think about your ideal outcome - what would restored autonomy look like for you?</li>
+                <li>Be prepared for a diagnostic conversation focused on understanding your situation, not a sales presentation</li>
+              </ul>
+            </div>
+            
+            <div className="space-y-4 p-6 bg-secondary/20 border border-foreground/10 rounded-lg">
+              <p className="text-base font-light leading-relaxed text-foreground/80">
+                <strong className="text-foreground">Important:</strong> Not every situation requires our level of intervention. If we're not the right fit, I'll let you know and suggest alternative approaches that might serve you better.
+              </p>
+            </div>
+          </div>
+          
+          <div className="space-y-4 text-center">
+            <p className="text-base font-light text-foreground/80">You'll hear from me within 48 hours.</p>
+            <div className="space-y-2">
+              <p className="text-lg font-light text-foreground">Adam King</p>
+              <p className="text-sm font-light tracking-widest uppercase text-foreground/60">Founder, GenZen Solutions</p>
+            </div>
+          </div>
+          
           <div className="pt-8">
             <div className="inline-flex items-center space-x-3 text-sm font-light tracking-widest uppercase text-foreground/60">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Application Submitted</span>
+              <span>Assessment Submitted</span>
             </div>
           </div>
         </motion.div>
