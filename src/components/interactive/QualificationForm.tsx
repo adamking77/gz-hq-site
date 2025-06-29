@@ -113,12 +113,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
     console.log('Answers:', answers);
     setSubmitted(true);
     
-    // Auto-close modal after 3 seconds if in modal mode
-    if (onComplete) {
-      setTimeout(() => {
-        onComplete();
-      }, 3000);
-    }
+    // No auto-close - let users read the completion message and close manually
   };
 
   const progress = currentQuestion > -1 ? ((currentQuestion + 1) / (questions.length + 1)) * 100 : 0;
