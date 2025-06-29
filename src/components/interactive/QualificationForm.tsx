@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const questions = [
   {
-    question: 'How should we address you?',
+    question: 'Your Name',
     type: 'text',
     name: 'name',
   },
