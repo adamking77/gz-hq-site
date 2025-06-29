@@ -164,10 +164,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
           
           <div className="space-y-4 text-center">
             <p className="text-base font-light text-foreground/80">You'll hear from me within 48 hours.</p>
-            <div className="space-y-2">
-              <p className="text-lg font-light text-foreground">Adam King</p>
-              <p className="text-sm font-light tracking-widest uppercase text-foreground/60">Founder, GenZen Solutions</p>
-            </div>
+            <p className="text-lg font-light text-foreground">Adam King, Founder GenZen Solutions</p>
           </div>
           
           <div className="pt-8">
