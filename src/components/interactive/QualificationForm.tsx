@@ -8,47 +8,44 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const questions = [
   {
-    question: 'What is your name?',
-    type: 'text',
-    name: 'name',
-  },
-  {
-    question: 'What is your email?',
-    type: 'email',
-    name: 'email',
-  },
-  {
-    question: 'What is your company name?',
-    type: 'text',
-    name: 'company',
-  },
-  {
-    question: 'What is your role at the company?',
-    type: 'text',
-    name: 'role',
-  },
-  {
-    question: 'What is your company size?',
+    question: 'What best describes your current situation?',
     type: 'select',
-    name: 'companySize',
-    options: ['1-10', '11-50', '51-200', '201-500', '500+'],
+    name: 'currentSituation',
+    options: [
+      'Something is systematically undermining my personal power/reputation',
+      'My business/professional systems are working against my actual goals',
+      'Our family wealth/legacy faces sophisticated threats',
+      'I\'m not sure, but I know something isn\'t right'
+    ],
   },
   {
-    question: 'What is your project budget?',
+    question: 'How quickly do you need this resolved?',
     type: 'select',
-    name: 'budget',
-    options: ['$10k-$25k', '$25k-$50k', '$50k-$100k', '$100k+'],
+    name: 'urgency',
+    options: [
+      'Crisis mode - need immediate intervention',
+      'Urgent - within 30 days',
+      'Strategic - within 90 days',
+      'Planning ahead - no immediate pressure'
+    ],
   },
   {
-    question: 'What is your project timeline?',
-    type: 'select',
-    name: 'timeline',
-    options: ['1-3 months', '3-6 months', '6-12 months', '12+ months'],
-  },
-  {
-    question: 'Tell us about your project',
+    question: 'Help us understand what\'s been happening - in your own words, what situation brought you here?',
     type: 'textarea',
-    name: 'projectDetails',
+    name: 'situation',
+  },
+  {
+    question: 'Which of these feels most familiar?',
+    type: 'select',
+    name: 'pattern',
+    options: [
+      'People I trusted are using my own systems against me',
+      'The "solutions" I\'m being offered make things worse, not better',
+      'I can see the manipulation happening but can\'t prove it to others',
+      'Every move I make seems to strengthen my opponents\' position',
+      'Something else entirely'
+    ],
+    hasOther: true,
   },
 ];
 
@@ -61,6 +58,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [showOtherField, setShowOtherField] = useState(false);
 
   const handleNext = () => {
     if (currentQuestion < questions.length) {
@@ -76,6 +74,19 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
 
   const handleChange = (name, value) => {
     setAnswers({ ...answers, [name]: value });
+    
+    // Check if this is the pattern question and "Something else entirely" is selected
+    if (name === 'pattern' && value === 'Something else entirely') {
+      setShowOtherField(true);
+    } else if (name === 'pattern') {
+      setShowOtherField(false);
+      // Clear the other field if switching away from "Something else entirely"
+      if (answers.patternOther) {
+        const newAnswers = { ...answers, [name]: value };
+        delete newAnswers.patternOther;
+        setAnswers(newAnswers);
+      }
+    }
   };
 
   const handleSubmit = () => {
@@ -219,18 +230,37 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
                         />
                       )}
                       {questions[currentQuestion].type === 'select' && (
-                        <Select onValueChange={(value) => handleChange(questions[currentQuestion].name, value)} value={answers[questions[currentQuestion].name] || ''}>
-                          <SelectTrigger className="w-full p-4 text-lg font-light bg-background border-2 border-foreground/20 rounded-lg focus:border-primary focus:ring-0 transition-all duration-300">
-                            <SelectValue placeholder="Select an option" className="font-light" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-background border border-foreground/20">
-                            {questions[currentQuestion].options.map((option) => (
-                              <SelectItem key={option} value={option} className="text-lg font-light hover:bg-secondary/30 p-3">
-                                {option}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <div className="space-y-4">
+                          <Select onValueChange={(value) => handleChange(questions[currentQuestion].name, value)} value={answers[questions[currentQuestion].name] || ''}>
+                            <SelectTrigger className="w-full p-4 text-lg font-light bg-background border-2 border-foreground/20 rounded-lg focus:border-primary focus:ring-0 transition-all duration-300">
+                              <SelectValue placeholder="Select an option" className="font-light" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-background border border-foreground/20">
+                              {questions[currentQuestion].options.map((option) => (
+                                <SelectItem key={option} value={option} className="text-lg font-light hover:bg-secondary/30 p-3">
+                                  {option}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          
+                          {/* Conditional "Other" text field */}
+                          {questions[currentQuestion].hasOther && showOtherField && answers[questions[currentQuestion].name] === 'Something else entirely' && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <Textarea
+                                placeholder="Please describe your situation..."
+                                className="w-full p-4 text-lg font-light min-h-[120px] bg-background border-2 border-foreground/20 rounded-lg focus:border-primary focus:ring-0 transition-all duration-300 resize-none"
+                                onChange={(e) => handleChange(questions[currentQuestion].name + 'Other', e.target.value)}
+                                value={answers[questions[currentQuestion].name + 'Other'] || ''}
+                              />
+                            </motion.div>
+                          )}
+                        </div>
                       )}
                     </div>
                   </div>
@@ -260,7 +290,12 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
                     {questions.map((q, i) => (
                       <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-6 bg-secondary/20 border border-foreground/10 rounded-lg hover:bg-secondary/30 transition-all duration-300">
                         <p className="font-light text-foreground/80 text-base">{q.question}</p>
-                        <p className="text-foreground font-light text-base lg:text-right">{answers[q.name] || 'Not answered'}</p>
+                        <div className="text-foreground font-light text-base lg:text-right">
+                          <p>{answers[q.name] || 'Not answered'}</p>
+                          {q.hasOther && answers[q.name] === 'Something else entirely' && answers[q.name + 'Other'] && (
+                            <p className="mt-2 text-sm text-foreground/70 italic">"{answers[q.name + 'Other']}"</p>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>
