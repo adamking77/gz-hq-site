@@ -8,6 +8,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const questions = [
   {
+    question: 'How should we address you?',
+    type: 'text',
+    name: 'name',
+  },
+  {
+    question: 'What is your preferred contact email?',
+    type: 'email',
+    name: 'email',
+  },
+  {
+    question: 'Which organization do you represent?',
+    type: 'text',
+    name: 'company',
+  },
+  {
+    question: 'What is your position of authority there?',
+    type: 'text',
+    name: 'role',
+  },
+  {
     question: 'What best describes your current situation?',
     type: 'select',
     name: 'currentSituation',
