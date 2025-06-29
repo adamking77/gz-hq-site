@@ -164,7 +164,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
           
           <div className="space-y-4 text-center">
             <p className="text-base font-light text-foreground/80">You'll hear from me within 48 hours.</p>
-            <p className="text-lg font-light text-foreground">Adam King, Founder GenZen Solutions</p>
+            <p className="text-lg font-light text-foreground">Adam King, Founder - GenZen Intelligence Network</p>
           </div>
           
           <div className="pt-8">
