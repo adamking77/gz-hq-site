@@ -5,7 +5,6 @@ import { Input } from '../ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Textarea } from '../ui/textarea';
 import { motion, AnimatePresence } from 'framer-motion';
-import ScrollAnimator from './ScrollAnimator';
 
 const questions = [
   {
