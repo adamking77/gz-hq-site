@@ -1,45 +1,48 @@
-# GZS Astro Theme (Working Title)
+# GenZen HQ Swiss Theme
 
-A modern, flexible, and reusable Astro theme designed for [describe target use-case, e.g., corporate sites, portfolios, blogs]. This theme provides a collection of well-crafted components, layouts, and styling defaults to kickstart your Astro project.
+A sophisticated Swiss-inspired website built with Astro.js featuring:
 
-## Installation
+- Swiss design principles with clean typography and minimal aesthetic
+- Qualification form with Typeform-style UX
+- Modal system for lead capture
+- Responsive design with dark/light theme support
+- React components with Framer Motion animations
 
-```bash
-npm install gzs-astro-midcentury-theme # Or your chosen package name
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── interactive/     # React components (forms, modals)
+│   │   ├── layouts/         # Page layout components
+│   │   ├── sections/        # Page sections
+│   │   └── ui/              # UI components
+│   ├── layouts/
+│   └── pages/
+└── package.json
 ```
-You will also need to install peer dependencies like React, Tailwind CSS, and Astro integrations if not already present in your project. This theme uses `@astrojs/react` and `@astrojs/tailwind`.
 
-## Usage
+## 🧞 Commands
 
-Import layouts and components into your Astro pages:
+All commands are run from the root of the project, from a terminal:
 
-```astro
----
-import BaseLayout from 'gzs-astro-midcentury-theme/layouts/BaseLayout.astro';
-import { Button } from 'gzs-astro-midcentury-theme/components/ui/button.tsx';
----
-<BaseLayout title="My Page" description="An example page using the theme.">
-  <h1>Hello from the Theme!</h1>
-  <Button>Click Me</Button>
-</BaseLayout>
-```
-Refer to `docs/THEME_ARCHITECTURE.md` for more details on available components and customization.
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`     |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## Customization
+## Features
 
-*(Placeholder)*
-
-Learn how to tailor the theme to your specific needs:
-
-*   **Styling:**
-    *   **Tailwind CSS:** How to extend or override the theme's Tailwind configuration.
-    *   **CSS Variables:** A list of available CSS variables and how to override them.
-*   **Content:**
-    *   **Props:** Customizing components and layouts by passing props.
-    *   **Slots:** Using Astro slots to inject custom content.
-    *   **Content Collections:** Replacing or extending example content.
-*   **Data:** Providing custom data to components.
-
----
-
-*This theme is currently under development.*
+- **Qualification Form**: Multi-step form with Swiss design aesthetics
+- **Modal System**: Elegant modal overlays for forms
+- **Swiss Typography**: Hanken Grotesk font with proper hierarchy
+- **Theme Support**: Light/dark mode with smooth transitions
+- **Responsive Design**: Mobile-first approach with Swiss grid principles
