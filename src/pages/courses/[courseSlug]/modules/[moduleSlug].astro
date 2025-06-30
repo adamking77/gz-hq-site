@@ -3,8 +3,8 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import TypographicHero from "../../../../components/layouts/TypographicHero.astro";
 import MinimalList from "../../../../components/layouts/MinimalList.astro";
-import LessonEntry from "../../../components/courses/LessonEntry.astro";
-import ScrollAnimator from "../../../components/interactive/ScrollAnimator.tsx";
+import LessonEntry from "../../../../components/courses/LessonEntry.astro";
+import ScrollAnimator from "../../../../components/interactive/ScrollAnimator.tsx";
 
 export async function getStaticPaths() {
   const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
