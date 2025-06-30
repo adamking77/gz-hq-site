@@ -361,7 +361,6 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
                   </div>
                 </motion.div>
               )}
-              )}
             </AnimatePresence>
             
             {/* Navigation - Now inside content area */}
