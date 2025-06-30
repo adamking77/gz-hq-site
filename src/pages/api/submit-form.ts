@@ -8,7 +8,6 @@ const databaseId = import.meta.env.NOTION_DATABASE_ID;
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    console.log('Received body:', body);
     const { 
       name, 
       email, 
