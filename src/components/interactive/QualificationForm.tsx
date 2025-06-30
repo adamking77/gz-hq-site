@@ -109,11 +109,25 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
     }
   };
 
-  const handleSubmit = () => {
-    console.log('Answers:', answers);
-    setSubmitted(true);
-    
-    // No auto-close - let users read the completion message and close manually
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(answers),
+      });
+
+      if (response.ok) {
+        console.log('Form submitted successfully!');
+        setSubmitted(true);
+      } else {
+        console.error('Form submission failed.');
+      }
+    } catch (error) {
+      console.error('An error occurred while submitting the form:', error);
+    }
   };
 
   const progress = currentQuestion > -1 ? ((currentQuestion + 1) / (questions.length + 1)) * 100 : 0;
@@ -346,6 +360,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
                     ))}
                   </div>
                 </motion.div>
+              )}
               )}
             </AnimatePresence>
             
