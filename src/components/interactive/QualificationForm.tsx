@@ -111,6 +111,7 @@ const QualificationForm: React.FC<QualificationFormProps> = ({ onComplete, isMod
 
   const handleSubmit = async () => {
     try {
+      console.log('Sending answers:', answers);
       const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
