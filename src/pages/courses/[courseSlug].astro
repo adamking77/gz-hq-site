@@ -109,11 +109,11 @@ const totalModules = courseData.modules?.length || 0;
             {/* Right Content - Course Image & Details */}
             <div class="col-span-12 lg:col-span-6">
               <div class="space-y-8">
-                {courseData.course_image && (
+                {(courseData.course_image || courseData.image) && (
                   <img
                     class="object-cover aspect-[4/3] rounded-lg w-full"
-                    src={courseData.course_image.url}
-                    alt={courseData.course_image.alt}
+                    src={(courseData.course_image || courseData.image).url}
+                    alt={(courseData.course_image || courseData.image).alt}
                   />
                 )}
                 
