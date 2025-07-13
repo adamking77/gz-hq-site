@@ -8,15 +8,14 @@ import LessonEntry from "../../components/courses/LessonEntry.astro";
 import BackToCoursesLink from "../../components/courses/BackToCoursesLink.astro";
 import ScrollAnimator from "../../components/interactive/ScrollAnimator.tsx";
 
-export async function getStaticPaths() {
-  const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
-  return courses.map((course) => ({
-    params: { courseSlug: course.slug },
-    props: { course },
-  }));
-}
+// Get course from URL params in server mode
+const { courseSlug } = Astro.params;
+const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
+const course = courses.find(c => c.slug === courseSlug);
 
-const { course }: { course: CollectionEntry<'courses'> } = Astro.props;
+if (!course) {
+  return Astro.redirect('/404');
+}
 const { Content } = await course.render();
 
 const courseData = course.data;

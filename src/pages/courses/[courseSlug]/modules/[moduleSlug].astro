@@ -6,38 +6,23 @@ import MinimalList from "../../../../components/layouts/MinimalList.astro";
 import LessonEntry from "../../../../components/courses/LessonEntry.astro";
 import ScrollAnimator from "../../../../components/interactive/ScrollAnimator.tsx";
 
-export async function getStaticPaths() {
-  const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
-  const paths = [];
+// Get course and module from URL params in server mode
+const { courseSlug, moduleSlug } = Astro.params;
+const courses: CollectionEntry<'courses'>[] = await getCollection("courses");
+const course = courses.find(c => c.slug === courseSlug);
 
-  for (const course of courses) {
-    for (const module of course.data.modules) {
-      // Create a slug for the module (e.g., from its title)
-      // For simplicity, let's assume module titles are URL-friendly or we have a slug property
-      const moduleSlug = module.title.toLowerCase().replace(/\s+/g, '-');
-      paths.push({
-        params: {
-          courseSlug: course.slug,
-          moduleSlug: moduleSlug,
-        },
-        props: {
-          course,
-          module,
-          moduleSlug, // Pass moduleSlug for potential use in breadcrumbs or titles
-        },
-      });
-    }
-  }
-  return paths;
+if (!course) {
+  return Astro.redirect('/404');
 }
 
-interface Props {
-  course: CollectionEntry<'courses'>;
-  module: CollectionEntry<'courses'>['data']['modules'][number];
-  moduleSlug: string;
+let module: any = null;
+if (course.data.modules && Array.isArray(course.data.modules)) {
+  module = course.data.modules.find(m => m.title.toLowerCase().replace(/\s+/g, '-') === moduleSlug);
 }
 
-const { course, module, moduleSlug } = Astro.props as Props;
+if (!module) {
+  return Astro.redirect('/404');
+}
 
 // Prepare breadcrumb data
 const breadcrumb = `${course.data.title} • Module`;
