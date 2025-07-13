@@ -38,7 +38,7 @@ if (course.data.standaloneLessons && Array.isArray(course.data.standaloneLessons
       allLessons.push({
         title: lesson.title,
         slug: lesson.slug,
-        url: `/courses/${courseSlug}/${lesson.slug}`,
+        url: `/courses/${courseSlug}/lessons/${lesson.slug}`,
         courseSlug: courseSlug,
         type: 'standalone'
       });

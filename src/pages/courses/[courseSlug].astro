@@ -194,7 +194,7 @@ const totalModules = courseData.modules?.length || 0;
                 ) : courseData.standaloneLessons?.length > 0 ? (
                   courseData.standaloneLessons.map((lesson, index) => (
                     <LessonEntry
-                      url={`/courses/${course.slug}/${lesson.slug}`}
+                      url={`/courses/${course.slug}/lessons/${lesson.slug}`}
                       title={lesson.title}
                       description={lesson.description}
                       icon={lesson.icon}
